@@ -1,0 +1,52 @@
+[user]
+	name = Robert Gardner
+	email = rhg259@nyu.edu
+[core]
+	editor = atom --wait
+	excludesfile = /Users/bobgardner/.gitignore_global
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = true
+[color "status"]
+	added = green bold
+	changed = cyan bold
+	untracked = yellow bold
+[color "branch"]
+	current = cyan bold
+	local = yellow
+	remote = green
+[alias]
+	a = add
+	aa = add --all :/
+  alias = config --get-regexp alias
+	b = branch -avv
+	bd = branch -d
+	bm = branch -m
+	br = branch
+	ci = commit
+	cia = commit --amend
+	co = checkout
+	com = checkout master
+	discard = checkout HEAD --
+	last = log -1 HEAD
+	lg = log --oneline --decorate --graph
+	m = merge
+	s = status -sb
+	st = status
+	t = tag
+	td = tag -d
+	undo-soft = reset --soft HEAD^
+	undo-hard = reset --hard HEAD^
+	unstage = reset HEAD --
+	up = push origin
+[heroku]
+	account = personal
+[push]
+	default = simple
+[mergetool]
+	keepBackup = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
