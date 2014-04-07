@@ -19,24 +19,14 @@ else
 fi
 
 # aliases
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+
 alias adventure='emacs -batch -l dunnet'
 alias la='ls -A'
 alias ll='ls -l'
-
-# directory aliases
-alias blog='cd ~/Developer/weblog'
-alias code='cd ~/Developer'
-alias desk='cd ~/Desktop'
-alias me='cd ~/Documents/me'
-alias school='cd ~/Documents/School-Documents/NYU/Sophomore-Year/Second-Semester'
-alias work='cd ~/Documents/work/kinetic_social/projects'
 alias up='cd ..'
-
-# ssh and ftp aliases
-alias linode='ssh bob@96.126.111.209'
-alias nyuSol='ssh rhg259@i5.nyu.edu'
-alias nyuLin='ssh rhg259@access.cims.nyu.edu'
-alias pks='ftp menoftheskulls.com'
 
 # mac utilities shortcuts
 function cdl { cd $1; ls; }
