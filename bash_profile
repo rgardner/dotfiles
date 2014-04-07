@@ -1,1 +1,0 @@
-/Users/bobgardner/.bash_profile
