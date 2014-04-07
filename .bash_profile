@@ -4,7 +4,6 @@ fi
 
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
-source ~/.hub-completion.sh
 
 export EDITOR="$HOME/scripts/editor.sh"
 #coloring
