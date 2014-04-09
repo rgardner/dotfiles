@@ -26,6 +26,7 @@ fi
 alias adventure='emacs -batch -l dunnet'
 alias la='ls -A'
 alias ll='ls -l'
+alias serve='python -m SimpleHTTPServer'
 alias up='cd ..'
 
 # mac utilities shortcuts
