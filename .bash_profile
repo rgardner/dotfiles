@@ -54,10 +54,6 @@ startPostgres() {
 export PATH=/usr/local/bin:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-# Rails
-export MAILER_EMAIL=rgardner929@gmail.com
-export MAILER_PASSWORD='+w,8rP28yzg$ar'
-
 # Added by Canopy installer on 2014-02-04
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
 VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/bobgardner/Library/Enthought/Canopy_64bit/User/bin/activate
