@@ -24,5 +24,5 @@ cd ..
 printf "Download desert256 from %s into ~/.vim/colors/ directory\n" \
        "http://www.vim.org/scripts/script.php?script_id=1243"
 
-printf "Set up dotfiles symlinks"
+printf "Run symlink.sh to replace specified symlinks"
 ./symlink.sh
