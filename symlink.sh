@@ -30,7 +30,7 @@ for i in "${files[@]}"
 do
   printf "\tSymlinking %s\n" "$i"
   rm "$i"
-  ln -s "$dotfiles"/"$i" "$i"
+  ln -s "$dotfiles/$i" "$i"
 done
 
 printf "Finished!\n"
