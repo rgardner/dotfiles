@@ -3,7 +3,7 @@
 	email = rhg259@nyu.edu
 [core]
 	editor = atom --wait
-	excludesfile = /Users/bobgardner/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [color]
 	branch = auto
 	diff = auto
