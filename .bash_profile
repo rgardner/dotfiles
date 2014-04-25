@@ -1,3 +1,7 @@
+if [ -f ~/.profile ]; then
+   source ~/.profile
+fi
+
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
@@ -5,7 +9,6 @@ fi
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
 
-export EDITOR="$HOME/scripts/editor.sh"
 #coloring
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -51,9 +54,9 @@ startPostgres() {
   pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
 }
 
-# Ruby
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # Added by Canopy installer on 2014-02-04
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
 VIRTUAL_ENV_DISABLE_PROMPT=1 source ~/Library/Enthought/Canopy_64bit/User/bin/activate
+
+# Ruby
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
