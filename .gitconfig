@@ -2,7 +2,7 @@
 	name = Robert Gardner
 	email = rhg259@nyu.edu
 [core]
-	editor = atom --wait
+	editor = vim
 	excludesfile = ~/.gitignore_global
 [color]
 	branch = auto
