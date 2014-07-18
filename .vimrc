@@ -34,10 +34,16 @@ set showmatch     "show matching brackets
 set sidescrolloff=10 "Keep 5 lines at the size
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 
+" Automatic hard word wrapping
+set textwidth=79
+set formatoptions+=t
+
+set colorcolumn=79
 set t_Co=256
 colo desert256
 
 "individual format settings
+au BufNewFile,BufRead *.md  setf markdown
 au BufNewFile,BufRead *.txt set nu!
 au BufNewFile,BufRead *.rtf set nu!
 
