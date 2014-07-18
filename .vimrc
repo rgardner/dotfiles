@@ -1,11 +1,13 @@
 "set tags=/home/Cybs/vimTags/Fulltags
 syntax on         "syntax highlighting
+filetype indent plugin on
+
 set cindent       "replaces smartindent
 set autoindent    "copies indentation from previous line
-set tabstop=2     "global tab width
 
-"indentation without tabs
-set expandtab
+"indentation.
+set tabstop=2     "global tab width
+set expandtab     "indentation without tabs
 set shiftwidth=2
 set softtabstop=2
 
@@ -15,12 +17,16 @@ set nocompatible
 
 "set incsearch "move while searching
 
+set colorcolumn=80 "visual red ruler at 80 characters
+set cursorline   "underline the line with the cursor
+set foldmethod=indent
+set foldlevel=99
 set laststatus=2 "always show the status line
 set lazyredraw   "do not redraw while running macros
 set linespace=0  "don't insert any extra pixel lines betweens rows
 set list         "we do what to show tabs, to ensure we get them out of my
                  "files
-set listchars=tab:>-,trail:- "show tabs and trailing 
+set listchars=tab:>-,trail:- "show tabs and trailing spaces
 set matchtime=5   "how many tenths of a second to blink matching brackets
                   "for
 set novisualbell  "don't blink
@@ -34,11 +40,9 @@ set showmatch     "show matching brackets
 set sidescrolloff=10 "Keep 5 lines at the size
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 
-" Automatic hard word wrapping
-set textwidth=79
-set formatoptions+=t
+let g:netrw_liststyle=3 "Display 3 levels for netrw tree
 
-set colorcolumn=79
+"coloring
 set t_Co=256
 colo desert256
 
