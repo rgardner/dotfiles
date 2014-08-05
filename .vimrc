@@ -39,6 +39,7 @@ set showcmd       "show the command being typed
 set showmatch     "show matching brackets
 set sidescrolloff=10 "Keep 5 lines at the size
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+set spell spelllang=en_us
 
 let g:netrw_liststyle=3 "Display 3 levels for netrw tree
 
