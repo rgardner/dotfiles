@@ -15,8 +15,7 @@ set background=dark
 set backspace=indent,eol,start
 set nocompatible
 
-"set incsearch "move while searching
-
+set incsearch "move while searching
 set colorcolumn=80 "visual red ruler at 80 characters
 set cursorline   "underline the line with the cursor
 set foldmethod=indent
@@ -47,10 +46,17 @@ let g:netrw_liststyle=3 "Display 3 levels for netrw tree
 set t_Co=256
 colo desert256
 
+" Plugin Settings
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra' " revision control, current directory
+let g:ctrlp_user_command = 'find %s -type f' " Max OSX / Linux
+
 "individual format settings
 au BufNewFile,BufRead *.md  setf markdown
 au BufNewFile,BufRead *.txt set nu!
 au BufNewFile,BufRead *.rtf set nu!
 
-"vim git-gutter
+"enable vim plugins
 execute pathogen#infect()
