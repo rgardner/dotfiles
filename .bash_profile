@@ -8,6 +8,7 @@ fi
 
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
+source ~/.ssh-auto-completion.sh
 
 # Coloring
 export CLICOLOR=1
