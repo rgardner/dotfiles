@@ -1,3 +1,5 @@
+# Thanks to github.com/jordandcarter
+#   https://gist.github.com/jordandcarter/730955
 _complete_ssh_hosts ()
 {
         COMPREPLY=()
