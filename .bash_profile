@@ -16,7 +16,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # Bash Prompt
 PS1="\$?|\[\e[0;31m\]\h\[\033[m\]|"
 PS1="$PS1\[\e[0;36m\]\W\[\033[m\]"
-export PS1="$PS1\[\e[0;34m\]\$(__git_ps1)\[\033[m\] \$ "
+export PS1="$PS1\[\e[0;34m\]\$(__git_ps1)\[\033[m\]\$ "
 
 # Enabling 256 colors
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
