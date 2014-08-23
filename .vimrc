@@ -36,7 +36,6 @@ set scrolloff=10  "Keep 10 lines (top/bottom) for scope
 set showcmd       "show the command being typed
 set showmatch     "show matching brackets
 set sidescrolloff=10 "Keep 5 lines at the size
-set spell spelllang=en_us
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 
 "Coloring
@@ -52,6 +51,9 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra' " revision control, current directory
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_show_hidden = 1
+
+"Syntastic
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 "Vimux
 " Prompt for a command to run
