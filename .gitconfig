@@ -35,6 +35,8 @@
 	m = merge
 	s = status -sb
 	st = status
+  sshow = "!f() { git stash show stash^{/$*} -p }; f"
+  sapply = "!f() { git stash apply stash^{/$*}; }; f"
 	t = tag
 	td = tag -d
 	undo-soft = reset --soft HEAD^
