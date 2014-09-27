@@ -74,6 +74,11 @@ local.properties
 .buildpath
 
 
+# JetBrains #
+#############
+.idea/
+
+
 # IPython Notebook #
 ####################
 .ipynb_checkpoints/
