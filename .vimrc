@@ -52,6 +52,12 @@ let g:ctrlp_working_path_mode = 'ra' " revision control, current directory
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_show_hidden = 1
 
+"Dash
+nmap <silent> <leader>d <Plug>DashSearch
+let g:dash_map = {
+    \ 'tex' : 'latex'
+    \ }
+
 "Syntastic
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
