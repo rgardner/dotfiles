@@ -60,6 +60,7 @@ let g:dash_map = {
 
 "Syntastic
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_scss_checkers = ['scss_lint']
 
 "Vimux
 " Prompt for a command to run
