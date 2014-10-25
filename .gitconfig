@@ -1,61 +1,66 @@
 [user]
-	name = Robert Gardner
-	email = rhg259@nyu.edu
+  name = Robert Gardner
+  email = rhg259@nyu.edu
 [core]
-	editor = vim
-	excludesfile = ~/.gitignore_global
+  autoclrf = input
+  editor = vim
+  excludesfile = ~/.gitignore_global
 [color]
-	branch = auto
-	diff = auto
-	status = auto
-	ui = true
+  branch = auto
+  diff = auto
+  status = auto
+  ui = true
+[apply]
+  whitespace = fix
 [color "status"]
-	added = green bold
-	changed = cyan bold
-	untracked = yellow bold
+  added = green bold
+  changed = cyan bold
+  untracked = yellow bold
 [color "branch"]
-	current = cyan bold
-	local = yellow
-	remote = green
+  current = cyan bold
+  local = yellow
+  remote = green
 [alias]
-	a = add
-	aa = add --all :/
+  a = add
+  aa = add --all :/
   alias = config --get-regexp alias
-	b = branch -avv
-	bd = branch -d
-	bm = branch -m
-	br = branch
-	ci = commit
-	cia = commit --amend
-	co = checkout
-	com = checkout master
-	discard = checkout HEAD --
-	last = log -1 HEAD
-	lg = log --oneline --decorate --graph
-	m = merge
-	s = status -sb
-	st = status
+  b = branch -avv
+  bd = branch -d
+  bm = branch -m
+  br = branch
+  ci = commit
+  cia = commit --amend
+  co = checkout
+  com = checkout master
+  discard = checkout HEAD --
+  g = grep -I
+  last = log -1 HEAD
+  lg = log --oneline --decorate --graph
+  m = merge
+  pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
+  s = status -sb
+  st = status
   sshow = "!f() { git stash show stash^{/$*} -p }; f"
   sapply = "!f() { git stash apply stash^{/$*}; }; f"
-	t = tag
-	td = tag -d
-	undo-soft = reset --soft HEAD^
-	undo-hard = reset --hard HEAD^
-	unstage = reset HEAD --
-	up = push origin
+  t = tag
+  td = tag -d
+  undo-soft = reset --soft HEAD^
+  undo-hard = reset --hard HEAD^
+  unstage = reset HEAD --
+  up = push origin
   wdiff = diff --word-diff=color --unified=1
 [diff "pandoc"]
   textconv=pandoc --to=markdown
   prompt = false
 [heroku]
-	account = personal
+  account = personal
 [push]
-	default = simple
+  default = simple
 [mergetool]
-	keepBackup = true
+  keepBackup = true
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
