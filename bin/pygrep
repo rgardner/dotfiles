@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# pygrep: recursive grep in Python scripts.
+grep -rnw --include="*.py" "$1" "$2"

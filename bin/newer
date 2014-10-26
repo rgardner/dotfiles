@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# newer f: list files newer than f
+ls -t | sed '/^'"$1"'$/q'
