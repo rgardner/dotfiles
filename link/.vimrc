@@ -4,16 +4,16 @@ filetype indent plugin on
 set nocompatible  "enable vim specific features
 
 "Local dir setup changes because of cowboy dotfiles
-set backupdir=~/.dotfiles/caches/vim
-set directory=~/.dotfiles/caches/vim
-set undodir=~/.dotfiles/caches/vim
+"set backupdir=~/.dotfiles/caches/vim
+"set directory=~/.dotfiles/caches/vim
+"set undodir=~/.dotfiles/caches/vim
 
 "Theme and syntax higlighting
 set background=dark
 set t_Co=256
 
 "Visual
-set cursorcolumn=80 "visual red ruler at 80 characters
+set colorcolumn=79 "visual red ruler at 80 characters
 set cursorline      "underline the line with the cursor
 set laststatus=2    "always show the status line
 set linespace=0     "don't insert any extra pixel lines betweens rows
