@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-[[ "$1" ]] || \
+
+# This dotfiles program was adapted from "Cowboy" Ben Alman.
+
+[[ "$1" == "source" ]] || \
 
 echo 'Dotfiles - "Cowboy" Ben Alman - http://benalman.com/'
 
@@ -20,6 +23,7 @@ exit; fi
 # GENERAL PURPOSE EXPORTED VARS / FUNCTIONS
 ###########################################
 
+# Where the magic happens.
 export DOTFILES=~/.dotfiles
 
 # Logging stuff.
@@ -46,8 +50,19 @@ function is_ubuntu() {
 }
 function get_os() {
   for os in osx ubuntu; do
-    is_$os; [[ $? == ${1:-0} ]] && echo $os
+    "is_$os"; [[ $? == "${1:-0}" ]] && echo $os
   done
+}
+
+# Remove an entry from $PATH
+# Based on http://stackoverflow.com/a/2108540/142339
+function path_remove() {
+  local arg path
+  path=":$PATH:"
+  for arg in "$@"; do path="${path//:$arg:/:}"; done
+  path="${path%:}"
+  path="${path#:}"
+  echo "$path"
 }
 
 # Display a fancy multi-select menu.
@@ -57,14 +72,14 @@ function prompt_menu() {
   exitcode=0
   if [[ "$2" ]]; then
     _prompt_menu_draws "$1"
-    read -t $2 -n 1 -sp "To edit this list, press any key within $2 seconds. "
+    read -t "$2" -n 1 -sp "To edit this list, press any key within $2 seconds. "
     exitcode=$?
     echo ""
   fi 1>&2
   if [[ "$exitcode" == 0 ]]; then
     prompt="Toggle options (Separate options with spaces, ENTER when done): "
     while _prompt_menu_draws "$1" 1 && read -rp "$prompt" nums && [[ "$nums" ]]; do
-      _prompt_menu_adds $nums
+      _prompt_menu_adds "$nums"
     done
   fi 1>&2
   _prompt_menu_adds
@@ -73,12 +88,12 @@ function prompt_menu() {
 function _prompt_menu_iter() {
   local i sel state
   local fn=$1; shift
-  for i in ${!menu_options[@]}; do
+  for i in "${!menu_options[@]}"; do
     state=0
-    for sel in ${menu_selects[@]}; do
+    for sel in "${menu_selects[@]}"; do
       [[ "$sel" == "${menu_options[i]}" ]] && state=1 && break
     done
-    $fn $state $i "$@"
+    "$fn" "$state" "$i" "$@"
   done
 }
 
@@ -115,65 +130,73 @@ function _prompt_menu_add() {
   _prompt_menu_result=("${_prompt_menu_result[@]}" "${menu_options[i]}")
 }
 
-# Given a list of desired items and installed items, return a list
-# of uninstalled items. Arrays in bash are insane (not in a good way).
+# Given strings containing space-delimited words A and B, "setdiff A B" will
+# return all words in A that do not exist in B. Arrays in bash are insane
+# (and not in a good way).
 # From http://stackoverflow.com/a/1617303/142339
-function to_install() {
-  local debug oldifs desired installed remain a
+function setdiff() {
+  local debug skip a b
   if [[ "$1" == 1 ]]; then debug=1; shift; fi
-  # Convert args to arrays.
-  desired=($1); installed=($2); remain=()
-  for a in "${desired[@]}"; do
-    [[ "${installed[*]}" =~ (^| )$a($| ) ]] || remain=("${remain[@]}" "$a")
+  if [[ "$1" ]]; then
+    local setdiffA setdiffB setdiffC
+    setdiffA=($1); setdiffB=($2)
+  fi
+  setdiffC=()
+  for a in "${setdiffA[@]}"; do
+    skip=
+    for b in "${setdiffB[@]}"; do
+      [[ "$a" == "$b" ]] && skip=1 && break
+    done
+    [[ "$skip" ]] || setdiffC=("${setdiffC[@]}" "$a")
   done
-  [[ "$debug" ]] && for a in desired installed remain; do
+  [[ "$debug" ]] && for a in setdiffA setdiffB setdiffC; do
     echo "$a ($(eval echo "\${#$a[*]}")) $(eval echo "\${$a[*]}")" 1>&2
   done
-  echo "${remain[@]}"
+  [[ "$1" ]] && echo "${setdiffC[@]}"
 }
 
 # If this file was being sourced, exit now.
-[[ "$1" ]] && return
+[[ "$1" == "source" ]] && return
 
 
 ###########################################
 # INTERNAL DOTFILES "INIT" VARS / FUNCTIONS
 ###########################################
 
-# Initialize.
-init_file=$DOTFILES/caches/init/selected
-function init_files() {
-  local i f dirname oses os opt remove
-  dirname="$(dirname "$1")"
-  f=("$@")
-  menu_options=(); menu_selects=()
-  for i in "${!f[@]}"; do menu_options[i]="$(basename "${f[i]}")"; done
-  if [[ -e "$init_file" ]]; then
-    # Read cache file if possible
-    IFS=$'\n' read -d '' -r -a menu_selects < "$init_file"
-  else
-    # Otherwise default to all scripts not specifically for other OSes
-    oses=($(get_os 1))
-    for opt in "${menu_options[@]}"; do
-      remove=
-      for os in "${oses[@]}"; do
-        [[ "$opt" =~ (^|[^a-z])$os($|[^a-z]) ]] && remove=1 && break
-      done
-      [[ "$remove" ]] || menu_selects=("${menu_selects[@]}" "$opt")
-    done
-  fi
-  prompt_menu "Run the following init scripts?" $prompt_delay
-  # Write out cache file for future reading.
-  rm "$init_file" 2>/dev/null
-  for i in "${!menu_selects[@]}"; do
-    echo "${menu_selects[i]}" >> "$init_file"
-    echo "$dirname/${menu_selects[i]}"
-  done
-}
-function init_do() {
-  e_header "Sourcing $(basename "$2")"
-  source "$2"
-}
+## Initialize.
+#init_file=$DOTFILES/caches/init/selected
+#function init_files() {
+  #local i f dirname oses os opt remove
+  #dirname="$(dirname "$1")"
+  #f=("$@")
+  #menu_options=(); menu_selects=()
+  #for i in "${!f[@]}"; do menu_options[i]="$(basename "${f[i]}")"; done
+  #if [[ -e "$init_file" ]]; then
+    ## Read cache file if possible
+    #IFS=$'\n' read -d '' -r -a menu_selects < "$init_file"
+  #else
+    ## Otherwise default to all scripts not specifically for other OSes
+    #oses=($(get_os 1))
+    #for opt in "${menu_options[@]}"; do
+      #remove=
+      #for os in "${oses[@]}"; do
+        #[[ "$opt" =~ (^|[^a-z])$os($|[^a-z]) ]] && remove=1 && break
+      #done
+      #[[ "$remove" ]] || menu_selects=("${menu_selects[@]}" "$opt")
+    #done
+  #fi
+  #prompt_menu "Run the following init scripts?" "$prompt_delay"
+  ## Write out cache file for future reading.
+  #rm "$init_file" 2>/dev/null
+  #for i in "${!menu_selects[@]}"; do
+    #echo "${menu_selects[i]}" >> "$init_file"
+    #echo "$dirname/${menu_selects[i]}"
+  #done
+#}
+#function init_do() {
+  #e_header "Sourcing $(basename "$2")"
+  #source "$2"
+#}
 
 # Copy files.
 function copy_header() { e_header "Copying files into home directory"; }
@@ -196,14 +219,14 @@ function link_test() {
 }
 function link_do() {
   e_success "Linking ~/$1."
-  ln -sf ${2#$HOME/} ~/
+  ln -sf "${2#$HOME/}" ~/
 }
 
 # Copy, link, init, etc.
 function do_stuff() {
   local base dest skip
   local files=($DOTFILES/$1/*)
-  [[ $(declare -f "$1_files") ]] && files=($($1_files "${files[@]}"))
+  [[ $(declare -f "$1_files") ]] && files=($("$1_files" "${files[@]}"))
   # No files? abort.
   if (( ${#files[@]} == 0 )); then return; fi
   # Run _header function only if declared.
@@ -240,40 +263,45 @@ function do_stuff() {
 
 export prompt_delay=5
 
-# Ensure that we can actually, like, compile anything.
-if [[ ! "$(type -P gcc)" ]] && is_osx; then
-  e_error "XCode or the Command Line Tools for XCode must be installed first."
-  exit 1
-fi
+## Ensure that we can actually, like, compile anything.
+#if [[ ! "$(type -P gcc)" ]] && is_osx; then
+  #e_error "XCode or the Command Line Tools for XCode must be installed first."
+  #exit 1
+#fi
 
-# If Git is not installed, install it (Ubuntu only, since Git comes standard
-# with recent XCode or CLT)
-if [[ ! "$(type -P git)" ]] && is_ubuntu; then
-  e_header "Installing Git"
-  sudo apt-get -qq install git-core
-fi
+## If Git is not installed, install it (Ubuntu only, since Git comes standard
+## with recent XCode or CLT)
+#if [[ ! "$(type -P git)" ]] && is_ubuntu; then
+  #e_header "Installing Git"
+  #sudo apt-get -qq install git-core
+#fi
 
-# If Git isn't installed by now, something exploded. We gots to quit!
-if [[ ! "$(type -P git)" ]]; then
-  e_error "Git should be installed. It isn't. Aborting."
-  exit 1
-fi
+## If Git isn't installed by now, something exploded. We gots to quit!
+#if [[ ! "$(type -P git)" ]]; then
+  #e_error "Git should be installed. It isn't. Aborting."
+  #exit 1
+#fi
 
-# Initialize.
-if [[ ! -d $DOTFILES ]]; then
-  # ~/.dotfiles doesn't exist? Clone it!
-  new_dotfiles_install=1
-  prompt_delay=15
-  e_header "Downloading dotfiles"
-  git clone --recursive git://github.com/${github_user:-cowboy}/dotfiles.git $DOTFILES
-  cd $DOTFILES
-else
-  # Make sure we have the latest files.
-  e_header "Updating dotfiles"
-  cd $DOTFILES
-  git pull
-  git submodule update --init --recursive --quiet
-fi
+## Initialize.
+#if [[ ! -d $DOTFILES ]]; then
+  ## $DOTFILES directory doesn't exist? Clone it!
+  #new_dotfiles_install=1
+  #prompt_delay=15
+  #e_header "Downloading dotfiles"
+  #git clone --recursive git://github.com/${github_user:-cowboy}/dotfiles.git $DOTFILES
+  #cd $DOTFILES
+#elif [[ "$1" != "restart" ]]; then
+  ## Make sure we have the latest files.
+  #e_header "Updating dotfiles"
+  #cd $DOTFILES
+  #prev_head="$(git rev-parse HEAD)"
+  #git pull
+  #git submodule update --init --recursive --quiet
+  #if [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
+    #e_header "Changes detected, restarting script"
+    #exec "$0" "restart"
+  #fi
+#fi
 
 # Add binaries into the path
 [[ -d $DOTFILES/bin ]] && PATH=$DOTFILES/bin:$PATH
@@ -293,17 +321,11 @@ backup=
 # Execute code for each file in these subdirectories.
 do_stuff "copy"
 do_stuff "link"
-do_stuff "init"
+#do_stuff "init"
 
 # Alert if backups were made.
 if [[ "$backup" ]]; then
   echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
-fi
-
-# Lest I forget to do a few additional things...
-if [[ "$new_dotfiles_install" && -e "conf/firsttime_reminder.sh" ]]; then
-  e_header "First-Time Reminders"
-  source "conf/firsttime_reminder.sh"
 fi
 
 # All done!
