@@ -209,7 +209,7 @@ function copy_test() {
 }
 function copy_do() {
   e_success "Copying ~/$1."
-  cp "$2" ~/
+  cp $2 ~/
 }
 
 # Link files.
@@ -219,7 +219,7 @@ function link_test() {
 }
 function link_do() {
   e_success "Linking ~/$1."
-  ln -sf "${2#$HOME/}" ~/
+  ln -sf ${2#$HOME/} ~/
 }
 
 # Copy, link, init, etc.
@@ -302,6 +302,7 @@ export prompt_delay=5
     #exec "$0" "restart"
   #fi
 #fi
+cd $DOTFILES
 
 # Add binaries into the path
 [[ -d $DOTFILES/bin ]] && PATH=$DOTFILES/bin:$PATH
@@ -316,7 +317,6 @@ mkdir -p "$DOTFILES/caches/init"
 
 # If backups are needed, this is where they'll go.
 backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
-backup=
 
 # Execute code for each file in these subdirectories.
 do_stuff "copy"
