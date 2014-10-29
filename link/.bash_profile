@@ -36,9 +36,9 @@ else
 fi
 
 # Platform independent aliases.
+alias dotf='cd ~/.dotfiles'
 alias la='ls -A'
 alias ll='ls -l'
-alias serve='python -m SimpleHTTPServer'
 alias up='cd ..'
 
 # Platform independent functions.
