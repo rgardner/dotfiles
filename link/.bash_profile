@@ -57,6 +57,9 @@ if [ -f ~/.bashrc_"$(hostname -s)" ]; then
 fi
 
 # Private computer specific aliases. These will not be kept in version control.
-if [ -f ~/.bashrc_private ]; then
-  source ~/.bashrc_private
+if [ -f ~/.bashrc_LOCAL ]; then
+  source ~/.bashrc_LOCAL
 fi
+
+# Add my custom scripts to the path.
+export PATH="$HOME/.dotfiles/bin/:$PATH"
