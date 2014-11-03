@@ -57,8 +57,21 @@ set incsearch  "move while searching
 set ignorecase "ignore case of searches
 set smartcase  "ignore 'ignorecase' if search pattern contains uppercase chars
 
+
 """""""""" Global shortcuts
+"rebind leader to \ (backslash)
 nnoremap <leader><leader> <c-^>
+"toggle line numbers
+nnoremap <leader>l :setlocal number!<CR>
+"toggle paste mode
+nnoremap <leader>o :set paste! <CR>
+"disable highlighted search
+nnoremap <leader>q :nohlsearch<CR>
+
+"move cursor down by display lines when wrapping
+nmap j gj
+"move cursor up by display lines when wrapping
+nmap k gk
 
 
 """""""""" Plugin Settings
