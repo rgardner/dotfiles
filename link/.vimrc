@@ -22,20 +22,19 @@ set listchars=tab:>-,trail:- "show tabs and trailing spaces
 set matchtime=5     "tenths of a second to blink matching brackets
 set number          "display line numbers
 set numberwidth=5   "We are good up to 99999 lines
-set scrolloff=10  "Keep 10 lines (top/bottom) for scope
+set scrolloff=10    "Keep 10 lines (top/bottom) for scope
 set sidescrolloff=10 "Keep 5 lines at the size
+set splitbelow      "Vertical split creates new pane below.
+set splitright      "Horizontal split creates new pane to the right.
 
 "Indentation.
 set autoindent    "copies indentation from previous line
 set cindent       "replaces smartindent
-
 set backspace=indent,eol,start "backspace over line breaks, auto, insert
-
 set expandtab     "indentation without tabs
 set shiftwidth=2  "columns indented by reindent (<< and >>)
 set softtabstop=2 "number of spaces when tabbing (add'l info online)
 set tabstop=2     "global tab width
-
 
 "Folding
 set foldmethod=indent
@@ -64,7 +63,9 @@ nnoremap <leader><leader> <c-^>
 "toggle line numbers
 nnoremap <leader>l :setlocal number!<CR>
 "toggle paste mode
-nnoremap <leader>o :set paste! <CR>
+nnoremap <leader>o :set paste!<CR>
+"toggle spelling
+nnoremap <leader>s :set spell!<CR>
 "disable highlighted search
 nnoremap <leader>q :nohlsearch<CR>
 
@@ -73,6 +74,8 @@ nmap j gj
 "move cursor up by display lines when wrapping
 nmap k gk
 
+"Explore with Netrw
+map <leader>k :Explore<CR>
 
 """""""""" Plugin Settings
 "Netrw
