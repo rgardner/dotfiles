@@ -13,6 +13,9 @@ if [ -f ~/.profile ]; then
    source ~/.profile
 fi
 
+# Add my custom scripts to the path.
+export PATH="$HOME/.dotfiles/bin/:$PATH"
+
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
 source ~/.ssh-auto-completion.sh
@@ -41,6 +44,9 @@ alias la='ls -A'
 alias ll='ls -l'
 alias up='cd ..'
 
+# Heroku
+alias hr='heroku restart'
+
 # Platform independent functions.
 function cdl { cd "$1"; ls; }
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
@@ -61,5 +67,4 @@ if [ -f ~/.bashrc_LOCAL ]; then
   source ~/.bashrc_LOCAL
 fi
 
-# Add my custom scripts to the path.
-export PATH="$HOME/.dotfiles/bin/:$PATH"
+
