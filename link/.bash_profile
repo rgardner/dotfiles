@@ -14,7 +14,7 @@ if [ -f ~/.profile ]; then
 fi
 
 # Add my custom scripts to the path.
-export PATH="$HOME/.dotfiles/bin/:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
 
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
@@ -42,6 +42,7 @@ fi
 alias dotf='cd ~/.dotfiles'
 alias la='ls -A'
 alias ll='ls -l'
+alias less='less -FX'
 alias up='cd ..'
 
 # Heroku
