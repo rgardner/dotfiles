@@ -77,6 +77,7 @@ nmap k gk
 "Explore with Netrw
 map <leader>k :Explore<CR>
 
+
 """""""""" Plugin Settings
 "Netrw
 let g:netrw_liststyle=3 "Display 3 levels for netrw tree
