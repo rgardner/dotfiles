@@ -4,10 +4,10 @@ filetype indent plugin on
 set nocompatible  "enable vim specific features
 
 "Local dir setup changes because of cowboy dotfiles
-"set backupdir=~/.dotfiles/caches/vim
-"set directory=~/.dotfiles/caches/vim
-"set undodir=~/.dotfiles/caches/vim
-"let g:netrw_home = expand('$DOTFILES/caches/vim')
+set backupdir=~/.dotfiles/caches/vim
+set directory=~/.dotfiles/caches/vim
+set undodir=~/.dotfiles/caches/vim
+let g:netrw_home = expand('$DOTFILES/caches/vim')
 
 "Theme and syntax higlighting
 set background=dark
