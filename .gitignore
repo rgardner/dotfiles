@@ -7,5 +7,8 @@
 /link/.ssh/id_*
 /link/.ssh/known_hosts
 
+# Don't commit VIm plugins, vim-plug will install them.
+/link/.vim/plugged
+
 # Ignore any file with LOCAL in the name (good for per-machine vars/functions)
-.bashrc_LOCAL
+*LOCAL*
