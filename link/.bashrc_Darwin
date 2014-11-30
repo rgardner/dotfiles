@@ -12,3 +12,7 @@ showSpotlightIcon() {
   sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
   killall SystemUIServer
 }
+
+disableKeyRepeat() {
+  defaults write "$1" ApplePressAndHoldEnabled -bool false
+}
