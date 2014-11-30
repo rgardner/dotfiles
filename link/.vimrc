@@ -7,6 +7,7 @@ set nocompatible  "enable vim specific features
 "set backupdir=~/.dotfiles/caches/vim
 "set directory=~/.dotfiles/caches/vim
 "set undodir=~/.dotfiles/caches/vim
+"let g:netrw_home = expand('$DOTFILES/caches/vim')
 
 "Theme and syntax higlighting
 set background=dark
@@ -56,6 +57,10 @@ set incsearch  "move while searching
 set ignorecase "ignore case of searches
 set smartcase  "ignore 'ignorecase' if search pattern contains uppercase chars
 
+"Ignore things
+set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.o,*.obj,*.min.js
+set wildignore+=*/bower_components/*,*/node_modules/*
+set wildignore+=*/vendor/*,*/.git/*,*/.hg/*,*/.svn/*,*/log/*,*/tmp/*
 
 """""""""" Global shortcuts
 "rebind leader to \ (backslash)
@@ -96,6 +101,10 @@ let g:dash_map = {
     \ 'tex' : 'latex'
     \ }
 
+"Indent Guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
 "Syntastic
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_scss_checkers = ['scss_lint']
@@ -118,4 +127,20 @@ map <Leader>rb :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
 au BufNewFile,BufRead *.md  setf markdown
 
 "Enable vim plugins
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+Plug 'airblade/vim-gitgutter'
+Plug 'benmills/vimux'
+Plug 'davidhalter/jedi-vim'
+Plug 'ervandew/supertab'
+Plug 'kchmck/vim-coffee-script'
+Plug 'kien/ctrlp.vim'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'pangloss/vim-javascript'
+Plug 'rizzatti/dash.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+call plug#end()
