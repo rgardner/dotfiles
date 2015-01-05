@@ -16,6 +16,7 @@ export PATH="$PATH:$GOPATH/bin"
 # Python
 export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH"
 export PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:$PATH"
+source /usr/local/opt/autoenv/activate.sh
 
 # Ruby
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
