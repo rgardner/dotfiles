@@ -82,6 +82,12 @@ nmap k gk
 "Explore with Netrw
 map <leader>k :Explore<CR>
 
+"Yank text to the OS X cliboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+"Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 """""""""" Plugin Settings
 "Netrw
