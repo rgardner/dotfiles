@@ -24,19 +24,19 @@ source ~/.ssh-auto-completion.sh
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-# Bash Prompt
-export GIT_PS1_SHOWDIRTYSTATE=1
-
-export PS1="\$?|\[\e[0;31m\]\h\[\033[m\]|"  # exit status | hostname
-export PS1="$PS1\[\e[0;36m\]\w\[\033[m\]"   # working directory
-export PS1="$PS1\[\e[0;34m\]\$(__git_ps1 ' (%s)')\[\033[m\]\n\$ "  # git branch
-
 # Enabling 256 colors
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
   export TERM='xterm-256color'
 else
   export TERM='xterm-color'
 fi
+
+# Bash Prompt
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+export PS1="\$?|\[\e[0;31m\]\h\[\033[m\]|"  # exit status | hostname
+export PS1="$PS1\[\e[0;36m\]\w\[\033[m\]"   # working directory
+export PS1="$PS1\[\e[0;34m\]\$(__git_ps1 ' (%s)')\[\033[m\]\n\$ "  # git branch
 
 # Platform independent aliases.
 alias dotf='cd ~/.dotfiles'
@@ -45,27 +45,16 @@ alias ll='ls -l'
 alias less='less -FX'
 alias up='cd ..'
 
-# Heroku
-alias hr='heroku restart'
-
 # Platform independent functions.
 function cdl { cd "$1"; ls; }
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
 # Platform dependent config files. Possible operating system names include:
 #   Darwin|FreeBSD|Linux|NetBSD|OpenBSD.
-if [ -f ~/.bashrc_"$(uname -s)" ]; then
-  source ~/.bashrc_"$(uname -s)"
-fi
+[ -f ~/.bashrc_"$(uname -s)" ] && source ~/.bashrc_"$(uname -s)"
 
 # Computer specific files. Ensure that hostnames are unique.
-if [ -f ~/.bashrc_"$(hostname -s)" ]; then
-  source ~/.bashrc_"$(hostname -s)"
-fi
+[ -f ~/.bashrc_"$(hostname -s)" ] && source ~/.bashrc_"$(hostname -s)"
 
 # Private computer specific aliases. These will not be kept in version control.
-if [ -f ~/.bashrc_LOCAL ]; then
-  source ~/.bashrc_LOCAL
-fi
-
-
+[ -f ~/.bashrc_LOCAL ] && source ~/.bashrc_LOCAL
