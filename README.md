@@ -38,3 +38,12 @@ To view hidden files in Finder, enter the following command in the terminal:
 To disable:
 
 `defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder`
+
+## Credit
+Thanks to [@cowboy](https://github.com/cowboy/dotfiles) for his awesome
+dotfiles! His design philosophy of separating configurations into `bin`,
+`link`, and `copy` make managing everything a heck of a lot easier. His
+configuration and utility scripts have proved invaluable both as references and
+as a basis for my own personal touches. Where possible, I credit him for his
+codeand for his design philosophy. These scripts from him are mostly unchanged:
+- dotfiles, count-commits, curlsubl, eachdir, manp, pid, serve, ssid, subl
