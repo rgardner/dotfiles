@@ -98,7 +98,7 @@ let g:ctrlp_match_window_bottom = 0 " Show at top of window
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra' " revision control, current directory
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|env)|(\.(git|hg|svn))$'
 let g:ctrlp_show_hidden = 1
 
 "Dash
@@ -131,6 +131,7 @@ map <Leader>rb :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
 
 "Individual format settings
 au BufNewFile,BufRead *.md  setf markdown
+au BufNewFile,BufRead *.h   setf c
 
 "Enable vim plugins
 call plug#begin('~/.vim/plugged')
