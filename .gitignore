@@ -12,3 +12,13 @@
 
 # Ignore any file with LOCAL in the name (good for per-machine vars/functions)
 *LOCAL*
+
+# iPython related files.
+/link/.ipython/db
+/link/.ipython/history
+/link/.ipython/**/db
+/link/.ipython/**/log
+/link/.ipython/**/pid
+/link/.ipython/**/security
+/link/.ipython/**/startup
+/link/.ipython/**/history.sqlite
