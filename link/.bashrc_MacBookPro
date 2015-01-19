@@ -16,14 +16,14 @@ export PATH="$PATH:$GOPATH/bin"
 # Python
 source /usr/local/opt/autoenv/activate.sh
 
-# Ruby
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # Node.js
 source ~/.nvm/nvm.sh
 export NVM_DIR="/Users/bobgardner/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Ruby
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Aliases
 alias hr='heroku restart'
