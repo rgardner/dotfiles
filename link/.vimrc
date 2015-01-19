@@ -79,6 +79,10 @@ nmap j gj
 "move cursor up by display lines when wrapping
 nmap k gk
 
+"folding with spacebar
+nnoremap <space> za
+vnoremap <space> zf
+
 "Explore with Netrw
 map <leader>k :Explore<CR>
 
