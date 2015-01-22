@@ -5,6 +5,7 @@
   autoclrf = input
   editor = vim
   excludesfile = ~/.gitignore_global
+  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 [color]
   branch = auto
   diff = auto
@@ -62,3 +63,5 @@
   required = true
   clean = git media clean %f
   smudge = git media smudge %f
+[credential]
+  helper = osxkeychain
