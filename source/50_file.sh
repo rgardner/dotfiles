@@ -13,6 +13,7 @@ else
 fi
 
 # Directory listing
+alias la='ls -a'
 if [[ "$(type -P tree)" ]]; then
   alias ll='tree --dirsfirst -aLpughDFiC 1'
   alias lsd='ll -d'
