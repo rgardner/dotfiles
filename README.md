@@ -1,5 +1,4 @@
 # Bob Gardner's Dotfiles
-
 This project contains my config files for the various programming languages and
 tools that I use. I am publishing them here to help others improve their
 workflow. Where possible, I document the configuration settings to make them
@@ -38,6 +37,11 @@ To view hidden files in Finder, enter the following command in the terminal:
 To disable:
 
 `defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder`
+
+
+## Installation
+`bash -c "$(curl -fsSL https://bit.ly/rhg-dotfiles)" && source ~/.bash_profile`
+
 
 ## Credit
 Thanks to [@cowboy](https://github.com/cowboy/dotfiles) for his awesome
