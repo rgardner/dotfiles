@@ -40,6 +40,19 @@ To disable:
 
 
 ## Installation
+### For You
+1. **BEWARE:** I may break my dotfiles at any time. Be very careful when
+   installing directly from this repo as I may have broken some things :)
+2. Fork this repo
+3. Open a terminal/shell and do this:
+
+```bash
+export github_user=YOUR_GITHUB_USER_NAME
+
+bash -c "$(curl -fsSL https://raw.github.com/$github_user/dotfiles/master/bin/dotfiles)" && source ~/.bashrc
+```
+
+### For Me
 `bash -c "$(curl -fsSL https://bit.ly/rhg-dotfiles)" && source ~/.bash_profile`
 
 
@@ -49,5 +62,5 @@ dotfiles! His design philosophy of separating configurations into `bin`,
 `link`, and `copy` make managing everything a heck of a lot easier. His
 configuration and utility scripts have proved invaluable both as references and
 as a basis for my own personal touches. Where possible, I credit him for his
-codeand for his design philosophy. These scripts from him are mostly unchanged:
+code and for his design philosophy. These scripts from him are mostly unchanged:
 - dotfiles, count-commits, curlsubl, eachdir, manp, pid, serve, ssid, subl
