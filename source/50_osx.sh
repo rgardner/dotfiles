@@ -1,0 +1,33 @@
+# OSX-only stuff. Abort if not OSX.
+is_osx || return 1
+
+# APPLE, Y U PUT /usr/bin B4 /usr/local/bin?!
+export PATH="/usr/local/bin:$(path_remove /usr/local/bin)"
+
+# Trim new lines and copy to clipboard
+alias c="tr -d '\n' | pbcopy"
+
+# Make 'less' more.
+alias less='less -FX'
+
+# Start ScreenSaver. This will lock the screen if locking is enabled.
+alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+
+# Functions
+clearOpenWithMenu() {
+  /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+}
+
+hideSpotlightIcon() {
+  sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+  killall SystemUIServer
+}
+
+showSpotlightIcon() {
+  sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+  killall SystemUIServer
+}
+
+disableKeyRepeat() {
+  defaults write "$1" ApplePressAndHoldEnabled -bool false
+}
