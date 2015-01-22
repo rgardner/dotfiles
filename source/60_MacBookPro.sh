@@ -1,3 +1,6 @@
+# Computer-specific
+[[ "60_$(hostname -s)" == "${0%.*}" ]] || return 1
+
 # Postgres
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin"
 
