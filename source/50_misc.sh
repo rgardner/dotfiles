@@ -17,7 +17,6 @@ function titlebar() {
 
 # Coloring
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Enabling 256 colors
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
