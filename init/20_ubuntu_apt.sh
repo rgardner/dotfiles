@@ -11,6 +11,7 @@ packages=(
   build-essential
   git-core
   htop
+  tmux
   tree
 )
 
