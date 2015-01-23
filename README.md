@@ -53,7 +53,7 @@ bash -c "$(curl -fsSL https://raw.github.com/$github_user/dotfiles/master/bin/do
 ```
 
 ### For Me
-`bash -c "$(curl -fsSL https://bit.ly/rhg-dotfiles)" && source ~/.bash_profile`
+`bash -c "$(curl -fsSL https://bit.ly/rhg-dotfiles)" && source ~/.bashrc`
 
 
 ## Credit
