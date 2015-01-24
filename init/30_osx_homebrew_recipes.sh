@@ -12,7 +12,7 @@ recipes=(
   git-extras
   htop-osx
   hub
-  lesspipe --syntax-highlighting
+  lesspipe
   nmap
   python
   python3
