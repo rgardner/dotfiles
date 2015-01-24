@@ -25,4 +25,4 @@ else
   export TERM='xterm-color'
 fi
 
-alias dotf='cd ~/.dotfiles'
+alias dotf="cd $DOTFILES"
