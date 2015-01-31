@@ -142,6 +142,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
 Plug 'davidhalter/jedi-vim'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'ervandew/supertab'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
