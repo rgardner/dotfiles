@@ -25,4 +25,5 @@ else
   export TERM='xterm-color'
 fi
 
+export TODAY=$(date "+%y-%m-%d")
 alias dotf="cd $DOTFILES"

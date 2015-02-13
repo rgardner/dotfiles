@@ -156,4 +156,5 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
+Plug 'wting/rust.vim'
 call plug#end()
