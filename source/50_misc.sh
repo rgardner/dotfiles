@@ -25,5 +25,10 @@ else
   export TERM='xterm-color'
 fi
 
-export TODAY=$(date "+%y-%m-%d")
 alias dotf="cd $DOTFILES"
+
+# Add ~/bin to PATH
+[[ -d ~/bin ]] && export PATH=~/bin:$PATH
+
+# Date helper expansion.
+export TODAY=$(date "+%y-%m-%d")
