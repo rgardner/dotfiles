@@ -115,6 +115,11 @@ let g:dash_map = {
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+"Racer
+set hidden
+let g:racer_cmd = "~/Developer/rust/racer/target/release/racer"
+let $RUST_SRC_PATH = "~/Developer/rust/rust-src/src/"
+
 "Syntastic
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_scss_checkers = ['scss_lint']
@@ -149,6 +154,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
+Plug 'phildawes/racer'
 Plug 'rizzatti/dash.vim'
 Plug 'sudar/vim-arduino-syntax'
 Plug 'scrooloose/nerdcommenter'
