@@ -427,8 +427,10 @@ function! s:add(repo, ...)
     let name = fnamemodify(repo, ':t:s?\.git$??')
     let spec = extend(s:infer_properties(name, repo),
                     \ a:0 == 1 ? s:parse_options(a:1) : s:base_spec)
+    if !has_key(g:plugs, name)
+      call add(g:plugs_order, name)
+    endif
     let g:plugs[name] = spec
-    let g:plugs_order += [name]
     let s:loaded[name] = 0
   catch
     return s:err(v:exception)
@@ -1591,7 +1593,7 @@ EOF
 endfunction
 
 function! s:shellesc(arg)
-  return '"'.substitute(a:arg, '"', '\\"', 'g').'"'
+  return '"'.escape(a:arg, '"').'"'
 endfunction
 
 function! s:glob_dir(path)
@@ -1618,7 +1620,7 @@ function! s:format_message(bullet, name, message)
 endfunction
 
 function! s:with_cd(cmd, dir)
-  return printf('cd%s "%s" && %s', s:is_win ? ' /d' : '', escape(a:dir, '"'), a:cmd)
+  return printf('cd%s %s && %s', s:is_win ? ' /d' : '', s:shellesc(a:dir), a:cmd)
 endfunction
 
 function! s:system(cmd, ...)
@@ -1904,7 +1906,7 @@ function! s:preview_commit()
   execute 'pedit' sha
   wincmd P
   setlocal filetype=git buftype=nofile nobuflisted
-  execute 'silent read !cd "'.escape(g:plugs[name].dir, '"').'" && git show' sha
+  execute 'silent read !cd' s:shellesc(g:plugs[name].dir) '&& git show' sha
   normal! gg"_dd
   wincmd p
 endfunction
