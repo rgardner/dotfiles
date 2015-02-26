@@ -111,6 +111,16 @@ let g:dash_map = {
     \ 'tex' : 'latex'
     \ }
 
+"delimitMate
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
 "Indent Guides
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -123,6 +133,9 @@ let $RUST_SRC_PATH = "~/Developer/rust/rust-src/src/"
 "Syntastic
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_scss_checkers = ['scss_lint']
+
+"Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 "Vimux
 " Prompt for a command to run
@@ -146,15 +159,20 @@ au BufNewFile,BufRead *.h   setf c
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
+Plug 'bling/vim-airline'
 Plug 'davidhalter/jedi-vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'edkolev/tmuxline.vim'
 Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
 Plug 'phildawes/racer'
+Plug 'Raimondi/delimitMate'
 Plug 'rizzatti/dash.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'sudar/vim-arduino-syntax'
@@ -163,4 +181,6 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
 call plug#end()
