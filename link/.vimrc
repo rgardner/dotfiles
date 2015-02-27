@@ -160,22 +160,22 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
-Plug 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
 Plug 'kien/ctrlp.vim'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'pangloss/vim-javascript'
-Plug 'phildawes/racer'
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'phildawes/racer', {'for': 'rust'}
 Plug 'Raimondi/delimitMate'
 Plug 'rizzatti/dash.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'sudar/vim-arduino-syntax'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-bundler'
