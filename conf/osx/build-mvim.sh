@@ -1,3 +1,4 @@
+#!/bin/sh
 # Build macvim from source with desired configuration options.
 
 # Update Macvim or clone from GitHub.
