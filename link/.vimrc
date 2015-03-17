@@ -164,6 +164,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ervandew/supertab'
+Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'godlygeek/tabular'
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
 Plug 'kien/ctrlp.vim'
