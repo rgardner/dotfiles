@@ -128,9 +128,10 @@ let g:indent_guides_guide_size = 1
 "Racer
 set hidden
 let g:racer_cmd = "~/Developer/rust/racer/target/release/racer"
-let $RUST_SRC_PATH = "~/Developer/rust/rust-src/src/"
+let $RUST_SRC_PATH = "/Users/bobgardner/Developer/rust/rust-src/src"
 
 "Syntastic
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_scss_checkers = ['scss_lint']
 
