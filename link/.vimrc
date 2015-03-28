@@ -162,14 +162,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'godlygeek/tabular'
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
 Plug 'kien/ctrlp.vim'
-Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
