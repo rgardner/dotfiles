@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Based on
+# https://github.com/cowboy/dotfiles/blob/fc4f7e5/bin/update-rust-nightly
+# https://github.com/zargony/dotfiles/blob/1edf635/bin/update-rust-nightly
+
+set -e
+
+# Uninstall rust.
+sudo /usr/local/lib/rustlib/uninstall.sh
+
+# Install rust nightly.
+curl -s https://static.rust-lang.org/rustup.sh | sudo sh
+
+# Update rust src.
+if [ -d "$RUST_SRC_PATH" ]; then
+  cd "$RUST_SRC_PATH"
+  git pull
+fi
