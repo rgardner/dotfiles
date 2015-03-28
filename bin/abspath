@@ -1,0 +1,4 @@
+#!/bin/sh
+# Print the absolute path to a given file or directory
+# usage: abspath <file>
+echo "$(cd "$(dirname "$1")"; pwd)/"$(basename "$1")""
