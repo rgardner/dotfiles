@@ -17,6 +17,7 @@
 # iPython related files.
 /link/.ipython/db
 /link/.ipython/history
+/link/.ipython/nbextensions/
 /link/.ipython/**/db
 /link/.ipython/**/log
 /link/.ipython/**/pid
