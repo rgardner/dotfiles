@@ -9,6 +9,7 @@
 
 # Don't commit VIm plugins, vim-plug will install them.
 /link/.vim/plugged
+/link/.vim/autoload/plug.vim.old
 /link/.vim/spell/*.spl
 
 # Ignore any file with LOCAL in the name (good for per-machine vars/functions)
