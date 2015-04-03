@@ -175,6 +175,7 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'phildawes/racer', {'for': 'rust'}
 Plug 'Raimondi/delimitMate'
 Plug 'rizzatti/dash.vim'
+Plug 'rhysd/vim-clang-format', {'for': 'c'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
 Plug 'scrooloose/nerdcommenter'
