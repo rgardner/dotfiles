@@ -24,3 +24,6 @@
 /link/.ipython/**/security
 /link/.ipython/**/startup
 /link/.ipython/**/history.sqlite
+
+# Sublime Text 3
+Package\ Control*
