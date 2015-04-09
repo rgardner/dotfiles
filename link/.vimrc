@@ -164,33 +164,80 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
-"Enable vim plugins
-call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
-Plug 'benmills/vimux'
-Plug 'bling/vim-airline'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'edkolev/tmuxline.vim'
-Plug 'ervandew/supertab'
-Plug 'fatih/vim-go', {'for': 'go'}
-Plug 'godlygeek/tabular'
-Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
-Plug 'kien/ctrlp.vim'
-Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
-Plug 'majutsushi/tagbar'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'phildawes/racer', {'for': 'rust'}
-Plug 'Raimondi/delimitMate'
-Plug 'rizzatti/dash.vim'
-Plug 'rhysd/vim-clang-format', {'for': 'c'}
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
-call plug#end()
+"Platform specific vim plugins
+if has('macunix')
+  call plug#begin('~/.vim/plugged')
+  Plug 'airblade/vim-gitgutter'
+  Plug 'benmills/vimux'
+  Plug 'bling/vim-airline'
+  Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  Plug 'edkolev/tmuxline.vim'
+  Plug 'ervandew/supertab'
+  Plug 'fatih/vim-go', {'for': 'go'}
+  Plug 'godlygeek/tabular'
+  Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
+  Plug 'kien/ctrlp.vim'
+  Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
+  Plug 'majutsushi/tagbar'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+  Plug 'phildawes/racer', {'for': 'rust'}
+  Plug 'Raimondi/delimitMate'
+  Plug 'rizzatti/dash.vim'
+  Plug 'rhysd/vim-clang-format', {'for': 'c'}
+  Plug 'rust-lang/rust.vim', {'for': 'rust'}
+  Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/syntastic'
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rails'
+  Plug 'xolox/vim-easytags'
+  Plug 'xolox/vim-misc'
+  call plug#end()
+elseif has('unix')
+  if hostname() == 'blastoise' || hostname() == 'venusaur'
+    call plug#begin('~/.vim/plugged')
+    Plug 'airblade/vim-gitgutter'
+    Plug 'benmills/vimux'
+    Plug 'ervandew/supertab'
+    Plug 'kien/ctrlp.vim'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'Raimondi/delimitMate'
+    Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/syntastic'
+    Plug 'tpope/vim-bundler'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rails'
+    Plug 'xolox/vim-easytags'
+    Plug 'xolox/vim-misc'
+    call plug#end()
+  else
+    call plug#begin('~/.vim/plugged')
+    Plug 'airblade/vim-gitgutter'
+    Plug 'benmills/vimux'
+    Plug 'bling/vim-airline'
+    Plug 'davidhalter/jedi-vim', {'for': 'python'}
+    Plug 'edkolev/tmuxline.vim'
+    Plug 'ervandew/supertab'
+    Plug 'fatih/vim-go', {'for': 'go'}
+    Plug 'godlygeek/tabular'
+    Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
+    Plug 'kien/ctrlp.vim'
+    Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
+    Plug 'majutsushi/tagbar'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+    Plug 'Raimondi/delimitMate'
+    Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/syntastic'
+    Plug 'tpope/vim-bundler'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rails'
+    Plug 'xolox/vim-easytags'
+    Plug 'xolox/vim-misc'
+    call plug#end()
+  endif
+endif
