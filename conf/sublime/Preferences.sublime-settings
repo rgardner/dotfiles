@@ -1,6 +1,10 @@
 {
-	"font_size": 18,
-	"rulers": [79],
-	"tab_size": 2,
-	"translate_tabs_to_spaces": true
+  "color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+  "font_size": 16,
+  "ignored_packages":
+  [
+    "Vintage"
+  ],
+  "tab_size": 2,
+  "translate_tabs_to_spaces": true
 }
