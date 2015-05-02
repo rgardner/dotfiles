@@ -10,8 +10,8 @@
 # Don't commit VIm plugins, vim-plug will install them.
 /link/.vim/autoload/plug.vim
 /link/.vim/autoload/plug.vim.old
-/link/.vim/plugged
 /link/.vim/spell/*.spl
+/link/.vim/plugged
 
 # Ignore any file with LOCAL in the name (good for per-machine vars/functions)
 *LOCAL*
@@ -26,3 +26,6 @@
 /link/.ipython/**/security
 /link/.ipython/**/startup
 /link/.ipython/**/history.sqlite
+
+# Sublime Text 3
+Package\ Control*
