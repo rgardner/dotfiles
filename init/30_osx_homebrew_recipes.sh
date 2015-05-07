@@ -8,6 +8,7 @@ is_osx || return 1
 recipes=(
   autojump
   bash
+  bash-completion
   git
   git-extras
   htop-osx
