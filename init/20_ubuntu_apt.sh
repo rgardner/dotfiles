@@ -11,6 +11,7 @@ packages=(
   bash-completion
   build-essential
   git-core
+  git-extras
   htop
   tmux
   tree
