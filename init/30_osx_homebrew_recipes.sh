@@ -38,7 +38,7 @@ if [[ $(type -P "$binroot"/htop) ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop
 fi
 
 # bash
-if [[ $(type -P "$binroot"/bash) && "$(cat /etc/shells | grep -q "$binroot/bash")" ]]; then
+if [[ $(type -P "$binroot"/bash) && "$(grep -q "$binroot/bash" </etc/shells)" ]]; then
   e_header "Adding $binroot/bash to the list of acceptable shells"
   echo "$binroot/bash" | sudo tee -a /etc/shells >/dev/null
 fi
