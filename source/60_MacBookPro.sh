@@ -15,9 +15,6 @@ export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-6.0/lib:$DYLD_LIBRARY_PATH"
 export GOPATH="$HOME/Developer/go"
 export PATH="$PATH:$GOPATH/bin"
 
-# Python
-source /usr/local/opt/autoenv/activate.sh
-
 # Node.js
 source ~/.nvm/nvm.sh
 export NVM_DIR="/Users/bobgardner/.nvm"
