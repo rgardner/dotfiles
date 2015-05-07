@@ -15,9 +15,6 @@ export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-6.0/lib:$DYLD_LIBRARY_PATH"
 export GOPATH="$HOME/Developer/go"
 export PATH="$PATH:$GOPATH/bin"
 
-# Python
-source /usr/local/opt/autoenv/activate.sh
-
 # Node.js
 source ~/.nvm/nvm.sh
 export NVM_DIR="/Users/bobgardner/.nvm"
@@ -29,6 +26,11 @@ export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 
 # Autojump support.
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
+
+# Bash completion.
+if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
+  . "$(brew --prefix)"/etc/bash_completion
+fi
 
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'

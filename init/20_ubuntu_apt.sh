@@ -8,6 +8,7 @@ sudo apt-get -qq dist-upgrade
 
 # Install APT packages.
 packages=(
+  bash-completion
   build-essential
   git-core
   htop
