@@ -1,0 +1,35 @@
+#!/usr/bin/env python2
+"""csvtojson
+
+Convert csv from stdin to JSON.
+
+::
+$ csvtojson <names.csv
+
+::
+> import csvtojson
+> with open("names.csv") as f:
+>     print(csvtojson.csv_to_json(f))
+
+"""
+from __future__ import print_function
+
+import csv
+import json
+import sys
+
+
+def csv_to_json(f):
+    """
+    :param f: opened file
+    :type f: file
+    :rtype: str
+    """
+    return json.dumps(list(csv.reader(f)))
+
+
+def main():
+    print(csv_to_json(sys.stdin))
+
+if __name__ == '__main__':
+    main()
