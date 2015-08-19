@@ -15,11 +15,6 @@ export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-6.0/lib:$DYLD_LIBRARY_PATH"
 export GOPATH="$HOME/Developer/go"
 export PATH="$PATH:$GOPATH/bin"
 
-# Node.js
-source ~/.nvm/nvm.sh
-export NVM_DIR="/Users/bobgardner/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Ruby
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
