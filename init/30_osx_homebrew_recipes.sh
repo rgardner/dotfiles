@@ -15,6 +15,7 @@ recipes=(
   hub
   lesspipe
   nmap
+  pandoc
   python
   python3
   terminal-notifier
