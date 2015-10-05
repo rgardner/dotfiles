@@ -171,6 +171,7 @@ if has('macunix')
   Plug 'benmills/vimux'
   Plug 'bling/vim-airline'
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  Plug 'derekwyatt/vim-scala', {'for': 'scala'}
   Plug 'edkolev/tmuxline.vim'
   Plug 'ervandew/supertab'
   Plug 'fatih/vim-go', {'for': 'go'}
