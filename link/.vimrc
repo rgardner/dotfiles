@@ -20,6 +20,7 @@ set laststatus=2    "always show the status line
 set linespace=0     "don't insert any extra pixel lines betweens rows
 set list            "show tabs
 set listchars=tab:>-,trail:- "show tabs and trailing spaces
+set matchpairs+=<:> "match < and > as well
 set matchtime=5     "tenths of a second to blink matching brackets
 set number          "display line numbers
 set numberwidth=5   "We are good up to 99999 lines
@@ -38,17 +39,20 @@ set softtabstop=2 "number of spaces when tabbing (add'l info online)
 set tabstop=2     "global tab width
 
 "Folding
+set foldenable
 set foldmethod=indent
 set foldlevel=99
+set foldlevelstart=10 "open most folds by default
 set novisualbell  "don't blink
 
 "Status bar
 set lazyredraw   "do not redraw while running macros
-set report=0      "tell us when anything is changed via :...
-set ruler         "Always show current positions along the bottom
-set showcmd       "show the command being typed
-set showmatch     "show matching brackets
+set report=0     "tell us when anything is changed via :...
+set ruler        "Always show current positions along the bottom
+set showcmd      "show the command being typed
+set showmatch    "show matching brackets
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+set wildmenu  "visual autocomplate for command menu
 
 "Search / Replace
 set gdefault   "by default, add g flag to search/replace. Add g to toggle
