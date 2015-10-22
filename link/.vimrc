@@ -63,7 +63,7 @@ set smartcase  "ignore 'ignorecase' if search pattern contains uppercase chars
 
 "Ignore things
 set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.o,*.obj,*.min.js
-set wildignore+=*/bower_components/*,*/node_modules/*
+set wildignore+=*/bower_components/*,*/node_modules/*,*/.venv/*
 set wildignore+=*/vendor/*,*/.git/*,*/.hg/*,*/.svn/*,*/log/*,*/tmp/*
 
 """""""""" Global shortcuts
@@ -131,11 +131,12 @@ let g:indent_guides_guide_size = 1
 
 "Racer
 set hidden
-let g:racer_cmd = "/Users/bobgardner/Developer/rust/racer/target/release/racer"
+let g:racer_cmd = "/Users/bobgardner/bin/racer"
 let $RUST_SRC_PATH = "/usr/local/src/rust/src/"
 
 "Syntastic
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+let g:syntastic_python_checkers = ['python', 'flake8', 'mypy']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_scss_checkers = ['scss_lint']
 
@@ -176,6 +177,7 @@ if has('macunix')
   Plug 'bling/vim-airline'
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
   Plug 'derekwyatt/vim-scala', {'for': 'scala'}
+  Plug 'editorconfig/editorconfig-vim'
   Plug 'edkolev/tmuxline.vim'
   Plug 'ervandew/supertab'
   Plug 'fatih/vim-go', {'for': 'go'}
@@ -186,7 +188,7 @@ if has('macunix')
   Plug 'majutsushi/tagbar'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-  Plug 'phildawes/racer', {'for': 'rust'}
+  Plug 'racer-rust/vim-racer', {'for': 'rust'}
   Plug 'Raimondi/delimitMate'
   Plug 'rizzatti/dash.vim'
   Plug 'rhysd/vim-clang-format', {'for': 'c'}
