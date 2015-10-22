@@ -14,6 +14,7 @@ recipes=(
   htop-osx
   hub
   lesspipe
+  mypy
   nmap
   pandoc
   python
