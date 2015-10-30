@@ -1,0 +1,477 @@
+"*":
+  "exception-reporting":
+    userId: "092b0f21-d338-7b38-9283-0fed9370ad97"
+  "release-notes":
+    viewedVersion: "0.95.0"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "ada6b57a021a0e55bd452aa9a32285e94fd3f8d5"
+  editor:
+    lineHeight: 1.4
+    showInvisibles: true
+    showIndentGuide: true
+    preferredLineLength: 79
+    invisibles: {}
+    fontSize: 16
+  core:
+    disabledPackages: [
+      "metrics"
+      "firepad"
+      "welcome"
+      "command-logger"
+      "atom-spotify"
+      "terminal"
+      "gist-it"
+      "emmet"
+    ]
+    themes: [
+      "one-light-ui"
+      "seti-syntax"
+    ]
+    projectHome: "/Users/bobgardner/Developer"
+  "tree-view":
+    hideIgnoredNames: true
+  "spell-check":
+    grammars: [
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+    ]
+  "markdown-preview":
+    grammars: [
+      "source.gfm"
+      "source.litcoffee"
+      "text.plain"
+      "text.plain.null-grammar"
+    ]
+  "gist-it":
+    userToken: "559c7c3d619d18c286b4d48eb5f7e59ee33191dd"
+  autosave:
+    enabled: true
+  "autocomplete-plus": {}
+  dash:
+    grammars:
+      ActionScript: [
+        "actionscript"
+      ]
+      Boo: [
+        "unity3d"
+      ]
+      C: [
+        "c"
+        "glib"
+        "gl2"
+        "gl3"
+        "gl4"
+        "manpages"
+      ]
+      "C#": [
+        "net"
+        "mono"
+        "unity3d"
+      ]
+      "C++": [
+        "cpp"
+        "net"
+        "boost"
+        "qt"
+        "cvcpp"
+        "cocos2dx"
+        "c"
+        "manpages"
+      ]
+      CSS: [
+        "css"
+        "bootstrap"
+        "foundation"
+        "cordova"
+        "phonegap"
+      ]
+      Clojure: [
+        "clojure"
+      ]
+      CoffeeScript: [
+        "coffee"
+        "javascript"
+        "jquery"
+        "jqueryui"
+        "jquerym"
+        "backbone"
+        "marionette"
+        "meteor"
+        "sproutcore"
+        "moo"
+        "prototype"
+        "bootstrap"
+        "foundation"
+        "lodash"
+        "underscore"
+        "ember"
+        "sencha"
+        "extjs"
+        "titanium"
+        "knockout"
+        "zepto"
+        "yui"
+        "d3"
+        "svg"
+        "dojo"
+        "nodejs"
+        "mongoose"
+        "grunt"
+        "express"
+        "chai"
+        "html"
+        "css"
+        "cordova"
+        "phonegap"
+        "unity3d"
+      ]
+      "CoffeeScript (Literate)": [
+        "coffee"
+        "javascript"
+        "jquery"
+        "jqueryui"
+        "jquerym"
+        "backbone"
+        "marionette"
+        "meteor"
+        "sproutcore"
+        "moo"
+        "prototype"
+        "bootstrap"
+        "foundation"
+        "lodash"
+        "underscore"
+        "ember"
+        "sencha"
+        "extjs"
+        "titanium"
+        "knockout"
+        "zepto"
+        "yui"
+        "d3"
+        "svg"
+        "dojo"
+        "nodejs"
+        "mongoose"
+        "grunt"
+        "express"
+        "chai"
+        "html"
+        "css"
+        "cordova"
+        "phonegap"
+        "unity3d"
+      ]
+      ColdFusion: [
+        "cf"
+      ]
+      Elixir: [
+        "elixir"
+      ]
+      Erlang: [
+        "erlang"
+      ]
+      "GitHub Markdown": [
+        "markdown"
+      ]
+      Go: [
+        "go"
+      ]
+      HTML: [
+        "html"
+        "svg"
+        "css"
+        "bootstrap"
+        "foundation"
+        "javascript"
+        "jquery"
+        "jqueryui"
+        "jquerym"
+        "angularjs"
+        "backbone"
+        "marionette"
+        "meteor"
+        "moo"
+        "prototype"
+        "ember"
+        "lodash"
+        "underscore"
+        "sencha"
+        "extjs"
+        "knockout"
+        "zepto"
+        "cordova"
+        "phonegap"
+        "yui"
+      ]
+      "HTML (Rails)": [
+        "ruby"
+        "rubygems"
+        "rails"
+        "html"
+        "svg"
+        "css"
+        "bootstrap"
+        "foundation"
+        "javascript"
+        "jquery"
+        "jqueryui"
+        "jquerym"
+        "angularjs"
+        "backbone"
+        "marionette"
+        "meteor"
+        "moo"
+        "prototype"
+        "ember"
+        "lodash"
+        "underscore"
+        "sencha"
+        "extjs"
+        "knockout"
+        "zepto"
+        "cordova"
+        "phonegap"
+        "yui"
+      ]
+      Handlebars: [
+        "ember"
+      ]
+      Haskell: [
+        "haskell"
+      ]
+      Jade: [
+        "jade"
+      ]
+      Java: [
+        "java"
+        "javafx"
+        "grails"
+        "groovy"
+        "playjava"
+        "spring"
+        "cvj"
+        "processing"
+      ]
+      JavaScript: [
+        "javascript"
+        "jquery"
+        "jqueryui"
+        "jquerym"
+        "backbone"
+        "marionette"
+        "meteor"
+        "sproutcore"
+        "moo"
+        "prototype"
+        "bootstrap"
+        "foundation"
+        "lodash"
+        "underscore"
+        "ember"
+        "sencha"
+        "extjs"
+        "titanium"
+        "knockout"
+        "zepto"
+        "yui"
+        "d3"
+        "svg"
+        "dojo"
+        "nodejs"
+        "express"
+        "mongoose"
+        "grunt"
+        "chai"
+        "html"
+        "css"
+        "cordova"
+        "phonegap"
+        "unity3d"
+      ]
+      LESS: [
+        "less"
+        "css"
+        "bootstrap"
+        "foundation"
+        "cordova"
+        "phonegap"
+      ]
+      Lisp: [
+        "lisp"
+      ]
+      "Literate Haskell": [
+        "haskell"
+      ]
+      Lua: [
+        "lua"
+        "corona"
+      ]
+      OCaml: [
+        "ocaml"
+      ]
+      "Objective-C": [
+        "iphoneos"
+        "macosx"
+        "appledoc"
+        "cocos2d"
+        "cocos3d"
+        "kobold2d"
+        "sparrow"
+        "c"
+        "manpages"
+      ]
+      "Objective-C++": [
+        "iphoneos"
+        "macosx"
+        "appledoc"
+        "cocos2d"
+        "cocos3d"
+        "kobold2d"
+        "sparrow"
+        "c"
+        "manpages"
+        "cpp"
+        "cocos2dx"
+      ]
+      "Objective-J": [
+        "cappuccino"
+      ]
+      PHP: [
+        "php"
+        "wordpress"
+        "drupal"
+        "zend"
+        "laravel"
+        "yii"
+        "joomla"
+        "ee"
+        "codeigniter"
+        "cakephp"
+        "symfony"
+        "typo3"
+        "twig"
+        "smarty"
+        "mysql"
+        "sqlite"
+        "mongodb"
+        "psql"
+        "redis"
+        "html"
+        "svg"
+        "css"
+        "bootstrap"
+        "foundation"
+        "javascript"
+        "jquery"
+        "jqueryui"
+        "jquerym"
+        "angularjs"
+        "backbone"
+        "marionette"
+        "meteor"
+        "moo"
+        "prototype"
+        "ember"
+        "lodash"
+        "underscore"
+        "sencha"
+        "extjs"
+        "knockout"
+        "zepto"
+        "cordova"
+        "phonegap"
+        "yui"
+      ]
+      Perl: [
+        "perl"
+        "manpages"
+      ]
+      Processing: [
+        "processing"
+      ]
+      Puppet: [
+        "puppet"
+      ]
+      Python: [
+        "python"
+        "django"
+        "twisted"
+        "sphinx"
+        "flask"
+        "cvp"
+      ]
+      R: [
+        "r"
+      ]
+      Ruby: [
+        "ruby"
+        "rubygems"
+        "rails"
+      ]
+      "Ruby Haml": [
+        "haml"
+      ]
+      "Ruby on Rails": [
+        "ruby"
+        "rubygems"
+        "rails"
+      ]
+      Rust: [
+        "rust"
+      ]
+      SQL: [
+        "mysql"
+        "sqlite"
+        "psql"
+      ]
+      "SQL (Rails)": [
+        "ruby"
+        "rubygems"
+        "rails"
+      ]
+      Sass: [
+        "sass"
+        "compass"
+        "bourbon"
+        "neat"
+        "css"
+      ]
+      Scala: [
+        "scala"
+        "akka"
+        "playscala"
+      ]
+      "Shell Scripts": [
+        "bash"
+        "manpages"
+      ]
+      Stylus: [
+        "stylus"
+        "css"
+        "bootstrap"
+        "foundation"
+        "cordova"
+        "phonegap"
+      ]
+      Tcl: [
+        "tcl"
+      ]
+      YAML: [
+        "chef"
+        "ansible"
+      ]
+  "linter-rust": {}
+  "linter-rubocop":
+    rubocopExecutablePath: "/Users/bobgardner/.rvm/gems/ruby-2.0.0-p451/bin/rubocop"
+  linter: {}
+  pigments: {}
+".rust.source":
+  editor:
+    preferredLineLength: 99
+".scala.source":
+  editor:
+    preferredLineLength: 79
