@@ -101,6 +101,12 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 "Netrw
 let g:netrw_liststyle=3 "Display 3 levels for netrw tree
 
+"ClangFormat
+"inserted lines auto-formatted 
+let g:clang_format#auto_format_on_insert_leave = 1
+"toggle auto formatting
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
 "CtrlP
 let g:ctrlp_match_window_bottom = 0 " Show at top of window
 let g:ctrlp_map = '<c-p>'
@@ -175,6 +181,7 @@ if has('macunix')
   Plug 'airblade/vim-gitgutter'
   Plug 'benmills/vimux'
   Plug 'bling/vim-airline'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
   Plug 'derekwyatt/vim-scala', {'for': 'scala'}
   Plug 'editorconfig/editorconfig-vim'
@@ -183,7 +190,6 @@ if has('macunix')
   Plug 'fatih/vim-go', {'for': 'go'}
   Plug 'godlygeek/tabular'
   Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
-  Plug 'kien/ctrlp.vim'
   Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
   Plug 'majutsushi/tagbar'
   Plug 'nathanaelkane/vim-indent-guides'
