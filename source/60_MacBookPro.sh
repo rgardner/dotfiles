@@ -15,12 +15,13 @@ export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-6.0/lib:$DYLD_LIBRARY_PATH"
 export GOPATH="$HOME/Developer/go"
 export PATH="$PATH:$GOPATH/bin"
 
+# Rust
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$HOME/.multirust/bin:$PATH"
+
 # Ruby
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# Rust
-export PATH="$PATH:$HOME/.cargo/bin"
 
 # Autojump support.
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
