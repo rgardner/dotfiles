@@ -102,9 +102,8 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 let g:netrw_liststyle=3 "Display 3 levels for netrw tree
 
 "ClangFormat
-"inserted lines auto-formatted 
+let g:clang_format#code_style = 'mozilla'
 let g:clang_format#auto_format_on_insert_leave = 1
-"toggle auto formatting
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 "CtrlP
@@ -198,7 +197,7 @@ if has('macunix')
   Plug 'Raimondi/delimitMate'
   Plug 'rizzatti/dash.vim'
   Plug 'rhysd/vim-clang-format', {'for': 'c'}
-  Plug 'rust-lang/rust.vim', {'for': 'rust'}
+  Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
   Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/syntastic'

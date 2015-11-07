@@ -13,15 +13,16 @@ export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-6.0/lib:$DYLD_LIBRARY_PATH"
 
 # Go
 export GOPATH="$HOME/Developer/go"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$GOPATH/bin:$PATH"
 
 # Rust
-export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.multirust/bin:$PATH"
 
 # Ruby
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Load RVM into a shell session *as a function *
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Autojump support.
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
@@ -33,4 +34,4 @@ fi
 
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
-alias hr='heroku restart'
+alias hubb='hub browse'
