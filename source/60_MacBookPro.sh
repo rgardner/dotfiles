@@ -5,7 +5,6 @@ export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin"
 
 # Cabal
 export PATH="$HOME/.cabal/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
 
 # NVIDIA CUDA
 export PATH="/Developer/NVIDIA/CUDA-6.0/bin:$PATH"

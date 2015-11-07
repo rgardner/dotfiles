@@ -27,8 +27,9 @@ fi
 
 alias dotf="cd $DOTFILES"
 
-# Add ~/bin to PATH
-[[ -d ~/bin ]] && export PATH=~/bin:$PATH
+export PATH="$HOME/.dotfiles/bin:$(path_remove "$HOME/.dotfiles/bin")"
+[[ -d ~/bin ]] && export PATH=$HOME/bin:$PATH
+
 
 # Date helper expansion.
 export TODAY=$(date "+%y-%m-%d")
