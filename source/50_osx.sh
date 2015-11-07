@@ -17,17 +17,3 @@ alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resou
 clearOpenWithMenu() {
   /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 }
-
-hideSpotlightIcon() {
-  sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-  killall SystemUIServer
-}
-
-showSpotlightIcon() {
-  sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-  killall SystemUIServer
-}
-
-disableKeyRepeat() {
-  defaults write "$1" ApplePressAndHoldEnabled -bool false
-}
