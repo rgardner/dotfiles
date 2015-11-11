@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+# created by: github.com/cowboy
+# modified by: github.com/rgardner
 
 # Ever pasted "$ somecommand" into the terminal and gotten this error?
 # -bash: $: command not found
 
 # Begone, silly errors! Lazy copy + paste forever!! ETCETERA!!!!
 
-echo 'Quit pasting in commands from the internet, you lazy bum.'
+# Only echo if stdout is a terminal (and not a pipe)
+[[ -t 1 ]] && echo 'Quit pasting in commands from the internet, you lazy bum.'
 "$@"
