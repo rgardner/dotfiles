@@ -11,8 +11,8 @@ export HISTCONTROL="ignorespace:erasedups"
 # Give history timestamps.
 export HISTTIMEFORMAT="[%F %T] "
 # Lots o' history.
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+export HISTSIZE=
+export HISTFILESIZE=
 
 # Easily re-execute the last history command.
 alias r="fc -s"

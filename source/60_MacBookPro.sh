@@ -31,6 +31,9 @@ if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
   . "$(brew --prefix)"/etc/bash_completion
 fi
 
+# Fuck
+eval "$(thefuck --alias)"
+
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
 alias hubb='hub browse'
