@@ -8,24 +8,26 @@
  * http://www.lesscss.org
  */
 
-.tree-view {
+.editor, atom-text-editor::shadow {
+  .comment {
+    font-style: normal;
+    color: orange;
+  }
 
+  .invisible-character {
+    color: #c5c86c;
+    opacity: 0.3;
+  }
 }
+
+.tree-view {}
 
 .editor {
   -webkit-font-smoothing: antialiased;
 }
 
-.editor .cursor {
-
-}
-
 .editor .cursor-line {
-  /* background-color: red; */
-}
-
-.editor .invisible-character {
-  opacity: 0.1;
+  // background-color: red;
 }
 
 .editor .markup.underline.link.hyperlink {
@@ -37,6 +39,7 @@
   background-color: white;
 }
 
-.editor .misspelling {
-    // background-color: red;
+.editor .comment {
+  color: red;
+  opacity: 0.4;
 }

@@ -9,11 +9,10 @@
     userId: "ada6b57a021a0e55bd452aa9a32285e94fd3f8d5"
   editor:
     lineHeight: 1.4
-    showInvisibles: true
     showIndentGuide: true
     preferredLineLength: 79
     invisibles: {}
-    fontSize: 16
+    showInvisibles: true
   core:
     disabledPackages: [
       "metrics"
@@ -24,6 +23,8 @@
       "terminal"
       "gist-it"
       "emmet"
+      "build-cargo"
+      "linter-rust"
     ]
     themes: [
       "one-light-ui"
@@ -464,14 +465,23 @@
         "chef"
         "ansible"
       ]
-  "linter-rust": {}
+  "linter-rust":
+    buildTest: true
+    jobsNumber: 4
   "linter-rubocop":
     rubocopExecutablePath: "/Users/bobgardner/.rvm/gems/ruby-2.0.0-p451/bin/rubocop"
   linter: {}
   pigments: {}
-".rust.source":
-  editor:
-    preferredLineLength: 99
+  build: {}
+  racer: {}
+  "travis-ci-status": {}
+  "build-cargo":
+    openDocs: true
+  "git-diff":
+    showIconsInEditorGutter: true
 ".scala.source":
   editor:
     preferredLineLength: 79
+".rust.source":
+  editor:
+    preferredLineLength: 99
