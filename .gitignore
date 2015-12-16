@@ -8,6 +8,7 @@
 # Atom files
 /link/.atom/.apm/
 /link/.atom/.node-gyp/
+/link/.atom/blob-store
 /link/.atom/compile-cache/
 /link/.atom/packages/
 /link/.atom/storage/
