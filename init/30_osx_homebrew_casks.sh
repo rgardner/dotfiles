@@ -23,6 +23,7 @@ casks=(
   dropbox
   google-chrome
   iterm2
+  mactex
   postgres
   sonos
   spotify
