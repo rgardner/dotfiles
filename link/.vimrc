@@ -143,6 +143,7 @@ let $RUST_SRC_PATH = "/usr/local/src/rust/src/"
 let g:rustfmt_autosave = 1
 
 "Syntastic
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 let g:syntastic_python_checkers = ['python', 'flake8', 'mypy']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
