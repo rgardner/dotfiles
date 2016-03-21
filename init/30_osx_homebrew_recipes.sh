@@ -14,6 +14,7 @@ recipes=(
   htop-osx
   hub
   lesspipe
+  macvim --with-override-system-vim --with-python3
   mypy
   nmap
   pandoc

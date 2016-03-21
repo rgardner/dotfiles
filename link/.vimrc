@@ -9,7 +9,7 @@ set directory=~/.dotfiles/caches/vim
 set undodir=~/.dotfiles/caches/vim
 let g:netrw_home = expand('~/.dotfiles/caches/vim')
 
-"Theme and syntax higlighting
+"Theme and syntax highlighting
 set background=dark
 set t_Co=256
 
@@ -20,7 +20,6 @@ set laststatus=2    "always show the status line
 set linespace=0     "don't insert any extra pixel lines betweens rows
 set list            "show tabs
 set listchars=tab:>-,trail:- "show tabs and trailing spaces
-set matchpairs+=<:> "match < and > as well
 set matchtime=5     "tenths of a second to blink matching brackets
 set number          "display line numbers
 set numberwidth=5   "We are good up to 99999 lines
@@ -52,7 +51,7 @@ set ruler        "Always show current positions along the bottom
 set showcmd      "show the command being typed
 set showmatch    "show matching brackets
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
-set wildmenu  "visual autocomplate for command menu
+set wildmenu  "visual autocomplete for command menu
 
 "Search / Replace
 set gdefault   "by default, add g flag to search/replace. Add g to toggle
@@ -90,7 +89,7 @@ vnoremap <space> zf
 "Explore with Netrw
 map <leader>k :Explore<CR>
 
-"Yank text to the OS X cliboard
+"Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 
@@ -113,6 +112,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra' " revision control, current directory
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|env)|(\.(git|hg|svn))$'
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_cache_dir ="~/.dotfiles/caches/vim"
 
 "Dash
 nmap <silent> <leader>d <Plug>DashSearch
@@ -136,8 +136,11 @@ let g:indent_guides_guide_size = 1
 
 "Racer
 set hidden
-let g:racer_cmd = "/Users/bobgardner/bin/racer"
+let g:racer_cmd = "/usr/local/bin/racer"
 let $RUST_SRC_PATH = "/usr/local/src/rust/src/"
+
+"Rust.vim
+let g:rustfmt_autosave = 1
 
 "Syntastic
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'

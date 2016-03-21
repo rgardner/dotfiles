@@ -10,6 +10,7 @@ sudo apt-get -qq dist-upgrade
 packages=(
   bash-completion
   build-essential
+  exuberant-ctags
   git-core
   git-extras
   htop
