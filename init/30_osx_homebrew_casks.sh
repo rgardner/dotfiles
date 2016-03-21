@@ -22,7 +22,6 @@ casks=(
   atom
   dropbox
   google-chrome
-  heroku-toolbelt
   iterm2
   postgres
   sonos

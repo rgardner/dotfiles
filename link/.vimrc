@@ -185,13 +185,11 @@ if has('macunix')
   Plug 'bling/vim-airline'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
-  Plug 'derekwyatt/vim-scala', {'for': 'scala'}
   Plug 'editorconfig/editorconfig-vim'
   Plug 'edkolev/tmuxline.vim'
   Plug 'ervandew/supertab'
   Plug 'fatih/vim-go', {'for': 'go'}
   Plug 'godlygeek/tabular'
-  Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
   Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
   Plug 'majutsushi/tagbar'
   Plug 'nathanaelkane/vim-indent-guides'
@@ -204,10 +202,8 @@ if has('macunix')
   Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/syntastic'
-  Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-surround'
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
   call plug#end()
 elseif has('unix')
@@ -222,9 +218,7 @@ elseif has('unix')
     Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
-    Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rails'
     Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
   else
@@ -232,24 +226,16 @@ elseif has('unix')
     Plug 'airblade/vim-gitgutter'
     Plug 'benmills/vimux'
     Plug 'bling/vim-airline'
-    Plug 'davidhalter/jedi-vim', {'for': 'python'}
     Plug 'edkolev/tmuxline.vim'
     Plug 'ervandew/supertab'
-    Plug 'fatih/vim-go', {'for': 'go'}
     Plug 'godlygeek/tabular'
-    Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
     Plug 'kien/ctrlp.vim'
-    Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
     Plug 'majutsushi/tagbar'
     Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'pangloss/vim-javascript', {'for': 'javascript'}
     Plug 'Raimondi/delimitMate'
-    Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
-    Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rails'
     Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
   endif
