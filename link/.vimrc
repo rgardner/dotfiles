@@ -207,8 +207,8 @@ if has('macunix')
   Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
-  Plug 'xolox/vim-easytags'
-  Plug 'xolox/vim-misc'
+  Plug 'tpope/vim-surround'
+  Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
   call plug#end()
 elseif has('unix')
   if hostname() == 'blastoise' || hostname() == 'venusaur'
@@ -225,8 +225,7 @@ elseif has('unix')
     Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rails'
-    Plug 'xolox/vim-easytags'
-    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
   else
     call plug#begin('~/.vim/plugged')
@@ -251,8 +250,7 @@ elseif has('unix')
     Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rails'
-    Plug 'xolox/vim-easytags'
-    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
   endif
 endif
