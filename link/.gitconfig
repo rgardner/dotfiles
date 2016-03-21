@@ -1,6 +1,5 @@
-[user]
-	name = Robert Gardner
-	email = rhg259@nyu.edu
+[include]
+  path = .gitconfig.local
 [core]
   autoclrf = input
   editor = vim
