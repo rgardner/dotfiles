@@ -152,6 +152,12 @@ let g:syntastic_scss_checkers = ['scss_lint']
 "Tagbar
 nmap <F8> :TagbarToggle<CR>
 
+"Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:ultisnips_python_style="sphinx"
+
 "Vimux
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
@@ -191,6 +197,7 @@ if has('macunix')
   Plug 'ervandew/supertab'
   Plug 'fatih/vim-go', {'for': 'go'}
   Plug 'godlygeek/tabular'
+  Plug 'honza/vim-snippets'
   Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
   Plug 'majutsushi/tagbar'
   Plug 'nathanaelkane/vim-indent-guides'
@@ -199,6 +206,7 @@ if has('macunix')
   Plug 'Raimondi/delimitMate'
   Plug 'rizzatti/dash.vim'
   Plug 'rhysd/vim-clang-format', {'for': 'c'}
+  Plug 'SirVer/ultisnips'
   Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
   Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
   Plug 'scrooloose/nerdcommenter'
