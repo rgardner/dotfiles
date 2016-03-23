@@ -187,6 +187,9 @@ endif
 "Platform specific vim plugins
 if has('macunix')
   call plug#begin('~/.vim/plugged')
+  Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
+  Plug 'Raimondi/delimitMate'
+  Plug 'SirVer/ultisnips'
   Plug 'airblade/vim-gitgutter'
   Plug 'benmills/vimux'
   Plug 'bling/vim-airline'
@@ -198,19 +201,16 @@ if has('macunix')
   Plug 'fatih/vim-go', {'for': 'go'}
   Plug 'godlygeek/tabular'
   Plug 'honza/vim-snippets'
-  Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
   Plug 'majutsushi/tagbar'
+  Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'pangloss/vim-javascript', {'for': 'javascript'}
   Plug 'racer-rust/vim-racer', {'for': 'rust'}
-  Plug 'Raimondi/delimitMate'
-  Plug 'rizzatti/dash.vim'
   Plug 'rhysd/vim-clang-format', {'for': 'c'}
-  Plug 'SirVer/ultisnips'
-  Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
-  Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
+  Plug 'rizzatti/dash.vim'
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/syntastic'
+  Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
@@ -218,20 +218,21 @@ if has('macunix')
 elseif has('unix')
   if hostname() == 'blastoise' || hostname() == 'venusaur'
     call plug#begin('~/.vim/plugged')
+    Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
     Plug 'benmills/vimux'
     Plug 'ervandew/supertab'
     Plug 'kien/ctrlp.vim'
     Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'Raimondi/delimitMate'
-    Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
+    Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
     Plug 'tpope/vim-fugitive'
     Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
   else
     call plug#begin('~/.vim/plugged')
+    Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
     Plug 'benmills/vimux'
     Plug 'bling/vim-airline'
@@ -241,7 +242,6 @@ elseif has('unix')
     Plug 'kien/ctrlp.vim'
     Plug 'majutsushi/tagbar'
     Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'Raimondi/delimitMate'
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-fugitive'
