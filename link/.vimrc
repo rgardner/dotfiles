@@ -14,10 +14,10 @@ set background=dark
 set t_Co=256
 
 "Visual
-set colorcolumn=79 "visual red ruler at 80 characters
+set colorcolumn=79  "visual red ruler at 80 characters
 set cursorline      "underline the line with the cursor
 set laststatus=2    "always show the status line
-set linespace=0     "don't insert any extra pixel lines betweens rows
+set linespace=0     "don't insert any extra pixel lines between rows
 set list            "show tabs
 set listchars=tab:>-,trail:- "show tabs and trailing spaces
 set matchtime=5     "tenths of a second to blink matching brackets
