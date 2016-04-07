@@ -134,6 +134,21 @@ augroup END
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+"Goyo.vim
+function! s:goyo_enter()
+  set nocursorline
+  set nolist
+  set nospell
+endfunction
+
+function! s:goyo_leave()
+  set cursorline
+  set list
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 "Racer
 set hidden
 let g:racer_cmd = "/usr/local/bin/racer"
@@ -201,6 +216,7 @@ if has('macunix')
   Plug 'fatih/vim-go', {'for': 'go'}
   Plug 'godlygeek/tabular'
   Plug 'honza/vim-snippets'
+  Plug 'junegunn/goyo.vim'
   Plug 'majutsushi/tagbar'
   Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
   Plug 'nathanaelkane/vim-indent-guides'
