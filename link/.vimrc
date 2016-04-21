@@ -65,6 +65,9 @@ set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.o,*.obj,*.min.js
 set wildignore+=*/bower_components/*,*/node_modules/*,*/.venv/*
 set wildignore+=*/vendor/*,*/.git/*,*/.hg/*,*/.svn/*,*/log/*,*/tmp/*
 
+"Clipboard
+set clipboard=unnamed
+
 """""""""" Global shortcuts
 "rebind leader to \ (backslash)
 nnoremap <leader><leader> <c-^>
@@ -88,10 +91,6 @@ vnoremap <space> zf
 
 "Explore with Netrw
 map <leader>k :Explore<CR>
-
-"Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
 
 "Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
