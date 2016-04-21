@@ -14,7 +14,7 @@ set background=dark
 set t_Co=256
 
 "Visual
-set colorcolumn=79  "visual red ruler at 80 characters
+set colorcolumn=79  "visual red ruler at X characters
 set cursorline      "underline the line with the cursor
 set laststatus=2    "always show the status line
 set linespace=0     "don't insert any extra pixel lines between rows
@@ -47,7 +47,7 @@ set novisualbell  "don't blink
 "Status bar
 set lazyredraw   "do not redraw while running macros
 set report=0     "tell us when anything is changed via :...
-set ruler        "Always show current positions along the bottom
+set ruler        "always show current positions along the bottom
 set showcmd      "show the command being typed
 set showmatch    "show matching brackets
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
@@ -183,8 +183,6 @@ map <Leader>vi :VimuxInspectRunner<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
 " Interrupt any command running in the runner pane
 map <Leader>vx :VimuxInterruptRunner<CR>
-" Run the current file with ruby
-map <Leader>rb :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
 
 "Individual format settings
 au BufNewFile,BufRead *.md  setf markdown
