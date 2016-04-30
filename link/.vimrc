@@ -185,6 +185,10 @@ map <Leader>vq :VimuxCloseRunner<CR>
 " Interrupt any command running in the runner pane
 map <Leader>vx :VimuxInterruptRunner<CR>
 
+"Yapf
+map <C-Y> :call yapf#YAPF()<cr>
+imap <C-Y> <c-o>:call yapf#YAPF()<cr>
+
 "Individual format settings
 au BufNewFile,BufRead *.md  setf markdown
 au BufNewFile,BufRead *.h   setf c
