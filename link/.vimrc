@@ -33,6 +33,7 @@ set autoindent    "copies indentation from previous line
 set cindent       "replaces smartindent
 set backspace=indent,eol,start "backspace over line breaks, auto, insert
 set expandtab     "indentation without tabs
+set nojoinspaces  "use one space (not two) after a period due to J, gq
 set shiftwidth=2  "columns indented by reindent (<< and >>)
 set softtabstop=2 "number of spaces when tabbing (add'l info online)
 set tabstop=2     "global tab width
