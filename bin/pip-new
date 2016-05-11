@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Generate a new Python package from my cookiecutter template.
+#
+# Cookiecutter will ask to replace the local copy of the template with an
+# online version before checking if we have Internet connectivity. This checks
+# for Internet connectivity first. If we have Internet connectivity, then we
+# download the latest template. Otherwise, we fall back on our local copy.
+
+# Test Internet connection
+echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+
+if [ "$?" -eq 0 ]; then
+  cookiecutter gh:rgardner/cookiecutter-pypackage
+else
+  cookiecutter ~/.cookiecutters/cookiecutter-pypackage
+fi
