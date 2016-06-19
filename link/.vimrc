@@ -219,6 +219,7 @@ if has('macunix')
   Plug 'fatih/vim-go', {'for': 'go'}
   Plug 'godlygeek/tabular'
   Plug 'honza/vim-snippets'
+  Plug 'jamessan/vim-gnupg'
   Plug 'junegunn/goyo.vim'
   Plug 'majutsushi/tagbar'
   Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
