@@ -249,25 +249,6 @@ elseif has('unix')
     Plug 'tpope/vim-fugitive'
     Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
-  elseif hostname() == 'thesis'
-    call plug#begin('~/.vim/plugged')
-    Plug 'Raimondi/delimitMate'
-    Plug 'SirVer/ultisnips'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'benmills/vimux'
-    Plug 'bling/vim-airline'
-    Plug 'kien/ctrlp.vim'
-    Plug 'davidhalter/jedi-vim', {'for': 'python'}
-    Plug 'edkolev/tmuxline.vim'
-    Plug 'ervandew/supertab'
-    Plug 'honza/vim-snippets'
-    Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/syntastic'
-    Plug 'tpope/vim-fugitive'
-    Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
-    call plug#end()
   else
     call plug#begin('~/.vim/plugged')
     Plug 'Raimondi/delimitMate'
