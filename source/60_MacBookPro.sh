@@ -45,9 +45,6 @@ fi
 export GPG_TTY=`tty`
 export GPG_AGENT_INFO
 
-# Fuck
-eval "$(thefuck --alias)"
-
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
 alias hubb='hub browse'
