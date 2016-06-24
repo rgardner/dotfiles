@@ -1,4 +1,4 @@
-is_osx || return 1
+is_macos || return 1
 
 # Postgres
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin"

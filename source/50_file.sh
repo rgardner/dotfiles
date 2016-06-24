@@ -4,7 +4,7 @@
 umask 022
 
 # Always use color output for `ls`
-if is_osx; then
+if is_macos; then
   alias ls="command ls -G"
   export LSCOLORS=GxFxCxDxBxegedabagaced
 else
