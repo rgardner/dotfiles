@@ -15,12 +15,9 @@ recipes=(
   hub
   lesspipe
   macvim --with-override-system-vim --with-python3
-  mypy
-  nmap
   pandoc
   python
   python3
-  terminal-notifier
   tmux
   tree
   wget

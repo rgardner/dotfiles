@@ -19,18 +19,9 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 # Homebrew casks
 casks=(
   # Applications
-  atom
-  dropbox
   google-chrome
   iterm2
-  mactex
-  postgres
-  sonos
   spotify
-  steam
-  vagrant
-  virtualbox
-  vlc
 )
 
 # Install Homebrew casks.
@@ -38,7 +29,7 @@ casks=($(setdiff "${casks[*]}" "$(brew cask list 2>/dev/null)"))
 if (( ${#casks[@]} > 0 )); then
   e_header "Installing Homebrew casks: ${casks[*]}"
   for cask in "${casks[@]}"; do
-    brew cask install $cask
+    brew cask install "$cask"
   done
   brew cask cleanup
 fi
