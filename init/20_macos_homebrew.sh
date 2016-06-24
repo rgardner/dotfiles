@@ -1,4 +1,4 @@
-# macos-only stuff. Abort if not macos.
+# macOS-only stuff. Abort if not macOS.
 is_macos || return 1
 
 # Install Homebrew.

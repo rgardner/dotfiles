@@ -1,4 +1,4 @@
-# macos-only stuff. Abort if not macos.
+# macOS-only stuff. Abort if not macOS.
 is_macos || return 1
 
 # Exit if Homebrew is not installed.
@@ -14,7 +14,7 @@ recipes=(
   htop-osx
   hub
   lesspipe
-  macvim --with-override-system-vim --with-python3
+  macvim
   pandoc
   python
   python3

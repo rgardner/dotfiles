@@ -1,4 +1,4 @@
-# macos-only stuff. Abort if not macos.
+# macOS-only stuff. Abort if not macOS.
 is_macos || return 1
 
 # Some tools look for Xcode, even though they don't need it.

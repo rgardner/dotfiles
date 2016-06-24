@@ -29,11 +29,11 @@ Dotfiles are also known as hidden files because they are usually hidden from
 file browsers by default. Note that many text editors show hidden files when
 viewing directories.
 
-### UNIX Command Line (macos and Linux)
+### UNIX Command Line (macOS and Linux)
 
 `ls -a`
 
-### macos Finder
+### macOS Finder
 
 To view hidden files in Finder, enter the following command in the terminal:
 

@@ -192,7 +192,7 @@ __dotfiles::setup() {
     # $DOTFILES directory doesn't exist? Clone it!
     export new_dotfiles_install=1
     e_header "Downloading dotfiles"
-    git clone --recursive https://github.com/"${github_user:-rgardner}"/dotfiles.git "$DOTFILES"
+    git clone --recursive git@github.com:"${github_user:-rgardner}"/dotfiles.git "$DOTFILES"
     cd "$DOTFILES" || exit 1
   elif [ "$1" != "restart" ]; then
     # Make sure we have the latest files.
