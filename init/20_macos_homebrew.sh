@@ -1,4 +1,4 @@
-# OSX-only stuff. Abort if not OSX.
+# macos-only stuff. Abort if not macos.
 is_macos || return 1
 
 # Install Homebrew.
@@ -33,7 +33,7 @@ function brew_install_recipes() {
   if (( ${#recipes[@]} > 0 )); then
     e_header "Installing Homebrew recipes: ${recipes[*]}"
     for recipe in "${recipes[@]}"; do
-      brew install $recipe
+      brew install "$recipe"
     done
   fi
 }

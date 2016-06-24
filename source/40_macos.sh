@@ -1,4 +1,4 @@
-# OSX-only stuff. Abort if not OSX.
+# macos-only stuff. Abort if not macos.
 is_macos || return 1
 
 # APPLE, Y U PUT /usr/bin B4 /usr/local/bin?!

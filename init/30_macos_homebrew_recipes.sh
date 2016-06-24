@@ -1,4 +1,4 @@
-# OSX-only stuff. Abort if not OSX.
+# macos-only stuff. Abort if not macos.
 is_macos || return 1
 
 # Exit if Homebrew is not installed.

@@ -26,10 +26,10 @@ Dotfiles are also known as hidden files because they are usually hidden from
 file browsers by default. Note that many text editors show hidden files when
 viewing directories.
 
-### UNIX Command Line (Mac OSX and Linux)
+### UNIX Command Line (macos and Linux)
 `ls -a`
 
-### Mac OSX Finder
+### macos Finder
 To view hidden files in Finder, enter the following command in the terminal:
 
 `defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder`
