@@ -269,6 +269,19 @@ __dotfiles::copy_files() {
   done
 }
 
+# Stow files
+__dotfiles::stow_files() {
+  local packages=($DOTFILES/stow/*)
+  (( ${#packages[@]} == 0 )) && return
+
+  e_header "Stowing packages into home directory"
+  pushd "$DOTFILES"
+  for package in "${packages[@]}"; do
+    stow "$package"
+  done
+  popd
+}
+
 # Link files.
 __dotfiles::link_test() {
   [[ "$1" -ef "$2" ]] && echo "same file"
@@ -347,7 +360,7 @@ __main() {
 
   __dotfiles::setup "$@"
   __dotfiles::copy_files
-  __dotfiles::link_files
+  __dotfiles::stow_files
   __dotfiles::init_files
 
   # Alert if backups were made.
