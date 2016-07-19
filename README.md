@@ -64,6 +64,22 @@ bash -c "$(curl -fsSL https://raw.github.com/$github_user/dotfiles/master/bin/do
 `bash -c "$(curl -fsSL https://bit.ly/rhg-dotfiles)" && source ~/.bashrc`
 
 
+## Usage
+
+### Stow
+
+I use [GNU Stow](https://savannah.gnu.org/projects/stow/) to manage my
+configuration files for tools and languages.
+
+```
+$ cd "$DOTFILES"
+$ # link ruby config files into home directory
+$ stow ruby -t ~
+$ # remove ruby config links from home directory
+$ stow -D ruby -t ~
+```
+
+
 ## Configuration Notes
 
 If you want to store your Sublime Text settings in here, make sure to symlink
