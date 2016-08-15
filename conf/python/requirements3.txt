@@ -1,0 +1,8 @@
+flake8
+ipython
+mypy-lang
+pip-tools
+pycodestyle
+q
+virtualenv
+yapf
