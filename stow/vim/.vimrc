@@ -69,6 +69,15 @@ set wildignore+=*/vendor/*,*/.git/*,*/.hg/*,*/.svn/*,*/log/*,*/tmp/*
 "Clipboard
 set clipboard=unnamed
 
+"Features
+if has('mouse')
+  set mouse=a
+endif
+if &t_Co > 2 || has("gui_running")
+  "Highlight strings in comments.
+  let c_comment_strings=1
+endif
+
 """""""""" Global shortcuts
 "rebind leader to \ (backslash)
 nnoremap <leader><leader> <c-^>
