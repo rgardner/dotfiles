@@ -277,7 +277,8 @@ __dotfiles::stow_files() {
   e_header "Stowing packages into home directory"
   pushd "$DOTFILES"
   for package in "${packages[@]}"; do
-    stow "$package"
+    base="$(basename "$package")"
+    stow "$base" -t "$HOME"
   done
   popd
 }
