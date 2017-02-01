@@ -133,6 +133,10 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+"Ale (Asynchronous Lint Engine)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 "ClangFormat
 let g:clang_format#code_style = 'mozilla'
 nmap <Leader>C :ClangFormatAutoToggle<CR>
@@ -196,14 +200,6 @@ let $RUST_SRC_PATH = "/usr/local/src/rust/src/"
 
 "Rust.vim
 let g:rustfmt_autosave = 1
-
-"Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_cpp_compiler_options="-std=c++11 -stdlib=libc++"
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-let g:syntastic_python_checkers = ['python', 'flake8', 'mypy']
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_scss_checkers = ['scss_lint']
 
 "Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -281,11 +277,11 @@ if has('macunix')
   Plug 'rhysd/vim-clang-format', {'for': 'c'}
   Plug 'rizzatti/dash.vim'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'scrooloose/syntastic'
   Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
   Plug 'vimwiki/vimwiki'
+  Plug 'w0rp/ale'
   call plug#end()
 elseif has('unix')
   if hostname() == 'blastoise' || hostname() == 'venusaur'
@@ -297,7 +293,6 @@ elseif has('unix')
     Plug 'kien/ctrlp.vim'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/syntastic'
     Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
     Plug 'tpope/vim-fugitive'
     call plug#end()
@@ -314,7 +309,6 @@ elseif has('unix')
     Plug 'majutsushi/tagbar'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-fugitive'
     call plug#end()
   endif
