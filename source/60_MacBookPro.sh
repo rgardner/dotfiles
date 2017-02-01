@@ -45,3 +45,4 @@ fi
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
 alias hubb='hub browse'
+alias lyricvpn='cd /usr/local/etc/openvpn && sudo openvpn --config client2.conf'
