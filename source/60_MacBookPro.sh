@@ -16,7 +16,6 @@ export PATH="$GOPATH/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.multirust/bin:$PATH"
 
 # Ruby
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
