@@ -74,9 +74,9 @@ set clipboard=unnamed
 if has('mouse')
   set mouse=a
 endif
-if &t_Co > 2 || has("gui_running")
+if &t_Co > 2 || has('gui_running')
   "Highlight strings in comments.
-  let c_comment_strings=1
+  let g:c_comment_strings = 1
 endif
 
 """""""""" Global shortcuts
@@ -136,13 +136,16 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 "Ale (Asynchronous Lint Engine)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'vimwiki': ['mdl', 'proselint'],
+\}
 
 "ClangFormat
 let g:clang_format#code_style = 'mozilla'
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 "CtrlP
-let g:ctrlp_cache_dir ="~/.dotfiles/caches/vim"
+let g:ctrlp_cache_dir = '~/.dotfiles/caches/vim'
 let g:ctrlp_match_window_bottom = 0 " Show at top of window
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -164,7 +167,7 @@ let g:dash_map = {
 \ }
 
 "delimitMate
-let delimitMate_expand_cr = 1
+let g:delimitMate_expand_cr = 1
 augroup mydelimitMate
   au!
   au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
@@ -190,13 +193,15 @@ function! s:goyo_leave()
   set list
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup myGoyo
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup END
 
 "Racer
 "set hidden
-let g:racer_cmd = "/usr/local/bin/racer"
-let $RUST_SRC_PATH = "/usr/local/src/rust/src/"
+let g:racer_cmd = '/usr/local/bin/racer'
+let $RUST_SRC_PATH = '/usr/local/src/rust/src/'
 
 "Rust.vim
 let g:rustfmt_autosave = 1
@@ -205,10 +210,10 @@ let g:rustfmt_autosave = 1
 nmap <F8> :TagbarToggle<CR>
 
 "Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:ultisnips_python_style="sphinx"
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<c-b>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
+let g:ultisnips_python_style = 'sphinx'
 
 "Vimux
 " Prompt for a command to run
@@ -247,7 +252,9 @@ au BufNewFile,BufRead *.lalrpop setf rust
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  augroup myVimPlug
+    autocmd VimEnter * PlugInstall
+  augroup END
 endif
 
 "Platform specific vim plugins
@@ -284,7 +291,7 @@ if has('macunix')
   Plug 'w0rp/ale'
   call plug#end()
 elseif has('unix')
-  if hostname() == 'blastoise' || hostname() == 'venusaur'
+  if hostname() ==? 'blastoise' || hostname() ==? 'venusaur'
     call plug#begin('~/.vim/plugged')
     Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
