@@ -159,7 +159,7 @@ Licensed under the MIT license.
 HELP
 }
 
-__dotfiles::install_setup_prereqs() {
+__dotfiles::ensure_git_installed() {
   # ensure Xcode is installed on macos
   if [[ ! "$(type -P gcc)" ]] && is_macos; then
     e_error "Xcode or the Command Line Tools for Xcode must be installed first."
@@ -177,6 +177,31 @@ __dotfiles::install_setup_prereqs() {
     e_error "git should be installed by now, but isn't. Aborting."
     exit 1
   fi
+}
+
+__dotfiles::ensure_stow_installed() {
+  # also install stow
+  if [[ ! "$(type -P stow)" ]]; then
+    if is_macos; then
+      # Install Homebrew.
+      if [[ ! "$(type -P brew)" ]]; then
+        e_header "Installing Homebrew"
+        true | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      fi
+
+      # Exit if, for some reason, Homebrew is not installed.
+      [[ ! "$(type -P brew)" ]] && e_error "Homebrew failed to install." && return 1
+
+      brew install stow
+    else
+      sudo apt-get -qq install stow
+    fi
+  fi
+}
+
+__dotfiles::install_setup_prereqs() {
+  __dotfiles::ensure_git_installed
+  __dotfiles::ensure_stow_installed
 }
 
 #######################################
