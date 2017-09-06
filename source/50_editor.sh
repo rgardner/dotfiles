@@ -1,7 +1,7 @@
 # Editing
 
 if [[ ! "$SSH_TTY" ]] && is_macos; then
-  export EDITOR='mvim -v'
+  export EDITOR='vim'
   export LESSEDIT='mvim -v ?lm+%ln -- %f'
   alias vi='mvim -v'
   alias vim='mvim -v'

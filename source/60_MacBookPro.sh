@@ -16,7 +16,6 @@ export PATH="$GOPATH/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.multirust/bin:$PATH"
 
 # Ruby
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
@@ -35,16 +34,15 @@ if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
 fi
 
 # GPG
-# kill -0 checks to see if the pid exists
-if test -f $HOME/.gpg-agent-info && kill -0 `cut -d: -f 2 $HOME/.gpg-agent-info` 2>/dev/null; then
-    GPG_AGENT_INFO=`cat $HOME/.gpg-agent-info | cut -c 16-`
+if test -f "$HOME"/.gnupg/.gpg-agent-info -a -n "$(pgrep gpg-agent)"; then
+    source "$HOME"/.gnupg/.gpg-agent-info
+    export GPG_AGENT_INFO
 else
-# No, gpg-agent not available; start gpg-agent
-    eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
+    # No, gpg-agent not available; start gpg-agent
+    eval "$(gpg-agent --daemon --write-env-file "$HOME"/.gnupg/.gpg-agent-info)"
 fi
-export GPG_TTY=`tty`
-export GPG_AGENT_INFO
 
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
 alias hubb='hub browse'
+alias lyricvpn='cd /usr/local/etc/openvpn && sudo openvpn --config client2.conf'

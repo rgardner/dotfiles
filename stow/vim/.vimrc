@@ -1,13 +1,14 @@
+" Enable vim specific features
+" **must be first uncommented line**
+set nocompatible
+
 syntax on         "syntax highlighting
 filetype indent plugin on
-
-set nocompatible  "enable vim specific features
 
 "Local dir setup changes because of cowboy dotfiles
 set backupdir=~/.dotfiles/caches/vim
 set directory=~/.dotfiles/caches/vim
 set undodir=~/.dotfiles/caches/vim
-let g:netrw_home = expand('~/.dotfiles/caches/vim')
 
 "Theme and syntax highlighting
 set background=dark
@@ -28,7 +29,7 @@ set sidescrolloff=10 "Keep 5 lines at the size
 set splitbelow      "Vertical split creates new pane below.
 set splitright      "Horizontal split creates new pane to the right.
 
-"Indentation.
+"Indentation
 set autoindent    "copies indentation from previous line
 set cindent       "replaces smartindent
 set backspace=indent,eol,start "backspace over line breaks, auto, insert
@@ -69,6 +70,15 @@ set wildignore+=*/vendor/*,*/.git/*,*/.hg/*,*/.svn/*,*/log/*,*/tmp/*
 "Clipboard
 set clipboard=unnamed
 
+"Features
+if has('mouse')
+  set mouse=a
+endif
+if &t_Co > 2 || has('gui_running')
+  "Highlight strings in comments.
+  let g:c_comment_strings = 1
+endif
+
 """""""""" Global shortcuts
 "rebind leader to \ (backslash)
 nnoremap <leader><leader> <c-^>
@@ -92,36 +102,72 @@ vnoremap <space> zf
 
 "Explore with Netrw
 map <leader>k :Explore<CR>
+let g:netrw_liststyle=3  "Display 3 levels for netrw tree
+let g:netrw_home = expand('~/.dotfiles/caches/vim')
 
 "Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
+" Use ripgrep for grep utility if available
+if executable('rg')
+  set grepprg=rg\ --no-heading\ --vimgrep
+  set grepformat=%f:%l:%c:%m
+endif
+
+"""""""""" Buffers
+" Hide buffers if modified
+set hidden
+nmap <leader>T :enew<CR>
+nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR>
+" Close current buffer and move to previous one
+nmap <leader>bq :bp <BAR> bd#<CR>
+" List open buffers and their status
+nmap <leader>bl :ls<CR>
+
+
 """""""""" Plugin Settings
-"Netrw
-let g:netrw_liststyle=3 "Display 3 levels for netrw tree
+"Airline
+" Enable list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+"Ale (Asynchronous Lint Engine)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'vimwiki': ['mdl', 'proselint'],
+\}
 
 "ClangFormat
 let g:clang_format#code_style = 'mozilla'
-let g:clang_format#auto_format_on_insert_leave = 1
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 "CtrlP
+let g:ctrlp_cache_dir = '~/.dotfiles/caches/vim'
 let g:ctrlp_match_window_bottom = 0 " Show at top of window
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra' " revision control, current directory
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|env)|(\.(git|hg|svn))$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_cache_dir ="~/.dotfiles/caches/vim"
+
+nmap <leader>bb  :CtrlPBuffer<CR>
+nmap <leader>bm :CtrlPMixed<CR>
+nmap <leader>bs :CtrlPMRU<CR>
 
 "Dash
 nmap <silent> <leader>d <Plug>DashSearch
 let g:dash_map = {
-    \ 'tex' : 'latex'
-    \ }
+    \ 'tex' : 'latex',
+\ }
 
 "delimitMate
-let delimitMate_expand_cr = 1
+let g:delimitMate_expand_cr = 1
 augroup mydelimitMate
   au!
   au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
@@ -147,32 +193,27 @@ function! s:goyo_leave()
   set list
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup myGoyo
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup END
 
 "Racer
-set hidden
-let g:racer_cmd = "/usr/local/bin/racer"
-let $RUST_SRC_PATH = "/usr/local/src/rust/src/"
+"set hidden
+let g:racer_cmd = '/usr/local/bin/racer'
+let $RUST_SRC_PATH = '/usr/local/src/rust/src/'
 
 "Rust.vim
 let g:rustfmt_autosave = 1
-
-"Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-let g:syntastic_python_checkers = ['python', 'flake8', 'mypy']
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_scss_checkers = ['scss_lint']
 
 "Tagbar
 nmap <F8> :TagbarToggle<CR>
 
 "Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:ultisnips_python_style="sphinx"
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<c-b>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
+let g:ultisnips_python_style = 'sphinx'
 
 "Vimux
 " Prompt for a command to run
@@ -186,6 +227,17 @@ map <Leader>vq :VimuxCloseRunner<CR>
 " Interrupt any command running in the runner pane
 map <Leader>vx :VimuxInterruptRunner<CR>
 
+"Vimwiki
+let g:vimwiki_folding='expr'
+let g:vimwiki_list = [
+      \ {
+      \   'path': '~/Dropbox/vimwiki',
+      \   'automatic_nested_syntaxes': 1,
+      \   'ext': '.md',
+      \   'path_html': '~/Dropbox/site_html'
+      \ }
+\]
+
 "Yapf
 map <C-Y> :call yapf#YAPF()<cr>
 imap <C-Y> <c-o>:call yapf#YAPF()<cr>
@@ -193,13 +245,16 @@ imap <C-Y> <c-o>:call yapf#YAPF()<cr>
 "Individual format settings
 au BufNewFile,BufRead *.md  setf markdown
 au BufNewFile,BufRead *.h   setf c
+au BufNewFile,BufRead *.lalrpop setf rust
 
 "Automatically install vim-plug
 "https://github.com/junegunn/vim-plug/wiki/faq
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  augroup myVimPlug
+    autocmd VimEnter * PlugInstall
+  augroup END
 endif
 
 "Platform specific vim plugins
@@ -229,14 +284,14 @@ if has('macunix')
   Plug 'rhysd/vim-clang-format', {'for': 'c'}
   Plug 'rizzatti/dash.vim'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'scrooloose/syntastic'
   Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
-  Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
+  Plug 'vimwiki/vimwiki'
+  Plug 'w0rp/ale'
   call plug#end()
 elseif has('unix')
-  if hostname() == 'blastoise' || hostname() == 'venusaur'
+  if hostname() ==? 'blastoise' || hostname() ==? 'venusaur'
     call plug#begin('~/.vim/plugged')
     Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
@@ -245,10 +300,8 @@ elseif has('unix')
     Plug 'kien/ctrlp.vim'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/syntastic'
     Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
     Plug 'tpope/vim-fugitive'
-    Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
   else
     call plug#begin('~/.vim/plugged')
@@ -263,9 +316,7 @@ elseif has('unix')
     Plug 'majutsushi/tagbar'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-fugitive'
-    Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     call plug#end()
   endif
 endif

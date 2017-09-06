@@ -11,6 +11,11 @@
   diff = auto
   status = auto
   ui = true
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [apply]
   whitespace = fix
 [color "status"]
@@ -71,6 +76,12 @@
   clean = git media clean %f
   smudge = git media smudge %f
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
+  required = true
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+[commit]
+  template = ~/.git_commit_template.txt
