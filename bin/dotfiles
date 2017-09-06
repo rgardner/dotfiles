@@ -377,6 +377,10 @@ __dotfiles::init_files() {
   done
 }
 
+__dotfiles::install_git_hooks() {
+  "$DOTFILES/git-hooks/install-hooks.sh"
+}
+
 __main() {
   # Exit script if it is being sourced.
   [[ "$1" == "source" ]] && return
@@ -388,6 +392,7 @@ __main() {
   __dotfiles::copy_files
   __dotfiles::stow_files
   __dotfiles::init_files
+  __dotfiles::install_git_hooks
 
   # Alert if backups were made.
   [[ -n "${backup+x}" ]] && echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"

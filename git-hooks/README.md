@@ -11,4 +11,4 @@ ln -sf "${FROM}"/name "${TO}"/name
 to `install-hooks.sh`, then running `./install-hooks.sh`.
 
 ## Credit
-Originall design from the [iPython project.](https://github.com/ipython/ipython)
+Original design from the [iPython project.](https://github.com/ipython/ipython)
