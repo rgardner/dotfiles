@@ -74,9 +74,9 @@ configuration files for tools and languages.
 ```
 $ cd "$DOTFILES"
 $ # link ruby config files into home directory
-$ stow ruby -t ~
+$ stow ruby --target=~
 $ # remove ruby config links from home directory
-$ stow -D ruby -t ~
+$ stow --delete ruby --target=~
 ```
 
 
