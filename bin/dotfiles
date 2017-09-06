@@ -303,7 +303,7 @@ __dotfiles::stow_files() {
   pushd "$DOTFILES"
   for package in "${packages[@]}"; do
     base="$(basename "$package")"
-    stow "$base" -t "$HOME"
+    stow "$base"
   done
   popd
 }
