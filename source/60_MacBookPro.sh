@@ -33,16 +33,7 @@ if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
   . "$(brew --prefix)"/etc/bash_completion
 fi
 
-# GPG
-if test -f "$HOME"/.gnupg/.gpg-agent-info -a -n "$(pgrep gpg-agent)"; then
-    source "$HOME"/.gnupg/.gpg-agent-info
-    export GPG_AGENT_INFO
-else
-    # No, gpg-agent not available; start gpg-agent
-    eval "$(gpg-agent --daemon --write-env-file "$HOME"/.gnupg/.gpg-agent-info)"
-fi
-
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
 alias hubb='hub browse'
-alias lyricvpn='cd /usr/local/etc/openvpn && sudo openvpn --config client2.conf'
+alias aptvpn='cd /usr/local/etc/openvpn && sudo openvpn --config client2.conf'
