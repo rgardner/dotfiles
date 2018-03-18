@@ -35,9 +35,9 @@ set cindent       "replaces smartindent
 set backspace=indent,eol,start "backspace over line breaks, auto, insert
 set expandtab     "indentation without tabs
 set nojoinspaces  "use one space (not two) after a period due to J, gq
-set shiftwidth=2  "columns indented by reindent (<< and >>)
-set softtabstop=2 "number of spaces when tabbing (add'l info online)
-set tabstop=2     "global tab width
+set shiftwidth=4  "columns indented by reindent (<< and >>)
+set softtabstop=4 "number of spaces when tabbing (add'l info online)
+set tabstop=4     "global tab width
 
 "Folding
 set foldenable
@@ -195,7 +195,7 @@ let g:racer_cmd = '/usr/local/bin/racer'
 let $RUST_SRC_PATH = '/usr/local/src/rust/src/'
 
 "Rust.vim
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 
 "Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -283,32 +283,17 @@ if has('macunix')
   Plug 'w0rp/ale'
   call plug#end()
 elseif has('unix')
-  if hostname() ==? 'blastoise' || hostname() ==? 'venusaur'
-    call plug#begin('~/.vim/plugged')
-    Plug 'Raimondi/delimitMate'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'benmills/vimux'
-    Plug 'ervandew/supertab'
-    Plug 'kien/ctrlp.vim'
-    Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
-    Plug 'tpope/vim-fugitive'
-    call plug#end()
-  else
-    call plug#begin('~/.vim/plugged')
-    Plug 'Raimondi/delimitMate'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'benmills/vimux'
-    Plug 'bling/vim-airline'
-    Plug 'edkolev/tmuxline.vim'
-    Plug 'ervandew/supertab'
-    Plug 'godlygeek/tabular'
-    Plug 'kien/ctrlp.vim'
-    Plug 'majutsushi/tagbar'
-    Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'tpope/vim-fugitive'
-    call plug#end()
-  endif
+  call plug#begin('~/.vim/plugged')
+  Plug 'Raimondi/delimitMate'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'benmills/vimux'
+  Plug 'bling/vim-airline'
+  Plug 'edkolev/tmuxline.vim'
+  Plug 'ervandew/supertab'
+  Plug 'godlygeek/tabular'
+  Plug 'majutsushi/tagbar'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'tpope/vim-fugitive'
+call plug#end()
 endif
