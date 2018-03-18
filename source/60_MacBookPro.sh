@@ -33,6 +33,14 @@ if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
   . "$(brew --prefix)"/etc/bash_completion
 fi
 
+# FZF
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hiden --follow --glob "!.git/*"'
+
 # Aliases
 alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
 alias hubb='hub browse'
