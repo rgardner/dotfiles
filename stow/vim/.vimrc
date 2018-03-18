@@ -144,22 +144,6 @@ let g:ale_linters = {
 let g:clang_format#code_style = 'mozilla'
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
-"CtrlP
-let g:ctrlp_cache_dir = '~/.dotfiles/caches/vim'
-let g:ctrlp_match_window_bottom = 0 " Show at top of window
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra' " revision control, current directory
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
-let g:ctrlp_show_hidden = 1
-
-nmap <leader>bb  :CtrlPBuffer<CR>
-nmap <leader>bm :CtrlPMixed<CR>
-nmap <leader>bs :CtrlPMRU<CR>
-
 "Dash
 nmap <silent> <leader>d <Plug>DashSearch
 let g:dash_map = {
@@ -179,6 +163,13 @@ augroup END
 "Indent Guides
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+
+"Fzf
+"map GFiles to ctrl-p for my own sanity
+nmap <silent> <C-p> :GFiles<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>fl :Lines<CR>
 
 "Goyo.vim
 let g:goyo_width=81
@@ -266,7 +257,6 @@ if has('macunix')
   Plug 'airblade/vim-gitgutter'
   Plug 'benmills/vimux'
   Plug 'bling/vim-airline'
-  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
   Plug 'editorconfig/editorconfig-vim'
   Plug 'edkolev/tmuxline.vim'
@@ -275,6 +265,8 @@ if has('macunix')
   Plug 'godlygeek/tabular'
   Plug 'honza/vim-snippets'
   Plug 'jamessan/vim-gnupg'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'majutsushi/tagbar'
   Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
