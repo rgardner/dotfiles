@@ -268,6 +268,7 @@ if has('macunix')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
+  Plug 'leafgarland/typescript-vim'
   Plug 'majutsushi/tagbar'
   Plug 'mattn/webapi-vim' | Plug 'rust-lang/rust.vim', {'for': 'rust'}
   Plug 'nathanaelkane/vim-indent-guides'
