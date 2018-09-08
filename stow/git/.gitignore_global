@@ -109,11 +109,6 @@ local.properties
 .buildpath
 
 
-# IPython Notebook #
-####################
-.ipynb_checkpoints/
-
-
 # JetBrains #
 #############
 .idea/
@@ -136,6 +131,19 @@ local.properties
 
 # Simulink Code Generation
 slprj/
+
+# Python #
+# ########
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# mypy
+.mypy_cache/
 
 
 # Sublime #
