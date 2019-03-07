@@ -448,8 +448,6 @@
   "git-diff":
     showIconsInEditorGutter: true
   linter: {}
-  "linter-rubocop":
-    rubocopExecutablePath: "/Users/bobgardner/.rvm/gems/ruby-2.0.0-p451/bin/rubocop"
   "linter-rust":
     buildTest: true
     jobsNumber: 4

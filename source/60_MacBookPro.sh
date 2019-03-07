@@ -17,11 +17,6 @@ export PATH="$GOPATH/bin:$PATH"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Ruby
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-# Load RVM into a shell session *as a function *
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Autoenv
 source /usr/local/opt/autoenv/activate.sh
 

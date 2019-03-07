@@ -106,6 +106,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 export PATH="$HOME/.cargo/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 export RESUME="$HOME/Documents/professional/resume/primary/resume.pdf"
 
