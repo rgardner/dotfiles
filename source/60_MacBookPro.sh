@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 is_macos || return 1
 
 # Postgres
@@ -17,15 +19,21 @@ export PATH="$GOPATH/bin:$PATH"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Autoenv
-source /usr/local/opt/autoenv/activate.sh
-
 # Autojump support.
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
 
+# Direnv
+# Put after rvm, git-prompt, and other shell extensions have been loaded
+eval "$(direnv hook bash)"
+
 # Bash completion.
-if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
-  . "$(brew --prefix)"/etc/bash_completion
+brew_prefix="$(brew --prefix)"
+[[ -r "${brew_prefix}/etc/profile.d/bash_completion.sh" ]] && . "${brew_prefix}/etc/profile.d/bash_completion.sh"
+
+if [ -d "${brew_prefix}/etc/bash_completion.d" ]; then
+  for f in "${brew_prefix}"/etc/bash_completion.d/*; do
+    . "$f"
+  done
 fi
 
 # FZF
@@ -37,6 +45,5 @@ fi
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hiden --follow --glob "!.git/*"'
 
 # Aliases
-alias arduino='/Applications/Arduino.app/Contents/MacOS/JavaApplicationStub'
 alias hubb='hub browse'
 alias aptvpn='cd /usr/local/etc/openvpn && sudo openvpn --config client2.conf'

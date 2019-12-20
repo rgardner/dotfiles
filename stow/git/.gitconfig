@@ -59,6 +59,7 @@
   undo-hard = reset --hard HEAD^
   unstage = reset HEAD --
   up = push origin
+  update-from = pull --rebase origin
   wdiff = diff --word-diff=color --unified=1
 [diff "pandoc"]
   textconv=pandoc --to=markdown

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # macOS-only stuff. Abort if not macOS.
 is_macos || return 1
 
@@ -8,7 +10,7 @@ is_macos || return 1
 recipes=(
   autojump
   bash
-  bash-completion
+  bash-completion@2
   git
   git-extras
   htop-osx

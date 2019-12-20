@@ -107,8 +107,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 export PATH="$HOME/.cargo/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"
-
-export RESUME="$HOME/Documents/professional/resume/primary/resume.pdf"
+export PATH="$HOME/.local/bin:$PATH"
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/bobgardner/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
