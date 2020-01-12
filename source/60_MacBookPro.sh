@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+# shellcheck shell=bash
 
-is_macos || return 1
+if [[ "$(hostname)" == "MacBookPro" ]]; then
+  return 0
+fi
 
 # Postgres
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin"
@@ -18,6 +20,10 @@ export PATH="$GOPATH/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Python
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # Autojump support.
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh

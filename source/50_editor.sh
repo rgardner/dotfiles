@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+#
 # Editing
 
 if [[ ! "$SSH_TTY" ]] && is_macos; then
@@ -9,7 +11,7 @@ else
   export EDITOR='vim'
 fi
 
-export VISUAL="$EDITOR"
-alias q="$EDITOR"
-alias qv="q $DOTFILES/link/.{,g}vimrc + 'cd $DOTFILES'"
-alias qs="q $DOTFILES"
+export VISUAL="${EDITOR}"
+alias q="\${EDITOR}"
+alias qv="q \${DOTFILES}/link/.{,g}vimrc + 'cd \${DOTFILES}'"
+alias qs="q \${DOTFILES}"

@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # macOS-only stuff. Abort if not macOS.
 is_macos || return 1
 
@@ -14,6 +16,7 @@ alias c="tr -d '\n' | pbcopy"
 alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
 
 # Functions
+
 clearOpenWithMenu() {
   /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 }
@@ -22,7 +25,8 @@ clearOpenWithMenu() {
 cdf() {
   target=$(osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)')
   if [[ "$target" ]]; then
-    cd "$target"; pwd
+    cd "$target" || return
+    pwd
   else
     echo 'No Finder window found' >&2
   fi

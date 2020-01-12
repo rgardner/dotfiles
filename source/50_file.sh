@@ -1,3 +1,7 @@
+# shellcheck shell=bash
+#
+# File settings
+
 # Files will be created with these permissions:
 #  files 644 -rw-r--r-- (666 minus 022)
 #  dirs  755 drwxr-xr-x (777 minus 022)
@@ -39,5 +43,5 @@ alias eachdir=". eachdir"
 
 # Create a new directory and enter it
 function md() {
-  mkdir -p "$@" && cd "$@"
+  mkdir -p "$@" && cd "$@" || return 1
 }

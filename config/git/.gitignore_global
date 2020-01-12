@@ -138,6 +138,7 @@ slprj/
 __pycache__/
 *.py[cod]
 *$py.class
+.python-version
 
 # Jupyter Notebook
 .ipynb_checkpoints/
@@ -197,3 +198,7 @@ profile
 DerivedData
 idea/
 *.hmap
+
+# Direnv #
+##########
+.envrc

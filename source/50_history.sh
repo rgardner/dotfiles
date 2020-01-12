@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+#
 # History settings
 
 # Allow user to re-edit a failed history substitution.
