@@ -200,12 +200,6 @@ let g:rustfmt_autosave = 0
 "Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-"Ultisnips
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<c-b>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
-let g:ultisnips_python_style = 'sphinx'
-
 "Vimux
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
@@ -253,7 +247,6 @@ if has('macunix')
   call plug#begin('~/.vim/plugged')
   Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
   Plug 'Raimondi/delimitMate'
-  Plug 'SirVer/ultisnips'
   Plug 'airblade/vim-gitgutter'
   Plug 'benmills/vimux'
   Plug 'bling/vim-airline'
