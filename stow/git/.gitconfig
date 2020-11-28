@@ -37,7 +37,7 @@
   ci = commit
   cia = commit --amend
   co = checkout
-  com = checkout master
+  com = checkout main
   diffc = diff --cached
   discard = checkout HEAD --
   f = fetch
@@ -55,8 +55,9 @@
   sapply = "!f() { git stash apply stash^{/$*}; }; f"
   t = tag
   td = tag -d
-  undo-soft = reset --soft HEAD^
+  ufm = pull --rebase origin main
   undo-hard = reset --hard HEAD^
+  undo-soft = reset --soft HEAD^
   unstage = reset HEAD --
   up = push origin
   update-from = pull --rebase origin
@@ -88,3 +89,5 @@
   required = true
 [commit]
   template = ~/.dotfiles/config/git/.git_commit_template.txt
+[pull]
+	rebase = false
