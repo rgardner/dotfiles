@@ -33,13 +33,16 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(direnv hook bash)"
 
 # Bash completion.
-brew_prefix="$(brew --prefix)"
-[[ -r "${brew_prefix}/etc/profile.d/bash_completion.sh" ]] && . "${brew_prefix}/etc/profile.d/bash_completion.sh"
-
-if [ -d "${brew_prefix}/etc/bash_completion.d" ]; then
-  for f in "${brew_prefix}"/etc/bash_completion.d/*; do
-    . "$f"
-  done
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-bash
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
 fi
 
 # FZF
