@@ -104,11 +104,20 @@ source $ZSH/oh-my-zsh.sh
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Ruby
 eval "$(rbenv init -)"
-export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Misc
+
 export PATH="$HOME/.local/bin:$PATH"
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/bobgardner/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+HEROKU_AC_ZSH_SETUP_PATH=/Users/bobgardner/Library/Caches/heroku/autocomplete/zsh_setup \
+  && test -f $HEROKU_AC_ZSH_SETUP_PATH \
+  && source $HEROKU_AC_ZSH_SETUP_PATH

@@ -1,8 +1,6 @@
 # shellcheck shell=bash
 
-if [[ "$(hostname)" == "MacBookPro" ]]; then
-  return 0
-fi
+[[ "$(hostname)" == "MacBookPro" ]] || return 0
 
 # Postgres
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin"
@@ -18,12 +16,18 @@ export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-6.0/lib:$DYLD_LIBRARY_PATH"
 export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
+# Node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Python
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # Autojump support.
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
@@ -52,6 +56,7 @@ fi
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hiden --follow --glob "!.git/*"'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Aliases
 alias hubb='hub browse'

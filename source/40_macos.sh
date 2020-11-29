@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 
 # macOS-only stuff. Abort if not macOS.
-is_macos || return 1
+is_macos || return 0
 
 # APPLE, Y U PUT /usr/bin B4 /usr/local/bin?!
 export PATH="/usr/local/bin:$(path_remove /usr/local/bin)"

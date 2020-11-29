@@ -29,119 +29,13 @@ get_os() {
 path_remove() {
   local arg path
   path=":$PATH:"
-  for arg in "$@"; do path="${path//:$arg:/:}"; done
+  for arg in "$@"; do
+    path="${path//:$arg:/:}"
+  done
   path="${path%:}"
   path="${path#:}"
   echo "$path"
 }
-
-#######################################
-# Display a fancy multi-select menu.
-# Inspired by http://serverfault.com/a/298312
-# Globals:
-#   None
-# Arguments:
-#   Delay, in seconds, to allow user to edit list
-# Returns:
-#   None
-#######################################
-prompt_menu() {
-  local exitcode prompt nums i n
-  exitcode=0
-  if [[ -n "${2+x}" ]]; then
-    __prompt_menu_draws "$1"
-    read -rt "$2" -n 1 -sp "To edit this list, press any key within $2 seconds. "
-    exitcode="$?"
-    echo
-  fi 1>&2
-  if [ "$exitcode" -eq 0 ]; then
-    prompt="Toggle options (Separate options with spaces, ENTER when done): "
-    while __prompt_menu_draws "$1" 1 && read -rp "$prompt" nums && [[ "$nums" ]]; do
-      __prompt_menu_adds "$nums"
-    done
-  fi 1>&2
-  __prompt_menu_adds
-}
-
-__prompt_menu_iter() {
-  local i sel state
-  local fn="$1"; shift
-  for i in "${!menu_options[@]}"; do
-    state=0
-    for sel in "${menu_selects[@]}"; do
-      [[ "$sel" == "${menu_options[i]}" ]] && state=1 && break
-    done
-    "$fn" "$state" "$i" "$@"
-  done
-}
-
-__prompt_menu_draws() {
-  e_header "$1"
-  __prompt_menu_iter __prompt_menu_draw "$2"
-}
-
-__prompt_menu_draw() {
-  local modes=(error success)
-  if [[ "$3" ]]; then
-    "e_${modes[$1]}" "$(printf "%2d) %s\n" $(($2+1)) "${menu_options[$2]}")"
-  else
-    "e_${modes[$1]}" "${menu_options[$2]}"
-  fi
-}
-
-__prompt_menu_adds() {
-  __prompt_menu_result=()
-  __prompt_menu_iter __prompt_menu_add "$@"
-  menu_selects=("${__prompt_menu_result[@]}")
-}
-
-__prompt_menu_add() {
-  local state i n keep match
-  state="$1"; shift
-  i="$1"; shift
-  for n in "$@"; do
-    if [[ $n =~ ^[0-9]+$ ]] && (( n-1 == i )); then
-      match=1; [[ "$state" == 0 ]] && keep=1
-    fi
-  done
-  [[ ! "$match" && "$state" == 1 || "$keep" ]] || return
-  __prompt_menu_result=("${__prompt_menu_result[@]}" "${menu_options[i]}")
-}
-
-#######################################
-# Given strings containing space-delimited words A and B, "setdiff A B" will
-# return all words in A that do not exist in B. Arrays in bash are insane
-# http://stackoverflow.com/a/1617326
-# Globals:
-#   IFS
-# Arguments:
-#   Debug, 1/0
-#   A, space-delimited string
-#   B, space-delimited string
-# Returns:
-#   C, words in A that do not exist in B
-#######################################
-setdiff() {
-  local debug skip a b
-  if [[ "$1" == 1 ]]; then debug=1; shift; fi
-  if [[ "$1" ]]; then
-    local setdiffA setdiffB setdiffC
-    setdiffA=($1); setdiffB=($2)
-  fi
-  setdiffC=()
-  for a in "${setdiffA[@]}"; do
-    skip=
-    for b in "${setdiffB[@]}"; do
-      [[ "$a" == "$b" ]] && skip=1 && break
-    done
-    [[ "$skip" ]] || setdiffC=("${setdiffC[@]}" "$a")
-  done
-  [[ "$debug" ]] && for a in setdiffA setdiffB setdiffC; do
-    echo "$a ($(eval echo "\${#$a[*]}")) $(eval echo "\${$a[*]}")" 1>&2
-  done
-  [[ "$1" ]] && echo "${setdiffC[@]}"
-}
-
 
 ###########################################
 # INTERNAL DOTFILES "INIT" VARS / FUNCTIONS
@@ -159,51 +53,6 @@ Licensed under the MIT license.
 HELP
 }
 
-__dotfiles::ensure_git_installed() {
-  # ensure Xcode is installed on macos
-  if [[ ! "$(type -P gcc)" ]] && is_macos; then
-    e_error "Xcode or the Command Line Tools for Xcode must be installed first."
-    exit 1
-  fi
-
-  # install git on Ubuntu; unnecessary for macos b/c git comes with Xcode
-  if [[ ! "$(type -P git)" ]] && is_ubuntu; then
-    e_header "Installing git"
-    sudo apt-get -qq install git-core
-  fi
-
-  # abort if git is not installed by now
-  if [[ ! "$(type -P git)" ]]; then
-    e_error "git should be installed by now, but isn't. Aborting."
-    exit 1
-  fi
-}
-
-__dotfiles::ensure_stow_installed() {
-  # also install stow
-  if [[ ! "$(type -P stow)" ]]; then
-    if is_macos; then
-      # Install Homebrew.
-      if [[ ! "$(type -P brew)" ]]; then
-        e_header "Installing Homebrew"
-        true | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      fi
-
-      # Exit if, for some reason, Homebrew is not installed.
-      [[ ! "$(type -P brew)" ]] && e_error "Homebrew failed to install." && return 1
-
-      brew install stow
-    else
-      sudo apt-get -qq install stow
-    fi
-  fi
-}
-
-__dotfiles::install_setup_prereqs() {
-  __dotfiles::ensure_git_installed
-  __dotfiles::ensure_stow_installed
-}
-
 #######################################
 # Globals:
 #   None
@@ -211,8 +60,6 @@ __dotfiles::install_setup_prereqs() {
 #   Restart, optional
 #######################################
 __dotfiles::setup() {
-  __dotfiles::install_setup_prereqs
-
   if [ ! -d "$DOTFILES" ]; then
     # $DOTFILES directory doesn't exist? Clone it!
     export new_dotfiles_install=1
@@ -248,135 +95,6 @@ __dotfiles::setup() {
   backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
 }
 
-#######################################
-# Move file to backup directory
-# Globals:
-#   backup
-#   backup_dir
-# Arguments:
-#   Basename: file to backup
-#   Destination
-# Returns:
-#   None
-#######################################
-__dotfiles::backup_file() {
-  e_arrow "Backing up ~/$1."
-  backup=1
-  [[ -e "$backup_dir" ]] || mkdir -p "$backup_dir"
-  mv "$2" "$backup_dir"
-}
-
-# Copy files.
-__dotfiles::copy_test() {
-  if [[ -e "$2" ]] && [[ ! "$(cmp "$1" "$2" 2> /dev/null)" ]]; then
-    echo "same file"
-  elif [[ "$1" -ot "$2" ]]; then
-    echo "destination file newer"
-  fi
-}
-__dotfiles::copy_files() {
-  local base dest skip
-  local files=($DOTFILES/copy/*)
-  (( ${#files[@]} == 0 )) && return
-
-  e_header "Copying files into home directory"
-  for file in "${files[@]}"; do
-    base="$(basename "$file")"
-    dest="$HOME/$base"
-    skip="$(__dotfiles::copy_test "$file" "$dest")"
-    if [[ -n "${skip+x}" ]]; then
-      e_error "Skipping ~/$base, $skip."
-      continue
-    fi
-    [[ -e "$dest" ]] && __backup_file "$base" "$dest"
-    e_success "Copying ~/$base."
-    cp "$file" ~/
-  done
-}
-
-# Stow files
-__dotfiles::stow_files() {
-  local packages=($DOTFILES/stow/*)
-  (( ${#packages[@]} == 0 )) && return
-
-  e_header "Stowing packages into home directory"
-  pushd "$DOTFILES"
-  for package in "${packages[@]}"; do
-    base="$(basename "$package")"
-    stow "$base"
-  done
-  popd
-}
-
-# Link files.
-__dotfiles::link_test() {
-  [[ "$1" -ef "$2" ]] && echo "same file"
-}
-__dotfiles::link_files() {
-  local base dest skip
-  local files=($DOTFILES/link/*)
-  (( ${#files[@]} == 0 )) && return
-
-  e_header "Linking files into home directory"
-  for file in "${files[@]}"; do
-    base="$(basename "$file")"
-    dest="$HOME/$base"
-    skip="$(__dotfiles::link_test "$file" "$dest")"
-    if [[ -n "${skip+x}" ]]; then
-      e_error "Skipping ~/$base, $skip."
-      continue
-    fi
-    [[ -e "$dest" ]] && __dotfiles::backup_file "$base" "$dest"
-    e_success "Linking ~/$base."
-    cp "$file" ~/
-  done
-}
-
-# Init files.
-__dotfiles::prompt_init_files() {
-  local i f dirname oses os opt remove
-  dirname="$(dirname "$1")"
-  f=("$@")
-  menu_options=(); menu_selects=()
-  for i in "${!f[@]}"; do menu_options[i]="$(basename "${f[i]}")"; done
-
-  readonly init_file="$DOTFILES/caches/init/selected"
-  if [[ -e "$init_file" ]]; then
-    # Read cache file if possible
-    IFS=$'\n' read -d '' -r -a menu_selects < "$init_file"
-  else
-    # Otherwise default to all scripts not specifically for other OSes
-    oses=($(get_os 1))
-    for opt in "${menu_options[@]}"; do
-      remove=
-      for os in "${oses[@]}"; do
-        [[ "$opt" =~ (^|[^a-z])$os($|[^a-z]) ]] && remove=1 && break
-      done
-      [[ "$remove" ]] || menu_selects=("${menu_selects[@]}" "$opt")
-    done
-  fi
-  prompt_menu "Run the following init scripts?" 5
-  # Write out cache file for future reading.
-  rm "$init_file" 2>/dev/null
-  for i in "${!menu_selects[@]}"; do
-    echo "${menu_selects[i]}" >> "$init_file"
-    echo "$dirname/${menu_selects[i]}"
-  done
-}
-__dotfiles::init_files() {
-  local base dest
-  local files=($DOTFILES/init/*)
-  (( ${#files[@]} == 0 )) && return
-  files=($(__dotfiles::prompt_init_files "${files[@]}"))
-
-  for file in "${files[@]}"; do
-    dest="$HOME/$(basename "$file")"
-    e_header "Sourcing $(basename "$file")"
-    # shellcheck source=/dev/null
-    . "$file"
-  done
-}
-
 __dotfiles::install_git_hooks() {
   "$DOTFILES/git-hooks/install-hooks.sh"
 }
@@ -389,9 +107,6 @@ __main() {
   [[ "$1" == "-h" || "$1" == "--help" ]] && __dotfiles::usage && exit
 
   __dotfiles::setup "$@"
-  __dotfiles::copy_files
-  __dotfiles::stow_files
-  __dotfiles::init_files
   __dotfiles::install_git_hooks
 
   # Alert if backups were made.

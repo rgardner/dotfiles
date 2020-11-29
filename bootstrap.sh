@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# Also update check_python_version when changing this value
+readonly PY_VERSION="3.9.0"
+
+is_macos() {
+  [[ "$OSTYPE" =~ ^darwin ]] || return 1
+}
+
+is_ubuntu() {
+  [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
+}
+
+install_homebrew() {
+  if ! type -p brew >/dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+}
+
+# Globals
+#  THIS_SCRIPT
+install_pyenv() {
+  if ! type -p pyenv >/dev/null; then
+    curl https://pyenv.run | bash
+
+    # Install recommended dependencies
+    # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+    if is_macos; then
+      brew install openssl readline sqlite3 xz zlib
+    elif is_ubuntu; then
+      sudo apt-get update
+      sudo apt-get install --no-install-recommends \
+        make \
+        build-essential \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        wget \
+        curl \
+        llvm \
+        libncurses5-dev \
+        xz-utils \
+        tk-dev \
+        libxml2-dev \
+        libxmlsec1-dev \
+        libffi-dev \
+        liblzma-dev
+    fi
+
+    cat <<'EOF' >>"${HOME}/.bashrc"
+
+export PATH="${HOME}/.pyenv/bin:${PATH}"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+EOF
+
+    set +eu
+    source "${HOME}/.bashrc"
+    set -eu
+  fi
+}
+
+check_python_version() {
+  python -c 'import sys; exit(1) if sys.version_info < (3, 9) else exit(0)'
+}
+
+install_python() {
+  if ! check_python_version; then
+    pyenv install "${PY_VERSION}" --skip-existing
+    pyenv global "${PY_VERSION}"
+    pyenv rehash
+    check_python_version
+  fi
+
+  python -m pip install --upgrade pip
+  python -m pip install --upgrade setuptools wheel
+}
+
+install_ansible() {
+  pip install --upgrade ansible
+  ansible-galaxy install macstadium.xcode
+}
+
+main() {
+  if is_macos; then
+    install_homebrew
+  fi
+  install_pyenv
+  install_python
+  install_ansible
+
+  # local extra_vars=""
+  # if "${1-}" = "--force"; then
+  #   extra_vars="--extra-vars dotfiles_force=true"
+  # fi
+  ansible-playbook \
+    "${THIS_DIR}/ansible/playbook.yml" \
+    --inventory "${THIS_DIR}/ansible/hosts"
+    # "${extra_vars}"
+}
+
+main "$@"

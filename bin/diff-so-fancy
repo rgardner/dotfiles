@@ -19,7 +19,7 @@ get_script_dir () {
 if hash diff-highlight 2> /dev/null; then
   diff_highlight=diff-highlight
 else
-  diff_highlight="$(get_script_dir)/third_party/diff-highlight/diff-highlight"
+  diff_highlight="$(get_script_dir)/diff-highlight"
 fi
 
 print_header_clean () {

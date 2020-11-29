@@ -1,12 +1,11 @@
 # Where the magic happens.
-export DOTFILES=~/.dotfiles
+export DOTFILES="${HOME}/.dotfiles"
 
 # Add binaries into the path
-export PATH=$DOTFILES/bin:$PATH
+export PATH="${DOTFILES}/bin:${PATH}"
 
 # Source all files in "source"
 function src() {
-  local file
   if [[ "$1" ]]; then
     source "$DOTFILES/source/$1.sh"
   else
@@ -17,7 +16,7 @@ function src() {
 }
 
 # Run dotfiles script, then source.
-function dotfiles() {
+dotfiles() {
   $DOTFILES/bin/dotfiles "$@" && src
 }
 

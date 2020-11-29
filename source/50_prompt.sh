@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # Bash Prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 

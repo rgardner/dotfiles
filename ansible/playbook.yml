@@ -1,0 +1,144 @@
+---
+- name: Query all hosts to learn about them
+  hosts: all
+  tasks:
+    - name: Classify hosts depending on their OS distribution
+      group_by:
+        key: os_{{ ansible_facts['distribution'] }}
+
+- hosts: os_Debian,os_Ubuntu
+  name: Set up Debian and Ubuntu
+  gather_facts: False
+  tasks:
+    - name: Install Apt Packages
+      become: true
+      apt:
+        name:
+          - bash-completion
+          - build-essential
+          - direnv
+          - exuberant-ctags
+          - git-core
+          - git-extras
+          - htop
+          - stow
+          - tmux
+          - tree
+        state: present
+
+    - name: Install fzf
+      become: true
+      git:
+        repo: "https://github.com/junegunn/fzf.git"
+        dest: /usr/local/src/fzf
+
+    - name: Run fzf post-install
+      shell: /usr/local/src/fzf/install
+
+- hosts: os_MacOSX
+  name: Install Xcode on macOS
+  gather_facts: False
+  vars:
+    xcode_xip_location: "{{ ansible_env.HOME }}/Downloads/Xcode_12.2.xip"
+    xcode_major_version: 12.2
+  roles:
+    - macstadium.xcode
+
+- hosts: os_MacOSX
+  name: Install packages on macOS
+  gather_facts: False
+  tasks:
+    - name: Update Homebrew and dependencies
+      homebrew:
+        update_homebrew: yes
+        upgrade_all: yes
+
+    - name: Install dependencies with Homebrew
+      homebrew:
+        name:
+          - autojump
+          - bash
+          - bash-completion@2
+          - direnv
+          - fzf
+          - git
+          - git-extras
+          - htop-osx
+          - hub
+          - lesspipe
+          - macvim
+          - pandoc
+          - rbenv
+          - ruby-build
+          - tmux
+          - tree
+          - wget
+        state: present
+
+    - name: Run fzf post-install
+      shell: $(brew --prefix)/opt/fzf/install
+
+    - name: Install casks with Homebrew
+      homebrew_cask:
+        name:
+          - 1password
+          - google-chrome
+          - iterm2
+          - spotify
+        state: present
+
+- hosts: all
+  name: Finish set up for all platforms
+  gather_facts: False
+  tasks:
+    - name: Install nvm
+      shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+      args:
+        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+    - name: Install fd
+      shell: cargo install fd-find
+      args:
+        creates: "{{ lookup('env', 'CARGO_HOME') }}/bin/fd"
+
+    - name: Install ripgrep
+      shell: cargo install ripgrep
+      args:
+        creates: "{{ lookup('env', 'CARGO_HOME') }}/bin/rg"
+
+    - name: Clone dotfiles repo
+      git:
+        repo: "https://github.com/rgardner/dotfiles.git"
+        dest: "{{ ansible_env.HOME }}/.dotfiles"
+
+    - name: Copy files
+      copy:
+        src: copy/
+        dest: "{{ ansible_env.HOME }}"
+
+    - name: Link files
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+        force: yes
+        state: link
+      loop:
+        - { src: .dotfiles/stow/bash/.bash_profile, dest: .bash_profile }
+        - { src: .dotfiles/stow/bash/.bashrc, dest: .bashrc }
+        - { src: .dotfiles/stow/ctags/.ctags, dest: .ctags }
+        - { src: .dotfiles/stow/git/.gitconfig, dest: .gitconfig }
+        - { src: .dotfiles/stow/git/.gitk, dest: .gitk }
+        - { src: .dotfiles/stow/jetbrains/.ideavimrc, dest: .ideavimrc }
+        - { src: .dotfiles/stow/markdownlint/.markdownlint.json, dest: .markdownlint.json }
+        - { src: .dotfiles/stow/octave/.octaverc, dest: .octaverc }
+        - { src: .dotfiles/stow/ruby/.gemrc, dest: .gemrc }
+        - { src: .dotfiles/stow/ruby/.railsrc, dest: .railsrc }
+        - { src: .dotfiles/stow/tmux/.tmux.conf, dest: .tmux.conf }
+        - { src: .dotfiles/stow/vim/.vim, dest: .vim }
+        - { src: .dotfiles/stow/vim/.vimrc, dest: .vimrc }
+        - { src: .dotfiles/stow/zsh/.zshrc, dest: .zshrc }
+
+    - name: Install and update Vim plugins
+      shell: vim +PlugUpgrade +PlugUpdate +qall
+      
