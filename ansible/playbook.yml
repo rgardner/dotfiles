@@ -15,7 +15,7 @@
       apt:
         name:
           - autojump
-          - bash-completion@2
+          - bash-completion
           - build-essential
           - direnv
           - exuberant-ctags
