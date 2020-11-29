@@ -31,3 +31,6 @@ cdf() {
     echo 'No Finder window found' >&2
   fi
 }
+
+# Configure git
+. "$(brew --prefix)/git/contrib/completion/git-prompt.sh"

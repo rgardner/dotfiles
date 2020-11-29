@@ -14,7 +14,8 @@
       become: true
       apt:
         name:
-          - bash-completion
+          - autojump
+          - bash-completion@2
           - build-essential
           - direnv
           - exuberant-ctags

@@ -25,11 +25,16 @@ else
   export TERM='xterm-color'
 fi
 
+# Dotfiles
 alias dotf="cd $DOTFILES"
 
 export PATH="$HOME/.dotfiles/bin:$(path_remove "$HOME/.dotfiles/bin")"
-[[ -d ~/bin ]] && export PATH=$HOME/bin:$PATH
+path_add "${HOME}/bin"
 
+# Python
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-# Date helper expansion.
-export TODAY=$(date "+%y-%m-%d")
+# Rust
+export CARGO_HOME="${CARGO_HOME:-${HOME}/.cargo}"
+path_add "${CARGO_HOME}/bin"

@@ -37,6 +37,13 @@ path_remove() {
   echo "$path"
 }
 
+# From https://superuser.com/a/39995/1089288
+path_add() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="${PATH:+"$PATH:"}$1"
+  fi
+}
+
 ###########################################
 # INTERNAL DOTFILES "INIT" VARS / FUNCTIONS
 ###########################################

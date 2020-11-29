@@ -14,20 +14,15 @@ export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-6.0/lib:$DYLD_LIBRARY_PATH"
 
 # Go
 export GOPATH="$HOME/Developer/go"
-export PATH="$GOPATH/bin:$PATH"
+path_add "${GOPATH}/bin"
 
 # Node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # Python
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export PATH="$HOME/.poetry/bin:$PATH"
+path_add "${HOME}/.poetry/bin"
 
 # Autojump support.
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
