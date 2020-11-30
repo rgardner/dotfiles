@@ -73,6 +73,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Make path elements unique
+typeset -U path
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -100,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath[1,0]=/usr/local/share/zsh-completions
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -109,13 +112,13 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 eval "$(rbenv init -)"
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+export CARGO_HOME="${CARGO_HOME:-${HOME}/.cargo}"
+path[1,0]="${HOME}/.cargo/bin"
 
 # Misc
-
-export PATH="$HOME/.local/bin:$PATH"
+path[1,0]="${HOME}/.local/bin"
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/bobgardner/Library/Caches/heroku/autocomplete/zsh_setup \
+HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" \
   && test -f $HEROKU_AC_ZSH_SETUP_PATH \
   && source $HEROKU_AC_ZSH_SETUP_PATH

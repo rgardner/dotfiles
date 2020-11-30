@@ -18,8 +18,11 @@ is_macos() {
 is_ubuntu() {
   [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
 }
+is_debian() {
+  [[ "$(cat /etc/issue 2> /dev/null)" =~ Debian ]] || return 1
+}
 get_os() {
-  for os in macos ubuntu; do
+  for os in macos ubuntu debian; do
     "is_$os"; [[ $? == "${1:-0}" ]] && echo $os
   done
 }

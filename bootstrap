@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#
+# Install Ansible and run Ansible playbook.
 
 set -euo pipefail
 
@@ -14,14 +16,21 @@ is_ubuntu() {
   [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
 }
 
+is_debian() {
+  [[ "$(cat /etc/issue 2> /dev/null)" =~ Debian ]] || return 1
+}
+
 install_homebrew() {
   if ! type -p brew >/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 }
 
-# Globals
+# Installs pyenv if not installed.
+# Globals:
 #  THIS_SCRIPT
+# Arguments:
+#  None
 install_pyenv() {
   if ! type -p pyenv >/dev/null; then
     curl https://pyenv.run | bash
@@ -30,7 +39,7 @@ install_pyenv() {
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
     if is_macos; then
       brew install openssl readline sqlite3 xz zlib
-    elif is_ubuntu; then
+    elif is_ubuntu || is_debian; then
       sudo apt-get update
       sudo apt-get install --no-install-recommends \
         make \
@@ -94,14 +103,10 @@ main() {
   install_python
   install_ansible
 
-  # local extra_vars=""
-  # if "${1-}" = "--force"; then
-  #   extra_vars="--extra-vars dotfiles_force=true"
-  # fi
-  ansible-playbook \
-    "${THIS_DIR}/ansible/playbook.yml" \
-    --inventory "${THIS_DIR}/ansible/hosts"
-    # "${extra_vars}"
+  declare -a args
+  args=("${THIS_DIR}/ansible/playbook.yml" --inventory "${THIS_DIR}/ansible/hosts")
+  is_macos && args+=(--ask-become-pass)
+  ansible-playbook "${args[@]}"
 }
 
 main "$@"

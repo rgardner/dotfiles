@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 
-# Ubuntu-only stuff. Abort if not Ubuntu.
-is_ubuntu || return 0
+# Ubuntu and Debian-only stuff. Abort if not Ubuntu or Debian.
+is_ubuntu || is_debian || return 0
 
 # Package management
 alias update="sudo apt-get -qq update && sudo apt-get upgrade"

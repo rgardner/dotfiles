@@ -82,8 +82,6 @@
     - name: Install casks with Homebrew
       homebrew_cask:
         name:
-          - 1password
-          - google-chrome
           - iterm2
           - spotify
         state: present
@@ -112,6 +110,7 @@
       git:
         repo: "https://github.com/rgardner/dotfiles.git"
         dest: "{{ ansible_env.HOME }}/.dotfiles"
+        update: no
 
     - name: Copy files
       copy:
