@@ -289,5 +289,5 @@ elseif has('unix')
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-fugitive'
-call plug#end()
+  call plug#end()
 endif
