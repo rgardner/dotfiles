@@ -7,6 +7,13 @@ easier to adapt for your own purposes. When I was first starting out, I always
 appreciated well documented dotfiles. Better settings make me a more efficient
 programmer - and a happier one too.
 
+## Installation
+
+```sh
+git clone https://github.com/rgardner/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./bootstrap
+```
 
 ## What are Dotfiles?
 
@@ -42,27 +49,6 @@ To view hidden files in Finder, enter the following command in the terminal:
 To disable:
 
 `defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder`
-
-
-## Installation
-
-### For You
-
-1. **BEWARE:** I may break my dotfiles at any time. Be very careful when
-   installing directly from this repo as I may have broken some things :)
-2. Fork this repo
-3. Open a terminal/shell and do this:
-
-```bash
-export github_user=YOUR_GITHUB_USER_NAME
-
-bash -c "$(curl -fsSL https://raw.github.com/$github_user/dotfiles/master/bin/dotfiles)" && source ~/.bashrc
-```
-
-### For Me
-
-`bash -c "$(curl -fsSL https://bit.ly/rhg-dotfiles)" && source ~/.bashrc`
-
 
 ## Usage
 

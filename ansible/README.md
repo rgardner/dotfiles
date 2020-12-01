@@ -17,8 +17,8 @@ need an Apple Developer account, then visit
 
 ### Main
 
-Run `bootstrap.sh` in the parent directory to install Ansible and invoke
-Ansible with `playbook.yml` on the host machine.
+Run `bootstrap` in the parent directory to install Ansible and invoke Ansible
+with `playbook.yml` on the host machine.
 
 ## Testing
 
@@ -27,7 +27,7 @@ To test in the default [GitHub Codespace][github-codespace] container, run:
 ```sh
 docker run -v=$(pwd):/usr/local/src/dotfiles -it --rm mcr.microsoft.com/vscode/devcontainers/universal:linux /bin/bash
 cd /usr/local/src/dotfiles
-./bootstrap.sh
+./bootstrap
 ```
 
 [ansible]: https://www.ansible.com/
