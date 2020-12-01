@@ -65,15 +65,6 @@ $ # remove ruby config links from home directory
 $ stow --delete ruby --target=~
 ```
 
-
-## Configuration Notes
-
-If you want to store your Sublime Text settings in here, make sure to symlink
-the the directory where Sublime Text usually looks. On Mac OS X:
-```
-ln -sf ~/.dotfiles/conf/sublime ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-```
-
 ## Credit
 
 Thanks to [@cowboy](https://github.com/cowboy/dotfiles) for his awesome
