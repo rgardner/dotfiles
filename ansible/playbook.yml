@@ -139,9 +139,9 @@
         - { src: .dotfiles/stow/vim/.vimrc, dest: .vimrc }
         - { src: .dotfiles/stow/zsh/.zshrc, dest: .zshrc }
 
-    - name: Create caches dir
+    - name: Create Vim cache dir
       file:
-        path: "{{ ansible_env.HOME }}/.dotfiles/caches"
+        path: "{{ ansible_env.HOME }}/.dotfiles/caches/vim"
         state: directory
 
     - name: Install and update Vim plugins
