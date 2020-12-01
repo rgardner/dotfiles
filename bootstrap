@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 #
 # Install Ansible and run Ansible playbook.
+# Use pyenv exec instead of pyenv activate due to pyenv/pyenv-virtualenv#372.
 
 set -euo pipefail
 
 readonly THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-# Also update check_python_version when changing this value
 readonly PY_VERSION="3.9.0"
+export PYENV_VERSION="dotfiles-${PY_VERSION}"
 
 is_macos() {
   [[ "$OSTYPE" =~ ^darwin ]] || return 1
@@ -32,6 +33,9 @@ install_homebrew() {
 # Arguments:
 #  None
 install_pyenv() {
+  # Ensure pyenv is in PATH if it exists
+  export PATH="${HOME}/.pyenv/bin:${PATH}"
+
   if ! type -p pyenv >/dev/null; then
     curl https://pyenv.run | bash
 
@@ -41,7 +45,7 @@ install_pyenv() {
       brew install openssl readline sqlite3 xz zlib
     elif is_ubuntu || is_debian; then
       sudo apt-get update
-      sudo apt-get install --no-install-recommends \
+      sudo apt-get install --yes --no-install-recommends \
         make \
         build-essential \
         libssl-dev \
@@ -61,44 +65,40 @@ install_pyenv() {
         liblzma-dev
     fi
 
-    cat <<'EOF' >>"${HOME}/.bashrc"
-
-export PATH="${HOME}/.pyenv/bin:${PATH}"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-EOF
-
-    set +eu
-    source "${HOME}/.bashrc"
-    set -eu
+    set +u
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    set -u
   fi
 }
 
-check_python_version() {
-  python -c 'import sys; exit(1) if sys.version_info < (3, 9) else exit(0)'
+# Run command using correct Python interpreter
+# Arguments
+#   command
+#   [args...]
+run_python() {
+  pyenv exec "$@"
 }
 
 install_python() {
-  if ! check_python_version; then
+  if ! pyenv version; then
     pyenv install "${PY_VERSION}" --skip-existing
-    pyenv global "${PY_VERSION}"
     pyenv rehash
-    check_python_version
+    pyenv virtualenv "${PY_VERSION}" "${PYENV_VERSION}"
   fi
 
-  python -m pip install --upgrade pip
-  python -m pip install --upgrade setuptools wheel
+  run_python python -m pip install --upgrade pip
+  run_python python -m pip install --upgrade setuptools wheel
 }
 
 install_ansible() {
-  pip install --upgrade ansible
-  ansible-galaxy install macstadium.xcode
+  run_python python -m pip install --requirement "${THIS_DIR}/requirements.txt"
+  run_python activate-global-python-argcomplete --user
+  run_python ansible-galaxy install macstadium.xcode
 }
 
 main() {
-  if is_macos; then
-    install_homebrew
-  fi
+  is_macos && install_homebrew
   install_pyenv
   install_python
   install_ansible
@@ -106,7 +106,7 @@ main() {
   declare -a args
   args=("${THIS_DIR}/ansible/playbook.yml" --inventory "${THIS_DIR}/ansible/hosts")
   is_macos && args+=(--ask-become-pass)
-  ansible-playbook "${args[@]}"
+  run_python ansible-playbook "${args[@]}"
 }
 
 main "$@"

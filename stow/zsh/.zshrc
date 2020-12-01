@@ -73,6 +73,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+export DOTFILES="${HOME}/.dotfiles"
+path[1,0]="${DOTFILES}/bin"
+source "${HOME}/.bash_completion.d/python-argcomplete"
+eval "$(register-python-argcomplete dotfiles)"
+
 # Make path elements unique
 typeset -U path
 
@@ -107,6 +112,9 @@ fpath[1,0]=/usr/local/share/zsh-completions
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Python
+eval "$(pyenv virtualenv-init -)"
 
 # Ruby
 eval "$(rbenv init -)"

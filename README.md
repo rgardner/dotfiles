@@ -15,6 +15,23 @@ cd ~/.dotfiles
 ./bootstrap
 ```
 
+## Usage
+
+```sh
+$ dotfiles --help
+usage: dotfiles [-h] {stow,unstow} ...
+
+Manages config files. Provisions machine via Ansible by default.
+
+positional arguments:
+  {stow,unstow}
+    stow         links package config files to home dir
+    unstow       removes package config file links in home dir
+
+optional arguments:
+  -h, --help     show this help message and exit
+```
+
 ## What are Dotfiles?
 
 Dotfiles store the settings and configurations of command line utilities and
@@ -28,7 +45,6 @@ more.
 > are frequently created implicitly by using various utilities. Usually the
 > intent is to not "clutter" the display of the contents of a directory with
 > files the user did not create.
-
 
 ## Viewing dotfiles
 
@@ -50,21 +66,6 @@ To disable:
 
 `defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder`
 
-## Usage
-
-### Stow
-
-I use [GNU Stow](https://savannah.gnu.org/projects/stow/) to manage my
-configuration files for tools and languages.
-
-```
-$ cd "$DOTFILES"
-$ # link ruby config files into home directory
-$ stow ruby --target=~
-$ # remove ruby config links from home directory
-$ stow --delete ruby --target=~
-```
-
 ## Credit
 
 Thanks to [@cowboy](https://github.com/cowboy/dotfiles) for his awesome
@@ -73,4 +74,5 @@ dotfiles! His design philosophy of separating configurations into `bin`,
 configuration and utility scripts have proved invaluable both as references and
 as a basis for my own personal touches. Where possible, I credit him for his
 code and for his design philosophy. These scripts from him are mostly unchanged:
+
 - dotfiles, count-commits, curlsubl, eachdir, manp, pid, serve, ssid, subl

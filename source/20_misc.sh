@@ -39,6 +39,7 @@ export NVM_DIR="$HOME/.nvm"
 path_add "${HOME}/.pyenv/bin"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+source "${HOME}/.bash_completion.d/python-argcomplete"
 
 # Rust
 export CARGO_HOME="${CARGO_HOME:-${HOME}/.cargo}"

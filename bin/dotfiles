@@ -1,127 +1,89 @@
-#!/usr/bin/env bash
-#
-# Provision a new system with software and configuration files
+#!/usr/bin/env python
+# PYTHON_ARGCOMPLETE_OK
 
-# Where the magic happens.
-export DOTFILES="$HOME/.dotfiles"
+"""Manage configuration files."""
 
-# Logging functions
-e_header()   { echo -e "\n\033[1m$*\033[0m"; }
-e_success()  { echo -e " \033[1;32m✔\033[0m  $*"; }
-e_error()    { echo -e " \033[1;31m✖\033[0m  $*"; }
-e_arrow()    { echo -e " \033[1;34m➜\033[0m  $*"; }
+import argparse
+import contextlib
+import os
+import pathlib
+import subprocess
+import sys
+from typing import List
 
-# OS detection
-is_macos() {
-  [[ "$OSTYPE" =~ ^darwin ]] || return 1
-}
-is_ubuntu() {
-  [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
-}
-is_debian() {
-  [[ "$(cat /etc/issue 2> /dev/null)" =~ Debian ]] || return 1
-}
-get_os() {
-  for os in macos ubuntu debian; do
-    "is_$os"; [[ $? == "${1:-0}" ]] && echo $os
-  done
-}
 
-# Remove an entry from $PATH
-# Based on http://stackoverflow.com/a/2108540/142339
-path_remove() {
-  local arg path
-  path=":$PATH:"
-  for arg in "$@"; do
-    path="${path//:$arg:/:}"
-  done
-  path="${path%:}"
-  path="${path#:}"
-  echo "$path"
-}
+class Error(Exception):
+    def __init__(self, msg: str, *, code: int) -> None:
+        self.message = msg
+        self.returncode = code
 
-# Based on https://superuser.com/a/39995/1089288
-path_add() {
-  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-    PATH="$1:${PATH:+"$PATH"}"
-  fi
-}
 
-###########################################
-# INTERNAL DOTFILES "INIT" VARS / FUNCTIONS
-###########################################
+def dotfiles_dir() -> pathlib.Path:
+    try:
+        root = os.environ["DOTFILES"]
+    except KeyError as exc:
+        raise Error(f"{str(exc)} environment variable not set", code=1) from exc
+    return pathlib.Path(root)
 
-__dotfiles::usage() {
-  cat <<HELP
-Usage: $(basename "$0")
 
-See the README for documentation.
-https://github.com/rgardner/dotfiles
+def run_sync_command(args: argparse.Namespace) -> None:
+    root = dotfiles_dir()
+    subprocess.run([str(root / "bootstrap")], check=True)
+    subprocess.run([str(root / "git-hooks" / "install-hooks.sh")], check=True)
 
-Copyright (c) 2016 Bob Gardner
-Licensed under the MIT license.
-HELP
-}
 
-#######################################
-# Globals:
-#   None
-# Arguments:
-#   Restart, optional
-#######################################
-__dotfiles::setup() {
-  if [ ! -d "$DOTFILES" ]; then
-    # $DOTFILES directory doesn't exist? Clone it!
-    export new_dotfiles_install=1
-    e_header "Downloading dotfiles"
-    git clone --recursive git@github.com:"${github_user:-rgardner}"/dotfiles.git "$DOTFILES"
-    cd "$DOTFILES" || exit 1
-  elif [ "$1" != "restart" ]; then
-    # Make sure we have the latest files.
-    e_header "Updating dotfiles"
-    cd "$DOTFILES" || exit 1
-    local prev_head
-    prev_head="$(git rev-parse HEAD)"
-    git pull
-    git submodule update --init --recursive --quiet
-    if [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
-      e_header "Changes detected, restarting script"
-      exec "$0" "restart"
-    fi
-  fi
+def run_stow_command(args: argparse.Namespace) -> None:
+    stow_dir = str(dotfiles_dir().joinpath("stow").absolute())
+    target = str(pathlib.Path.home())
+    subprocess.run(
+        ["stow", *args.package, "--dir", stow_dir, "--target", target], check=True
+    )
 
-  # Add binaries into the path
-  [[ -d $DOTFILES/bin ]] && PATH=$DOTFILES/bin:$PATH
-  export PATH
 
-  # Tweak file globbing.
-  shopt -s dotglob
-  shopt -s nullglob
+def run_unstow_command(args: argparse.Namespace) -> None:
+    stow_dir = str(dotfiles_dir() / "stow")
+    target = str(pathlib.Path.home())
+    subprocess.run(
+        ["stow", "--delete", *args.package, "--dir", stow_dir, "--target", target],
+        check=True,
+    )
 
-  # Create caches dir and init subdir, if they don't already exist.
-  mkdir -p "$DOTFILES/caches/init"
 
-  # If backups are needed, this is where they'll go.
-  backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
-}
+def parse_args(args: List[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Manages config files. Provisions machine via Ansible by default.",
+    )
+    parser.set_defaults(func=run_sync_command)
+    subparsers = parser.add_subparsers()
 
-__dotfiles::install_git_hooks() {
-  "$DOTFILES/git-hooks/install-hooks.sh"
-}
+    stow_subparser = subparsers.add_parser(
+        "stow", help="links package config files to home dir"
+    )
+    stow_subparser.add_argument("package", nargs="+")
+    stow_subparser.set_defaults(func=run_stow_command)
 
-__main() {
-  # Exit script if it is being sourced.
-  [[ "$1" == "source" ]] && return
+    unstow_subparser = subparsers.add_parser(
+        "unstow", help="removes package config file links in home dir"
+    )
+    unstow_subparser.add_argument("package", nargs="+")
+    unstow_subparser.set_defaults(func=run_unstow_command)
 
-  echo "dotfiles - Bob Gardner - http://www.bob-gardner.com"
-  [[ "$1" == "-h" || "$1" == "--help" ]] && __dotfiles::usage && exit
+    with contextlib.suppress(ImportError):
+        import argcomplete
 
-  __dotfiles::setup "$@"
-  __dotfiles::install_git_hooks
+        argcomplete.autocomplete(parser)
 
-  # Alert if backups were made.
-  [[ -n "${backup+x}" ]] && echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
-  e_header "All done!"
-}
+    return parser.parse_args(args)
 
-__main "$@"
+
+def main(raw_args: List[str]) -> None:
+    args = parse_args(raw_args)
+    try:
+        args.func(args)
+    except Error as exc:
+        print(f"error: {exc.message}", file=sys.stderr)
+        sys.exit(exc.returncode)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
