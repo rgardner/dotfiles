@@ -1,17 +1,8 @@
 # Cowboy junk
 /caches/
-/backups/
 
 # Ignore any file with LOCAL in the name (good for per-machine vars/functions)
 *LOCAL*
-
-# Atom files
-/stow/atom/.atom/.apm/
-/stow/atom/.atom/.node-gyp/
-/stow/atom/.atom/blob-store
-/stow/atom/.atom/compile-cache/
-/stow/atom/.atom/packages/
-/stow/atom/.atom/storage/
 
 # SSH Secrets
 /stow/.ssh/authorized_keys
@@ -23,8 +14,3 @@
 /stow/vim/.vim/autoload/plug.vim.old
 /stow/vim/.vim/spell/*.spl
 /stow/vim/.vim/plugged
-
-# Sublime Text 3
-Package\ Control*
-SublimeLinter
-conf/sublime/oscrypto-ca-bundle.crt
