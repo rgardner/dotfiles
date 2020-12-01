@@ -62,6 +62,7 @@ plugins=(
   autojump
   brew
   colored-man-pages
+  direnv
   docker
   git
   heroku
@@ -76,7 +77,8 @@ source $ZSH/oh-my-zsh.sh
 export DOTFILES="${HOME}/.dotfiles"
 path[1,0]="${DOTFILES}/bin"
 source "${HOME}/.bash_completion.d/python-argcomplete"
-eval "$(register-python-argcomplete dotfiles)"
+# Ok if argcomplete is not installed
+eval "$(register-python-argcomplete dotfiles)" || true
 
 # Make path elements unique
 typeset -U path
