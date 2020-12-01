@@ -22,6 +22,7 @@
           - git-core
           - git-extras
           - htop
+          - shellcheck
           - stow
           - tmux
           - tree
@@ -71,6 +72,7 @@
           - pandoc
           - rbenv
           - ruby-build
+          - shellcheck
           - tmux
           - tree
           - wget
