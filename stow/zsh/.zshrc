@@ -76,9 +76,9 @@ source $ZSH/oh-my-zsh.sh
 
 export DOTFILES="${HOME}/.dotfiles"
 path[1,0]="${DOTFILES}/bin"
-source "${HOME}/.bash_completion.d/python-argcomplete"
+source "${HOME}/.bash_completion.d/python-argcomplete" || true
 # Ok if argcomplete is not installed
-eval "$(register-python-argcomplete dotfiles)" || true
+#eval "$(register-python-argcomplete dotfiles)"
 
 # Make path elements unique
 typeset -U path
@@ -107,8 +107,7 @@ typeset -U path
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias code="code-insiders"
 
 fpath[1,0]=/usr/local/share/zsh-completions
 
@@ -123,10 +122,11 @@ eval "$(rbenv init -)"
 
 # Rust
 export CARGO_HOME="${CARGO_HOME:-${HOME}/.cargo}"
-path[1,0]="${HOME}/.cargo/bin"
+path[1,0]="${CARGO_HOME}/bin"
 
 # Misc
 path[1,0]="${HOME}/.local/bin"
+path[1,0]="${HOME}/bin"
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" \
