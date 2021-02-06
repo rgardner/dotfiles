@@ -42,13 +42,13 @@
   discard = checkout HEAD --
   f = fetch
   fp = fetch --prune
+  fpull = pull --prune
   g = grep -I
-  ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
-  ini = "!f(){ git init && git add --all :/ && git commit -m 'Initial commit'; };f"
   last = log -1 HEAD
   lg = log --oneline --decorate --graph
   m = merge
-  pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
+  ra = rebase --abort
+  rc = rebase --continue
   s = status -sb
   st = status
   sshow = "!f() { git stash show stash^{/$*} -p }; f"
@@ -59,7 +59,6 @@
   undo-hard = reset --hard HEAD^
   undo-soft = reset --soft HEAD^
   unstage = reset HEAD --
-  up = push origin
   update-from = pull --rebase origin
   wdiff = diff --word-diff=color --unified=1
 [diff "pandoc"]
@@ -69,6 +68,8 @@
   compactionHeuristic = true
 [heroku]
   account = personal
+[init]
+  defaultBranch = main
 [push]
   default = current
 [rebase]
