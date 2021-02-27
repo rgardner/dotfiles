@@ -42,11 +42,14 @@
   discard = checkout HEAD --
   f = fetch
   fp = fetch --prune
-  fpull = pull --prune
   g = grep -I
   last = log -1 HEAD
   lg = log --oneline --decorate --graph
   m = merge
+  ma = merge --abort
+  mc = merge --continue
+  mom = merge origin/master
+  pp = pull --prune
   ra = rebase --abort
   rc = rebase --continue
   s = status -sb
