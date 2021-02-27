@@ -1,8 +1,8 @@
 [user]
-  name = Bob Gardner
-  email =
-  signingkey =
+	name = Bob Gardner
+	email =
+	signingkey =
 [commit]
-  gpgsign = false
+	gpgsign = false
 [credentials]
-  helper = osxkeychain
+	helper = osxkeychain

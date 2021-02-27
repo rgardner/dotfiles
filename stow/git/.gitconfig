@@ -1,97 +1,97 @@
 [include]
-  path = .gitconfig.local
+	path = .gitconfig.local
 [core]
-  autoclrf = input
-  editor = vim
-  excludesfile = ~/.dotfiles/config/git/.gitignore_global
-  pager = diff-so-fancy | less --tabs=4 -RFX
-  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+	autoclrf = input
+	editor = vim
+	excludesfile = ~/.dotfiles/config/git/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 [color]
-  branch = auto
-  diff = auto
-  status = auto
-  ui = true
+	branch = auto
+	diff = auto
+	status = auto
+	ui = true
 [color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [apply]
-  whitespace = fix
+	whitespace = fix
 [color "status"]
-  added = green bold
-  changed = cyan bold
-  untracked = yellow bold
+	added = green bold
+	changed = cyan bold
+	untracked = yellow bold
 [color "branch"]
-  current = cyan bold
-  local = yellow
-  remote = green
+	current = cyan bold
+	local = yellow
+	remote = green
 [alias]
-  a = add
-  aa = add --all :/
-  alias = config --get-regexp alias
-  b = branch -avv
-  bd = branch -d
-  bm = branch -m
-  br = branch
-  ci = commit
-  cia = commit --amend
-  co = checkout
-  com = checkout main
-  diffc = diff --cached
-  discard = checkout HEAD --
-  f = fetch
-  fp = fetch --prune
-  g = grep -I
-  last = log -1 HEAD
-  lg = log --oneline --decorate --graph
-  m = merge
-  ma = merge --abort
-  mc = merge --continue
-  mom = merge origin/master
-  pp = pull --prune
-  ra = rebase --abort
-  rc = rebase --continue
-  s = status -sb
-  st = status
-  sshow = "!f() { git stash show stash^{/$*} -p }; f"
-  sapply = "!f() { git stash apply stash^{/$*}; }; f"
-  t = tag
-  td = tag -d
-  ufm = pull --rebase origin main
-  undo-hard = reset --hard HEAD^
-  undo-soft = reset --soft HEAD^
-  unstage = reset HEAD --
-  update-from = pull --rebase origin
-  wdiff = diff --word-diff=color --unified=1
+	a = add
+	aa = add --all :/
+	alias = config --get-regexp alias
+	b = branch -avv
+	bd = branch -d
+	bm = branch -m
+	br = branch
+	ci = commit
+	cia = commit --amend
+	co = checkout
+	com = checkout main
+	diffc = diff --cached
+	discard = checkout HEAD --
+	f = fetch
+	fp = fetch --prune
+	g = grep -I
+	last = log -1 HEAD
+	lg = log --oneline --decorate --graph
+	m = merge
+	ma = merge --abort
+	mc = merge --continue
+	mom = merge origin/master
+	pp = pull --prune
+	ra = rebase --abort
+	rc = rebase --continue
+	s = status -sb
+	st = status
+	sshow = "!f() { git stash show stash^{/$*} -p }; f"
+	sapply = "!f() { git stash apply stash^{/$*}; }; f"
+	t = tag
+	td = tag -d
+	ufm = pull --rebase origin main
+	undo-hard = reset --hard HEAD^
+	undo-soft = reset --soft HEAD^
+	unstage = reset HEAD --
+	update-from = pull --rebase origin
+	wdiff = diff --word-diff=color --unified=1
 [diff "pandoc"]
-  textconv=pandoc --to=markdown
-  prompt = false
+	textconv=pandoc --to=markdown
+	prompt = false
 [diff]
-  compactionHeuristic = true
+	compactionHeuristic = true
 [heroku]
-  account = personal
+	account = personal
 [init]
-  defaultBranch = main
+	defaultBranch = main
 [push]
-  default = current
+	default = current
 [rebase]
-  autosquash = true
+	autosquash = true
 [mergetool]
-  keepBackup = true
+	keepBackup = true
 [filter "media"]
-  required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
 [filter "hawser"]
-  clean = git hawser clean %f
-  smudge = git hawser smudge %f
-  required = true
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
 [commit]
-  template = ~/.dotfiles/config/git/.git_commit_template.txt
+	template = ~/.dotfiles/config/git/.git_commit_template.txt
 [pull]
 	rebase = false
