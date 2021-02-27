@@ -14,8 +14,6 @@
       become: true
       apt:
         name:
-          - autojump
-          - bash-completion
           - build-essential
           - direnv
           - exuberant-ctags
@@ -35,7 +33,7 @@
         dest: /usr/local/src/fzf
 
     - name: Run fzf post-install
-      shell: /usr/local/src/fzf/install
+      shell: /usr/local/src/fzf/install --all --xdg --no-update-rc
 
 - hosts: os_MacOSX
   name: Install Xcode on macOS
@@ -58,9 +56,6 @@
     - name: Install dependencies with Homebrew
       homebrew:
         name:
-          - autojump
-          - bash
-          - bash-completion@2
           - direnv
           - fzf
           - git
@@ -80,13 +75,6 @@
 
     - name: Run fzf post-install
       shell: $(brew --prefix)/opt/fzf/install
-
-    - name: Install casks with Homebrew
-      homebrew_cask:
-        name:
-          - iterm2
-          - spotify
-        state: present
 
 - hosts: all
   name: Finish set up for all platforms
@@ -148,4 +136,3 @@
 
     - name: Install and update Vim plugins
       shell: vim +PlugUpgrade +PlugUpdate +qall
-      
