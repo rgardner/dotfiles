@@ -74,7 +74,7 @@
         state: present
 
     - name: Run fzf post-install
-      shell: $(brew --prefix)/opt/fzf/install
+      shell: $(brew --prefix)/opt/fzf/install --all --xdg --no-update-rc
 
 - hosts: all
   name: Finish set up for all platforms
@@ -120,7 +120,10 @@
         - { src: .dotfiles/stow/git/.gitconfig, dest: .gitconfig }
         - { src: .dotfiles/stow/git/.gitk, dest: .gitk }
         - { src: .dotfiles/stow/jetbrains/.ideavimrc, dest: .ideavimrc }
-        - { src: .dotfiles/stow/markdownlint/.markdownlint.json, dest: .markdownlint.json }
+        - {
+            src: .dotfiles/stow/markdownlint/.markdownlint.json,
+            dest: .markdownlint.json,
+          }
         - { src: .dotfiles/stow/octave/.octaverc, dest: .octaverc }
         - { src: .dotfiles/stow/ruby/.gemrc, dest: .gemrc }
         - { src: .dotfiles/stow/ruby/.railsrc, dest: .railsrc }
