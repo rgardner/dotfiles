@@ -88,12 +88,7 @@ typeset -U path
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR="vim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -110,6 +105,11 @@ typeset -U path
 alias code="code-insiders"
 
 fpath[1,0]=/usr/local/share/zsh-completions
+
+# Bazel
+fpath[1,0]="${HOME}/.zsh/completion"
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
