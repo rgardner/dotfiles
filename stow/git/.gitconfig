@@ -36,6 +36,7 @@
 	br = branch
 	ci = commit
 	cia = commit --amend
+	cim = commit -m
 	co = checkout
 	com = checkout main
 	diffc = diff --cached
@@ -48,21 +49,24 @@
 	m = merge
 	ma = merge --abort
 	mc = merge --continue
-	mom = merge origin/master
+	mom = merge origin/main
 	pp = pull --prune
 	ra = rebase --abort
 	rc = rebase --continue
+	ri = rebase --interactive
 	s = status -sb
 	st = status
+	swc = switch -c
+	swm = switch main
 	sshow = "!f() { git stash show stash^{/$*} -p }; f"
 	sapply = "!f() { git stash apply stash^{/$*}; }; f"
 	t = tag
 	td = tag -d
+	uf = pull --rebase origin
 	ufm = pull --rebase origin main
 	undo-hard = reset --hard HEAD^
 	undo-soft = reset --soft HEAD^
 	unstage = reset HEAD --
-	update-from = pull --rebase origin
 	wdiff = diff --word-diff=color --unified=1
 [diff "pandoc"]
 	textconv=pandoc --to=markdown
