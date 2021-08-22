@@ -39,8 +39,8 @@
   name: Install Xcode on macOS
   gather_facts: False
   vars:
-    xcode_xip_location: "{{ ansible_env.HOME }}/Downloads/Xcode_12.2.xip"
-    xcode_major_version: 12.2
+    xcode_xip_location: "{{ ansible_env.HOME }}/Downloads/Xcode_12.4.xip"
+    xcode_major_version: 12.4
   roles:
     - macstadium.xcode
 
