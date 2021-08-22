@@ -114,6 +114,9 @@ zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Poetry
+path[1,0] = "${HOME}/.poetry/bin"
+
 # Python
 eval "$(pyenv virtualenv-init -)"
 
@@ -132,3 +135,8 @@ path[1,0]="${HOME}/bin"
 HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" \
   && test -f $HEROKU_AC_ZSH_SETUP_PATH \
   && source $HEROKU_AC_ZSH_SETUP_PATH
+
+# Sourece all my custom zsh files
+for file in $DOTFILES/source/*.zsh; do
+    source "$file"
+done
