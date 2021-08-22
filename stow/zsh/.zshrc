@@ -115,7 +115,7 @@ zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Poetry
-path[1,0] = "${HOME}/.poetry/bin"
+path[1,0]="${HOME}/.poetry/bin"
 
 # Python
 eval "$(pyenv virtualenv-init -)"
