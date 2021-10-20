@@ -72,6 +72,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+autoload -U bashcompinit
+bashcompinit
+
 # User configuration
 
 export DOTFILES="${HOME}/.dotfiles"
@@ -118,6 +121,9 @@ zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 path[1,0]="${HOME}/.poetry/bin"
 
 # Python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # Ruby
