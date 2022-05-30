@@ -36,15 +36,6 @@
       shell: /usr/local/src/fzf/install --all --xdg --no-update-rc
 
 - hosts: os_MacOSX
-  name: Install Xcode on macOS
-  gather_facts: False
-  vars:
-    xcode_xip_location: "{{ ansible_env.HOME }}/Downloads/Xcode_12.4.xip"
-    xcode_major_version: 12.4
-  roles:
-    - macstadium.xcode
-
-- hosts: os_MacOSX
   name: Install packages on macOS
   gather_facts: False
   tasks:
@@ -60,6 +51,7 @@
           - fzf
           - git
           - git-extras
+          - hadolint
           - htop-osx
           - hub
           - lesspipe
@@ -130,6 +122,7 @@
         - { src: .dotfiles/stow/tmux/.tmux.conf, dest: .tmux.conf }
         - { src: .dotfiles/stow/vim/.vim, dest: .vim }
         - { src: .dotfiles/stow/vim/.vimrc, dest: .vimrc }
+        - { src: .dotfiles/stow/zsh/.oh-my-zsh, dest: .oh-my-zsh }
         - { src: .dotfiles/stow/zsh/.zshrc, dest: .zshrc }
 
     - name: Create Vim cache dir

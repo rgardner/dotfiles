@@ -6,7 +6,7 @@
 set -euo pipefail
 
 readonly THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-readonly PY_VERSION="3.9.0"
+readonly PY_VERSION="3.9.7"
 export PYENV_VERSION="dotfiles-${PY_VERSION}"
 
 is_macos() {
@@ -94,7 +94,6 @@ install_python() {
 install_ansible() {
   run_python python -m pip install --requirement "${THIS_DIR}/requirements.txt"
   run_python activate-global-python-argcomplete --user
-  run_python ansible-galaxy install macstadium.xcode
 }
 
 main() {
@@ -105,7 +104,6 @@ main() {
 
   declare -a args
   args=("${THIS_DIR}/ansible/playbook.yml" --inventory "${THIS_DIR}/ansible/hosts")
-  is_macos && args+=(--ask-become-pass)
   run_python ansible-playbook "${args[@]}"
 }
 

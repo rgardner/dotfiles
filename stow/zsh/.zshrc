@@ -72,9 +72,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-autoload -U bashcompinit
-bashcompinit
-
 # User configuration
 
 export DOTFILES="${HOME}/.dotfiles"
@@ -106,8 +103,10 @@ export EDITOR="vim"
 #
 # Example aliases
 alias code="code-insiders"
+alias mj="memory_jogger"
 
 fpath[1,0]=/usr/local/share/zsh-completions
+fpath[1,0]="${HOME}/.zfunc"
 
 # Bazel
 fpath[1,0]="${HOME}/.zsh/completion"
@@ -120,11 +119,19 @@ zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 # Poetry
 path[1,0]="${HOME}/.poetry/bin"
 
+# Julia
+path[1,0]="/Applications/Julia-1.7.app/Contents/Resources/julia/bin"
+
+# Misc
+path[1,0]="${HOME}/.local/bin"
+path[1,0]="${HOME}/bin"
+
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+eval "$(pdm --pep582)"
 
 # Ruby
 eval "$(rbenv init -)"
@@ -133,16 +140,23 @@ eval "$(rbenv init -)"
 export CARGO_HOME="${CARGO_HOME:-${HOME}/.cargo}"
 path[1,0]="${CARGO_HOME}/bin"
 
-# Misc
-path[1,0]="${HOME}/.local/bin"
-path[1,0]="${HOME}/bin"
-
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" \
   && test -f $HEROKU_AC_ZSH_SETUP_PATH \
   && source $HEROKU_AC_ZSH_SETUP_PATH
 
-# Sourece all my custom zsh files
+# Source all my custom zsh files
+setopt NULL_GLOB  # allow empty glob
 for file in $DOTFILES/source/*.zsh; do
     source "$file"
 done
+unsetopt NULL_GLOB
+
+autoload -U compinit
+compinit
+
+autoload -U bashcompinit
+bashcompinit
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

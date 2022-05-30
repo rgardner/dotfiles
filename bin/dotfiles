@@ -28,8 +28,10 @@ def dotfiles_dir() -> pathlib.Path:
 
 def run_sync_command(args: argparse.Namespace) -> None:
     root = dotfiles_dir()
-    subprocess.run([str(root / "bootstrap")], check=True)
-    subprocess.run([str(root / "git-hooks" / "install-hooks.sh")], check=True)
+    subprocess.run(["./bootstrap"], check=True, cwd=root)
+    subprocess.run(
+        [pathlib.Path("git-hooks", "install-hooks.sh")], check=True, cwd=root
+    )
 
 
 def run_stow_command(args: argparse.Namespace) -> None:

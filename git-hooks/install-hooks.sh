@@ -2,6 +2,8 @@
 #
 # Install git hooks into `.git/hooks/`
 
+set -euo pipefail
+
 DOTGIT=$(git rev-parse --git-dir)
 TOPLEVEL=$(git rev-parse --show-toplevel)
 TO=${DOTGIT}/hooks
