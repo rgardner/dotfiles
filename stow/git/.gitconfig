@@ -32,18 +32,18 @@
 	alias = config --get-regexp alias
 	b = branch -avv
 	bd = branch -d
+	bdd = branch -D
 	bm = branch -m
 	br = branch
 	ci = commit
 	cia = commit --amend
 	cim = commit -m
-	co = checkout
-	com = checkout main
 	diffc = diff --cached
 	discard = checkout HEAD --
 	f = fetch
 	fp = fetch --prune
 	g = grep -I
+	ini = "!f(){ git init && git add --all :/ && git commit -m 'Initial commit'; };f"
 	last = log -1 HEAD
 	lg = log --oneline --decorate --graph
 	m = merge
@@ -78,6 +78,8 @@
 	account = personal
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
 [push]
 	default = current
 [rebase]
@@ -98,5 +100,3 @@
 	required = true
 [commit]
 	template = ~/.dotfiles/config/git/.git_commit_template.txt
-[pull]
-	rebase = false

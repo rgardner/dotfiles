@@ -129,8 +129,7 @@ path[1,0]="${HOME}/bin"
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init --path)"
 eval "$(pdm --pep582)"
 
 # Ruby
