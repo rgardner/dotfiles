@@ -57,6 +57,7 @@
 	s = status -sb
 	st = status
 	su = submodule --update
+	sw = switch
 	swc = switch -c
 	swm = switch main
 	sshow = "!f() { git stash show stash^{/$*} -p }; f"

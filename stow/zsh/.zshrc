@@ -59,6 +59,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  asdf
   autojump
   brew
   colored-man-pages
@@ -131,6 +132,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pdm --pep582)"
+export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.11.0/bin/python"
 
 # Ruby
 eval "$(rbenv init -)"
@@ -158,4 +160,3 @@ autoload -U bashcompinit
 bashcompinit
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
