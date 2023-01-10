@@ -43,7 +43,7 @@
 	f = fetch
 	fp = fetch --prune
 	g = grep -I
-	ini = "!f(){ git init && git add --all :/ && git commit -m 'Initial commit'; };f"
+	ini = "!f(){ git init && git commit -m 'Initial commit' --allow-empty && git add --all :/ && git commit -m 'Add files'; };f"
 	last = log -1 HEAD
 	lg = log --oneline --decorate --graph
 	m = merge
