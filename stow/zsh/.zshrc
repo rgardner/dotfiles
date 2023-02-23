@@ -77,7 +77,6 @@ source $ZSH/oh-my-zsh.sh
 
 export DOTFILES="${HOME}/.dotfiles"
 path[1,0]="${DOTFILES}/bin"
-source "${HOME}/.bash_completion.d/python-argcomplete" || true
 # Ok if argcomplete is not installed
 #eval "$(register-python-argcomplete dotfiles)"
 
@@ -106,7 +105,7 @@ export EDITOR="vim"
 alias code="code-insiders"
 alias mj="memory_jogger"
 
-fpath[1,0]=/usr/local/share/zsh-completions
+fpath[1,0]="${HOMEBREW_PREFIX}/share/zsh/site-functions"
 fpath[1,0]="${HOME}/.zfunc"
 
 # Bazel
