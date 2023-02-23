@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 #
 # Install Ansible and run Ansible playbook.
-# Use pyenv exec instead of pyenv activate due to pyenv/pyenv-virtualenv#372.
 
 set -euo pipefail
 
 readonly THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-readonly PY_VERSION="3.9.7"
-export PYENV_VERSION="dotfiles-${PY_VERSION}"
 
 is_macos() {
   [[ "$OSTYPE" =~ ^darwin ]] || return 1
@@ -67,7 +64,6 @@ install_pyenv() {
 
     set +u
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
     set -u
   fi
 }
@@ -77,34 +73,29 @@ install_pyenv() {
 #   command
 #   [args...]
 run_python() {
-  pyenv exec "$@"
+  "${THIS_DIR}/.venv/bin/python" "$@"
 }
 
-install_python() {
+install_python_and_deps() {
   if ! pyenv version; then
-    pyenv install "${PY_VERSION}" --skip-existing
-    pyenv rehash
-    pyenv virtualenv "${PY_VERSION}" "${PYENV_VERSION}"
+    pyenv install --skip-existing
   fi
+  pyenv exec python -m venv "${THIS_DIR}/.venv"
 
-  run_python python -m pip install --upgrade pip
-  run_python python -m pip install --upgrade setuptools wheel
-}
-
-install_ansible() {
-  run_python python -m pip install --requirement "${THIS_DIR}/requirements.txt"
-  run_python activate-global-python-argcomplete --user
+  run_python -m pip install --upgrade pip
+  run_python -m pip install --upgrade setuptools wheel
+  run_python -m pip install pip-tools==6.12.2
+  run_python -m piptools sync
 }
 
 main() {
   is_macos && install_homebrew
   install_pyenv
-  install_python
-  install_ansible
+  install_python_and_deps
 
   declare -a args
   args=("${THIS_DIR}/ansible/playbook.yml" --inventory "${THIS_DIR}/ansible/hosts")
-  run_python ansible-playbook "${args[@]}"
+  run_python -m ansible playbook "${args[@]}"
 }
 
 main "$@"

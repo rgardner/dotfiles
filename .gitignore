@@ -14,3 +14,6 @@
 /stow/vim/.vim/autoload/plug.vim.old
 /stow/vim/.vim/spell/*.spl
 /stow/vim/.vim/plugged
+
+# Python virtual environment
+.venv
