@@ -1,4 +1,4 @@
-ansible==7.0.0
+ansible==8.5.0
 argcomplete==1.12.2
 black==20.8b1
 mypy==0.790
