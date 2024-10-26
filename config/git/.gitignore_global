@@ -106,6 +106,10 @@ local.properties
 # PDT-specific
 .buildpath
 
+# Clangd #
+##########
+.cache
+
 
 # JetBrains #
 #############
