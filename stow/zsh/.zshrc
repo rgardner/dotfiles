@@ -101,7 +101,8 @@ export EDITOR="vim"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
+# Aliases
+alias update="omz update && brew update && rustup update"
 alias code="code-insiders"
 alias mj="memory_jogger"
 
