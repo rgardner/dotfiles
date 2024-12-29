@@ -160,7 +160,3 @@ autoload -U bashcompinit
 bashcompinit
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# >>> VSCode venv deactivate hook >>>
-source ~/.vscode-python/deactivate
-# <<< VSCode venv deactivate hook <<<
