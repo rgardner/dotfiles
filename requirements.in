@@ -1,5 +1,4 @@
-ansible==7.2.0
-argcomplete==2.0.0
-black==23.1.0
-mypy==1.0.1
-ruff==0.0.252
+ansible==11.1.0
+argcomplete==3.5.2
+mypy==1.14.0
+ruff==0.8.4
