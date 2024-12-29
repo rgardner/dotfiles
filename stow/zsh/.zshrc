@@ -67,7 +67,6 @@ plugins=(
   docker
   git
   heroku
-  pyenv
   tmux
 )
 
@@ -128,11 +127,7 @@ path[1,0]="${HOME}/.local/bin"
 path[1,0]="${HOME}/bin"
 
 # Python
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pdm --pep582)"
-export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.13.0/bin/python"
+alias python="python3"
 
 # Ruby
 eval "$(rbenv init -)"
