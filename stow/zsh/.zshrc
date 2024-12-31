@@ -101,7 +101,7 @@ export EDITOR="vim"
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
-alias update="omz update && brew update && rustup update"
+alias update="brew upgrade && rustup update && omz update"
 alias code="code-insiders"
 alias mj="memory_jogger"
 
