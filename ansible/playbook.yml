@@ -56,7 +56,6 @@
           - lesspipe
           - macvim
           - pandoc
-          - pure
           - rbenv
           - ruby-build
           - shellcheck
