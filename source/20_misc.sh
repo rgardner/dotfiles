@@ -36,10 +36,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Python
-path_add "${HOME}/.pyenv/bin"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-source "${HOME}/.bash_completion.d/python-argcomplete"
+eval "$(uv generate-shell-completion bash)"
 
 # Rust
 export CARGO_HOME="${CARGO_HOME:-${HOME}/.cargo}"

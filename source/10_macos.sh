@@ -32,7 +32,7 @@ cdf() {
 # Completions
 
 # Git completions
-. "$(brew --prefix)/git/contrib/completion/git-prompt.sh"
+. "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
 
 # Homebrew completions
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-bash
