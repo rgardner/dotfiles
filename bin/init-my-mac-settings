@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Initialize my macOS settings.
+
+set -euo pipefail
+
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+echo "Log out or restart your computer to apply the changes." 1>&2
