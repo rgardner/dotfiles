@@ -127,7 +127,8 @@ path[1,0]="${HOME}/.local/bin"
 path[1,0]="${HOME}/bin"
 
 # Python
-alias python="python3"
+# fixes /usr/bin/env: python: No such file or directory
+path[1,0]='/opt/homebrew/opt/python@3.13/libexec/bin'
 
 # Ruby
 eval "$(rbenv init -)"
