@@ -16,7 +16,6 @@
         name:
           - build-essential
           - direnv
-          - exuberant-ctags
           - git-core
           - git-extras
           - htop
@@ -109,7 +108,6 @@
       loop:
         - { src: .dotfiles/stow/bash/.bash_profile, dest: .bash_profile }
         - { src: .dotfiles/stow/bash/.bashrc, dest: .bashrc }
-        - { src: .dotfiles/stow/ctags/.ctags, dest: .ctags }
         - { src: .dotfiles/stow/git/.gitconfig, dest: .gitconfig }
         - { src: .dotfiles/stow/git/.gitk, dest: .gitk }
         - { src: .dotfiles/stow/jetbrains/.ideavimrc, dest: .ideavimrc }
