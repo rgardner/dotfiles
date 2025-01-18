@@ -18,8 +18,8 @@ $ csvtojson - names.csv            # read from stdin and files
 
 import argparse
 import csv
-import json
 import fileinput
+import json
 from typing import Iterator
 
 
