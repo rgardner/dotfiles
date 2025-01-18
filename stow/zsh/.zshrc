@@ -120,8 +120,8 @@ zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Poetry
-path[1,0]="${HOME}/.poetry/bin"
+# Go
+path[1,0]="${HOME}/go/bin"
 
 # Julia
 path[1,0]="/Applications/Julia-1.7.app/Contents/Resources/julia/bin"
@@ -129,6 +129,9 @@ path[1,0]="/Applications/Julia-1.7.app/Contents/Resources/julia/bin"
 # Misc
 path[1,0]="${HOME}/.local/bin"
 path[1,0]="${HOME}/bin"
+
+# Poetry
+path[1,0]="${HOME}/.poetry/bin"
 
 # Python
 # fixes /usr/bin/env: python: No such file or directory

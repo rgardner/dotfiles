@@ -12,7 +12,7 @@ export LESS=-XR
 
 # Set the terminal's title bar.
 titlebar() {
-  echo -n $'\e]0;'"$*"$'\a'
+	echo -n $'\e]0;'"$*"$'\a'
 }
 
 # Coloring
@@ -20,9 +20,9 @@ export CLICOLOR=1
 
 # Enabling 256 colors
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-  export TERM='xterm-256color'
+	export TERM='xterm-256color'
 else
-  export TERM='xterm-color'
+	export TERM='xterm-color'
 fi
 
 # Dotfiles
@@ -32,8 +32,8 @@ path_add "${HOME}/bin"
 
 # Node
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Python
 eval "$(uv generate-shell-completion bash)"

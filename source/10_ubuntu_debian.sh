@@ -11,7 +11,7 @@ alias search="apt-cache search"
 
 # Source bash completions
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+	. /etc/bash_completion
 fi
 
 # Make 'less' more.
