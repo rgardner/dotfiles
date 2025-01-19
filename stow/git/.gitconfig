@@ -75,6 +75,8 @@
 	prompt = false
 [diff]
 	compactionHeuristic = true
+[help]
+	autocorrect = prompt
 [heroku]
 	account = personal
 [init]
