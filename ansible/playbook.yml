@@ -97,6 +97,7 @@
       copy:
         src: copy/
         dest: "{{ ansible_env.HOME }}"
+        force: no
 
     - name: Link files
       file:
