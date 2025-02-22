@@ -27,7 +27,18 @@ def dotfiles_dir() -> pathlib.Path:
 
 def run_sync_command(args: argparse.Namespace) -> None:
     root = dotfiles_dir()
-    subprocess.run(["./bootstrap"], check=True, cwd=root)
+    subprocess.run(
+        [
+            "python",
+            "-m",
+            "ansible",
+            "playbook",
+            root / "ansible" / "playbook.yml",
+            "--inventory",
+            root / "ansible" / "hosts",
+        ],
+        check=True,
+    )
     subprocess.run(
         [pathlib.Path("git-hooks", "install-hooks.sh")], check=True, cwd=root
     )
@@ -77,14 +88,10 @@ def parse_args(args: list[str]) -> argparse.Namespace:
     return parser.parse_args(args)
 
 
-def main(raw_args: list[str]) -> None:
-    args = parse_args(raw_args)
+def main() -> None:
+    args = parse_args(sys.argv[1:])
     try:
         args.func(args)
     except Error as exc:
         print(f"error: {exc.message}", file=sys.stderr)
         sys.exit(exc.returncode)
-
-
-if __name__ == "__main__":
-    main(sys.argv[1:])

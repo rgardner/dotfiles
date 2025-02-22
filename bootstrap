@@ -4,10 +4,11 @@
 
 set -euo pipefail
 
-readonly THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+readonly THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 if ! type -p uv >/dev/null; then
   curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
-uv sync
-uv run -- ansible-playbook "${THIS_DIR}/ansible/playbook.yml" --inventory "${THIS_DIR}/ansible/hosts"
+
+export DOTFILES="${THIS_DIR}"
+uv run --directory src/dotfiles dotfiles

@@ -6,10 +6,21 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "ansible>=11.1.0",
-    "mypy>=1.14.0",
-    "pre-commit>=4.0.1",
-    "ruff>=0.8.4",
 ]
+
+[dependency-groups]
+lint = [
+    "mypy>=1.15.0",
+    "pre-commit>=4.1.0",
+    "ruff>=0.9.7",
+]
+
+[project.scripts]
+dotfiles = "dotfiles:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
 
 [tool.ruff]
 extend-exclude = ["stow/zsh/.oh-my-zsh"]
