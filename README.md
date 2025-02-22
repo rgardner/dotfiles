@@ -32,6 +32,9 @@ optional arguments:
   -h, --help     show this help message and exit
 ```
 
+Run `just setup` and `just lint` to set up the environment and check for
+linting errors.
+
 ## What are Dotfiles?
 
 Dotfiles store the settings and configurations of command line utilities and
