@@ -24,7 +24,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -74,13 +74,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export DOTFILES="${HOME}/.dotfiles"
-path[1,0]="${DOTFILES}/bin"
-# Ok if argcomplete is not installed
-#eval "$(register-python-argcomplete dotfiles)"
-
 # Make path elements unique
 typeset -U path
+
+export DOTFILES="${HOME}/.dotfiles"
+path=("${DOTFILES}/bin" $path)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -101,15 +99,20 @@ export EDITOR="vim"
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
-alias update="brew upgrade && rustup update && omz update"
 alias code="code-insiders"
 alias mj="memory_jogger"
+alias update="brew upgrade && rustup update && omz update"
+alias vsc="code-insiders"
 
-fpath[1,0]="${HOMEBREW_PREFIX}/share/zsh/site-functions"
-fpath[1,0]="${HOME}/.zfunc"
+batdiff() {
+  git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
+fpath=("${HOMEBREW_PREFIX}/share/zsh/site-functions" $fpath)
+fpath=("${HOME}/.zfunc" $fpath)
 
 # Bazel
-fpath[1,0]="${HOME}/.zsh/completion"
+fpath=("${HOME}/.zsh/completion" $fpath)
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 
@@ -117,38 +120,34 @@ zstyle ':completion:*' cache-path "${HOME}/.zsh/cache"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Go
-path[1,0]="${HOME}/go/bin"
+path=("${HOME}/go/bin" $path)
 
 # Julia
-path[1,0]="/Applications/Julia-1.7.app/Contents/Resources/julia/bin"
+path=("/Applications/Julia-1.7.app/Contents/Resources/julia/bin" $path)
 
 # Misc
-path[1,0]="${HOME}/.local/bin"
-path[1,0]="${HOME}/bin"
+path=("${HOME}/.local/bin" $path)
+path=("${HOME}/bin" $path)
 
 # Poetry
-path[1,0]="${HOME}/.poetry/bin"
-
-# Python
-# fixes /usr/bin/env: python: No such file or directory
-#path[1,0]='/opt/homebrew/opt/python@3.13/libexec/bin'
+path=("${HOME}/.poetry/bin" $path)
 
 # Ruby
 eval "$(rbenv init -)"
 
 # Rust
 export CARGO_HOME="${CARGO_HOME:-${HOME}/.cargo}"
-path[1,0]="${CARGO_HOME}/bin"
+path=("${CARGO_HOME}/bin" $path)
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" \
-  && test -f $HEROKU_AC_ZSH_SETUP_PATH \
-  && source $HEROKU_AC_ZSH_SETUP_PATH
+HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" &&
+  test -f $HEROKU_AC_ZSH_SETUP_PATH &&
+  source $HEROKU_AC_ZSH_SETUP_PATH
 
 # Source all my custom zsh files
-setopt NULL_GLOB  # allow empty glob
+setopt NULL_GLOB # allow empty glob
 for file in $DOTFILES/source/*.zsh; do
-    source "$file"
+  source "$file"
 done
 unsetopt NULL_GLOB
 
