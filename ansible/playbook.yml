@@ -9,6 +9,8 @@
 - hosts: os_Debian,os_Ubuntu
   name: Set up Debian and Ubuntu
   gather_facts: False
+  vars:
+    fzf_version: "0.67.0"
   tasks:
     - name: Install Apt Packages
       become: true
@@ -27,15 +29,20 @@
           - tmux
           - tree
         state: present
+        update_cache: yes
+        cache_valid_time: 86400
 
     - name: Install fzf
       become: true
       git:
         repo: "https://github.com/junegunn/fzf.git"
         dest: /usr/local/src/fzf
+        version: "{{ fzf_version }}"
+      register: fzf_clone
 
     - name: Run fzf post-install
       shell: /usr/local/src/fzf/install --all --xdg --no-update-rc
+      when: fzf_clone.changed
 
 - hosts: os_MacOSX
   name: Install packages on macOS
@@ -56,8 +63,7 @@
           - git
           - git-extras
           - hadolint
-          - htop-osx
-          - hub
+          - htop
           - lesspipe
           - macvim
           - pandoc
@@ -76,10 +82,12 @@
 - hosts: all
   name: Finish set up for all platforms
   gather_facts: False
+  vars:
+    nvm_version: "v0.40.3"
   tasks:
     - name: Install nvm
       shell: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
       args:
         creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
