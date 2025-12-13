@@ -76,6 +76,11 @@ local.properties
 .gradle
 build/
 
+# Ansible #
+###########
+*.retry
+.ansible/
+
 
 # Eclipse #
 ###########

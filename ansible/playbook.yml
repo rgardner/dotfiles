@@ -90,7 +90,7 @@
         update: no
 
     - name: Copy files
-      copy:
+      ansible.builtin.copy:
         src: copy/
         dest: "{{ ansible_env.HOME }}"
         force: no

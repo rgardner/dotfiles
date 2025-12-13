@@ -99,10 +99,9 @@ export EDITOR="vim"
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
-alias code="code-insiders"
-alias mj="memory_jogger"
+alias codex="codex --enable skills"
 alias update="brew upgrade && rustup update && omz update"
-alias vsc="code-insiders"
+alias vsc="code-insiders" # no need for vscode plugin
 
 batdiff() {
   git diff --name-only --relative --diff-filter=d | xargs bat --diff
