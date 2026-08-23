@@ -1,0 +1,1 @@
+export HOMEBREW_NO_ASK=1

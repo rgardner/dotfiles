@@ -70,6 +70,7 @@
 	undo-soft = reset --soft HEAD^
 	unstage = reset HEAD --
 	wdiff = diff --word-diff=color --unified=1
+	wt = worktree
 [diff "pandoc"]
 	textconv=pandoc --to=markdown
 	prompt = false

@@ -77,15 +77,12 @@ source $ZSH/oh-my-zsh.sh
 # Make path elements unique
 typeset -U path
 
-export DOTFILES="${HOME}/.dotfiles"
 path=("${DOTFILES}/bin" $path)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-export EDITOR="vim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -99,7 +96,6 @@ export EDITOR="vim"
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
-alias codex="codex --enable skills"
 alias update="brew upgrade && rustup update && omz update"
 alias vsc="code-insiders" # no need for vscode plugin
 
