@@ -23,6 +23,7 @@
           - git-core
           - git-extras
           - htop
+          - neovim
           - ripgrep
           - shellcheck
           - stow
@@ -66,6 +67,7 @@
           - htop
           - lesspipe
           - macvim
+          - neovim
           - pandoc
           - rbenv
           - ripgrep
@@ -103,6 +105,11 @@
         dest: "{{ ansible_env.HOME }}"
         force: no
 
+    - name: Create XDG config directory
+      file:
+        path: "{{ ansible_env.HOME }}/.config"
+        state: directory
+
     - name: Link files
       file:
         src: "{{ item.src }}"
@@ -125,12 +132,18 @@
         - { src: .dotfiles/stow/tmux/.tmux.conf, dest: .tmux.conf }
         - { src: .dotfiles/stow/vim/.vim, dest: .vim }
         - { src: .dotfiles/stow/vim/.vimrc, dest: .vimrc }
+        - { src: .dotfiles/stow/nvim/.config/nvim, dest: .config/nvim }
         - { src: .dotfiles/stow/zsh/.oh-my-zsh, dest: .oh-my-zsh }
         - { src: .dotfiles/stow/zsh/.zshrc, dest: .zshrc }
 
     - name: Create Vim cache dir
       file:
         path: "{{ ansible_env.HOME }}/.dotfiles/caches/vim"
+        state: directory
+
+    - name: Create Neovim cache dir
+      file:
+        path: "{{ ansible_env.HOME }}/.dotfiles/caches/nvim"
         state: directory
 
     - name: Install and update Vim plugins
