@@ -2,7 +2,7 @@
 	path = .gitconfig.local
 [core]
 	autoclrf = input
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.dotfiles/config/git/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
@@ -38,6 +38,7 @@
 	ci = commit
 	cia = commit --amend
 	cim = commit -m
+	co = checkout
 	diffc = diff --cached
 	discard = checkout HEAD --
 	f = fetch
@@ -71,6 +72,7 @@
 	unstage = reset HEAD --
 	wdiff = diff --word-diff=color --unified=1
 	wt = worktree
+	wtl = worktree list
 [diff "pandoc"]
 	textconv=pandoc --to=markdown
 	prompt = false
