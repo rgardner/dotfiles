@@ -95,6 +95,19 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   command = "setfiletype rust",
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local opts = { buffer = args.buf, silent = true }
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  end,
+})
+
 -- lazy.nvim and Telescope.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -126,5 +139,12 @@ require("lazy").setup({
         desc = "Search current buffer",
       },
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      vim.lsp.enable("pyright")
+      vim.lsp.enable("rust_analyzer")
+    end,
   },
 })
